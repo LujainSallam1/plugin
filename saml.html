@@ -100,14 +100,14 @@
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Friendly name for Identity Providers')">
             </h5>
-            <input type="text" name="displayName">
+            <input type="text" name="displayName" id="displayName">
 
             <h5>Display Order
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Number defining the order of the providers in GUI (for example, on the Login page). The lowest number will be applied first.')">
             </h5>
 
-            <input type="text" name="displayOrder">
+            <input type="text" name="displayOrder" id="displayOrder">
 
             <h5>Endpoints
                 <img src="question.png" class="image" alt="question mark"
@@ -123,36 +123,36 @@
                     onclick="alert('The Entity ID that will be used to uniquely identify this SAML Service Provider.')">
 
             </h5>
-            <input type="text" name="spEntityId">
+            <input type="text" name="spEntityId" id="spEntityId">
 
             <h5>Identity Provider Entity ID
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('The Entity ID used to validate the Issuer for received SAML assertions. If empty, no Issuer validation is performed.')">
 
             </h5>
-            <input type="text" name="idpEntityId">
+            <input type="text" name="idpEntityId" id="idpEntityId">
 
             <h5>Single Sign-On Service URL *
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('The Url that must be used to send authentication requests (SAML AuthnRequest).')">
             </h5>
 
-            <input type="url" name="ssoServiceUrl">
+            <input type="url" name="ssoServiceUrl" id="ssoServiceUrl">
 
             <h5>Single Logout Service URL
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('The Url that must be used to send logout requests.')">
             </h5>
-            <input type="url" name="sloServiceUrl">
+            <input type="url" name="sloServiceUrl" id="sloServiceUrl">
 
             <h5>Backchannel Logout
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Does the external IDP support backchannel logout?')">
             </h5>
             <div class="radio">
-                <input type="radio" name="on" value="true">
+                <input type="radio" name="BackchannelOn" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="off" value="false" checked>
+                <input type="radio" name="BackchannelOff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -537,18 +537,38 @@
         const redirectUriInput = document.getElementById("redirectUri");
         const SamlExtendedInput = document.getElementById("SamlExtended");
         const buttonInput = document.getElementById("submit");
+        const Display_Name_input =document.getElementById("displayName");
+        const Display_Order_input=document.getElementById("displayOrder");
+        const Service_Provider_Entity_ID_input=document.getElementById("spEntityId");
+        const Identity_Provider_Entity_ID_input=document.getElementById("idpEntityId");
+        const Single_Sign_On_Service_URL_input=document.getElementById("ssoServiceUrl");
+        const Single_Logout_Service_URL_input=document.getElementById("sloServiceUrl");
 
         buttonInput.addEventListener('click', () => {
             const redirectUri = redirectUriInput.value;
             const SamlExtended = SamlExtendedInput.value;
             const button = buttonInput.value;
             <!-- const param= `redirectUri=${redirectUri}&SamlExtended=${SamlExtended}` -->
+            const Display_Name= Display_Name_input.value;
+            const Display_Order=Display_Order_input.value;
+            const Service_Provider_Entity_ID= Service_Provider_Entity_ID_input.value;
+            const Identity_Provider_Entity_ID= Identity_Provider_Entity_ID_input.value;
+            const Single_Sign_On_Service_URL= Single_Sign_On_Service_URL_input.value;
+            const Single_Logout_Service_URL= Single_Logout_Service_URL_input.value; 
             const url = `http://localhost:8080/api`;
 
            const data = {
-                redirectUri:redirectUri,
-                SamlExtended:SamlExtended
-            };
+                alias:SamlExtended,
+                displayName:Display_Name,
+    
+            config: {
+                guiOrder:Display_Order, 
+                singleLogoutServiceUrl:Single_Logout_Service_URL,
+                idpEntityId:Identity_Provider_Entity_ID,
+                singleSignOnServiceUrl:Single_Sign_On_Service_URL,
+                entityId:Service_Provider_Entity_ID,
+                
+            }};
 
             fetch(url, {
                 method: 'POST',
