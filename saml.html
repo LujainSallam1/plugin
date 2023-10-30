@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -88,7 +87,7 @@
 
             </h5>
             <input type="url" name="redirectUri"
-                value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" >
+                value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri">
 
 
             <h5>Alias *
@@ -96,7 +95,7 @@
                     onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
             </h5>
 
-            <input type="text" name="alias" required value="saml-extended" id="SamlExtended" >
+            <input type="text" name="alias" required value="saml-extended" id="SamlExtended">
             <h5>Display Name
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Friendly name for Identity Providers')">
@@ -543,19 +542,25 @@
             const redirectUri = redirectUriInput.value;
             const SamlExtended = SamlExtendedInput.value;
             const button = buttonInput.value;
-            const param= `redirectUri=${redirectUri }&SamlExtended=${SamlExtended}`
-            const url = `http://localhost:8080/api?${param}`
+            <!-- const param= `redirectUri=${redirectUri}&SamlExtended=${SamlExtended}` -->
+            const url = `http://localhost:8080/api`;
 
+           const data = {
+                redirectUri:redirectUri,
+                SamlExtended:SamlExtended
+            };
 
             fetch(url, {
-                method: 'GET', 
+                method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' 
-                }
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({data: data})
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('save', data);
+                    `displayData.textContent = Data received: ${JSON.stringify(data)}`;
+
                 })
                 .catch(error => {
                     console.error('error', error);
@@ -564,6 +569,7 @@
 
 
     </script>
+    <script src="server.js"></script>
 </body>
 
 </html>
