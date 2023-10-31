@@ -7,12 +7,12 @@ const Service_Provider_Entity_ID_input=document.getElementById("spEntityId");
 const Identity_Provider_Entity_ID_input=document.getElementById("idpEntityId");
 const Single_Sign_On_Service_URL_input=document.getElementById("ssoServiceUrl");
 const Single_Logout_Service_URL_input=document.getElementById("sloServiceUrl");
-let backchannel_value="false";
-const backchannel_on=document.getElementById("backchannelon");
-backchannel_on.addEventListener('change', ()=>{
-backchannel_value=backchannel_on.value;
-console.log(`backchannel_value: ${backchannel_value}`)
-});
+// let backchannel_value="false";
+// const backchannel_on=document.getElementById("backchannelon");
+// backchannel_on.addEventListener('change', ()=>{
+// backchannel_value=backchannel_on.value;
+// console.log(`backchannel_value: ${backchannel_value}`)
+// });
 
 // const Backchannel_Logout_input=document.querySelector('input[name="Backchannel"]:checked')
 
@@ -40,7 +40,10 @@ buttonInput.addEventListener('click', () => {
         idpEntityId:Identity_Provider_Entity_ID,
         singleSignOnServiceUrl:Single_Sign_On_Service_URL,
         entityId:Service_Provider_Entity_ID,
-        backchannelSupported:backchannel_value
+        backchannelSupported:backchannel_value,
+        allowCreate:allowCreat_value,
+        postBindingResponse: httpPostBindingResponse_value,
+        postBindingLogout:httpPostBindingLogout_value
         
     }};
 

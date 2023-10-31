@@ -154,8 +154,9 @@
                 <label for="on">on</label>
                 <input type="radio" name="Backchannel" value="false"   id="backchanneloff"checked>
                 <label for="off">off</label>
+                <!-- <script src="Radio.js"></script> -->
             </div>
-            <!-- <script src="RadioButtonManger.js"></script> -->
+          
 
             <h5>NameID Policy Format
                 <img src="question.png" class="image" alt="question mark"
@@ -197,9 +198,9 @@
             </h5>
 
             <div class="radio">
-                <input type="radio" name="allowCreate" value="true">
+                <input type="radio" name="allowCreate" value="true" id="allowCreateon">
                 <label for="on">on</label>
-                <input type="radio" name="allowCreate" value="false" checked>
+                <input type="radio" name="allowCreate" value="false" id="allowCreateoff" checked>
                 <label for="off">off</label>
             </div>
             <h5>HTTP-POST Binding Response
@@ -209,9 +210,9 @@
 
             <div class="radio">
 
-                <input type="radio" name="httpPostBindingResponse" value="true">
+                <input type="radio" name="httpPostBindingResponse" value="true" id="httpPostBindingResponseon">
                 <label for="on">on</label>
-                <input type="radio" name="httpPostBindingResponse" value="false" checked>
+                <input type="radio" name="httpPostBindingResponse" value="false" id="httpPostBindingResponseoff" checked>
                 <label for="off">off</label>
             </div>
 
@@ -222,9 +223,9 @@
 
 
             <div class="radio">
-                <input type="radio" name="httpPostBindingAuthnRequest" value="true">
+                <input type="radio" name="httpPostBindingAuthnRequest" value="true" id="httpPostBindingAuthnRequeston">
                 <label for="on">on</label>
-                <input type="radio" name="httpPostBindingAuthnRequest" value="false" checked>
+                <input type="radio" name="httpPostBindingAuthnRequest" value="false" id="httpPostBindingAuthnRequestoff" checked>
                 <label for="off">off</label>
             </div>
 
@@ -233,9 +234,9 @@
                     onclick="alert('Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="httpPostBindingLogout" value="true">
+                <input type="radio" name="httpPostBindingLogout" value="true" id="httpPostBindingLogouton">
                 <label for="on">on</label>
-                <input type="radio" name="httpPostBindingLogout" value="false" checked>
+                <input type="radio" name="httpPostBindingLogout" value="false" id="httpPostBindingLogoutoff" checked>
                 <label for="off">off</label>
             </div>
 
@@ -534,6 +535,7 @@
             <button class="btn" type="submit" id="submit">Save</button>
         </form>
     </div>
+    <script src="Radio.js"></script>
     <script src="script.js"></script>
     <script src="server.js"></script>
 </body>
