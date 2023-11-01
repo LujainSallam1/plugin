@@ -163,14 +163,14 @@
                     onclick="alert('Specifies the URI reference corresponding to a name identifier format.')">
             </h5>
             </h5>
-            <select name="nameIdPolicy">
-                <option value="Persistent">Persistent</option>
-                <option value="Transient">Transient</option>
-                <option value="Email">Email</option>
-                <option value="Kerberos">Kerberos</option>
-                <option value="X.509 Subject Name">X.509 Subject Name</option>
-                <option value="Windows Domain Qualified Name">Windows Domain Qualified Name</option>
-                <option value="Unspecified">Unspecified</option>Unspecified</option>
+            <select name="nameIdPolicy" id="nameIdPolicy">
+                <option value="persistent">Persistent</option>
+                <option value="transient">Transient</option>
+                <option value="emailAddress">Email</option>
+                <option value="kerberos">Kerberos</option>
+                <option value="X509SubjectName">X.509 Subject Name</option>
+                <option value="WindowsDomainQualifiedName">Windows Domain Qualified Name</option>
+                <option value="unspecified">Unspecified</option>Unspecified</option>
             </select>
 
             <h5>Principal Type
@@ -178,10 +178,10 @@
                     onclick="alert('Way to identify and track external users from the assertion. Default is using Subject NameID, alternatively you can set up identifying attribute.')">
             </h5>
             </h5>
-            <select name="principalType">
-                <option value="Subject NameID">Subject NameID</option>
-                <option value="Attribute [Name]">Attribute [Name]</option>
-                <option value="Attribute [Friendly Name]">Attribute [Friendly Name]</option>
+            <select name="principalType" id="principalType">
+                <option value="SUBJECT">Subject NameID</option>
+                <option value="ATTRIBUTE">Attribute [Name]</option>
+                <option value="FRIENDLY_ATTRIBUTE">Attribute [Friendly Name]</option>
             </select>
 
             <h5>Principal attribute
@@ -264,7 +264,7 @@
                 <option value="RSA_SHA512_MGF1">RSA_SHA512_MGF1</option>
                 <option value="DSA_SHA1">DSA_SHA1</option>
             </select>
-            <select name="SAML signature key name " id="SAMLSignatureKeyName" placeholder="" disabled>
+            <select name="SAML signature key name " id="SAMLSignatureKeyName" disabled>
                 <option value="KEY-ID">KEY-ID</option>
                 <option value="NONE">NONE</option>
                 <option value="CERT_SUBJECT">CERT_SUBJECT</option>
@@ -416,7 +416,7 @@
                     onclick="alert('Specifies the comparison method used to evaluate the requested context classes or statements. The default is *Exact*.')">
             </h5>
 
-            <select name="comparison">
+            <select name="comparison" id="comparison">
                 <option value="exact">Exact</option>
                 <option value="minimum">Minimum</option>
                 <option value="maximum">Maximum</option>
@@ -500,7 +500,7 @@
                     onclick="alert('Alias of authentication flow, which is triggered after first login with this identity provider. Term *First Login* means that no Keycloak account is currently linked to the authenticated identity provider account.')">
             </h5>
             </h5>
-            <select name="firstLoginFlow">
+            <select name="firstLoginFlow" id="firstLoginFlow">
                 <option value="browser">browser</option>
                 <option value="direct grant">direct grant</option>
                 <option value="registration">registration</option>
@@ -514,7 +514,7 @@
                     onclick="alert('Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this to *None* if you need no any additional authenticators to be triggered after login with this identity provider. Also note that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.')">
             </h5>
             </h5>
-            <select name="postLoginFlow">
+            <select name="postLoginFlow" id="postLoginFlow">
                 <option value="browser">browser</option>
                 <option value="direct grant">direct grant</option>
                 <option value="registration">registration</option>
@@ -528,7 +528,7 @@
                     onclick="alert('Default sync mode for all mappers. The sync mode determines when user data will be synced using the mappers. Possible values are: *legacy* to keep the behaviour before this option was introduced, *import* to only import the user once during first login of the user with this identity provider, *force* to always update the user during every login with this identity provider.')">
             </h5>
             </h5>
-            <select name="syncMode">
+            <select name="syncMode" id="syncMode">
                 <option value="Import">Import</option>
                 <option value="Lagacy">Lagacy</option>
                 <option value="Force">Force</option>
