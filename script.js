@@ -33,6 +33,9 @@ buttonInput.addEventListener('click', () => {
    const data = {
         alias:SamlExtended,
         displayName:Display_Name,
+        addReadTokenRoleOnCreate:storedTokensReadable_value,
+        trustEmail:trustEmail_value,
+        linkOnly:accountLinkingOnly_value,
 
     config: {
         guiOrder:Display_Order, 
@@ -43,8 +46,14 @@ buttonInput.addEventListener('click', () => {
         backchannelSupported:backchannel_value,
         allowCreate:allowCreat_value,
         postBindingResponse: httpPostBindingResponse_value,
-        postBindingLogout:httpPostBindingLogout_value
-        
+        postBindingLogout:httpPostBindingLogout_value,
+        wantAssertionsSigned:wantAssertionsSigned_value,
+        wantAssertionsEncrypted:wantAssertionsEncrypted_value,
+        forceAuthn:forceAuthentication_value,
+        signSpMetadata:signMetadata_value,
+        loginHint:passSubject_value,
+        storeToken:storeToken_value,
+        hideOnLoginPage:hideLoginPage_value
     }};
 
     fetch(url, {

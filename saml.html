@@ -152,11 +152,11 @@
             <div class="radio">
                 <input type="radio" name="Backchannel" value="true" id="backchannelon">
                 <label for="on">on</label>
-                <input type="radio" name="Backchannel" value="false"   id="backchanneloff"checked>
+                <input type="radio" name="Backchannel" value="false" id="backchanneloff" checked>
                 <label for="off">off</label>
                 <!-- <script src="Radio.js"></script> -->
             </div>
-          
+
 
             <h5>NameID Policy Format
                 <img src="question.png" class="image" alt="question mark"
@@ -212,7 +212,8 @@
 
                 <input type="radio" name="httpPostBindingResponse" value="true" id="httpPostBindingResponseon">
                 <label for="on">on</label>
-                <input type="radio" name="httpPostBindingResponse" value="false" id="httpPostBindingResponseoff" checked>
+                <input type="radio" name="httpPostBindingResponse" value="false" id="httpPostBindingResponseoff"
+                    checked>
                 <label for="off">off</label>
             </div>
 
@@ -225,7 +226,8 @@
             <div class="radio">
                 <input type="radio" name="httpPostBindingAuthnRequest" value="true" id="httpPostBindingAuthnRequeston">
                 <label for="on">on</label>
-                <input type="radio" name="httpPostBindingAuthnRequest" value="false" id="httpPostBindingAuthnRequestoff" checked>
+                <input type="radio" name="httpPostBindingAuthnRequest" value="false" id="httpPostBindingAuthnRequestoff"
+                    checked>
                 <label for="off">off</label>
             </div>
 
@@ -296,9 +298,9 @@
                     onclick="alert('Indicates whether this service provider expects a signed Assertion.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="wantAssertionsSigned" value="true">
+                <input type="radio" name="wantAssertionsSigned" id="wantAssertionsSignedon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="wantAssertionsSigned" value="false" checked>
+                <input type="radio" name="wantAssertionsSigned" id="wantAssertionsSignedoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -307,9 +309,10 @@
                     onclick="alert('Indicates whether this service provider expects an encrypted Assertion.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="wantAssertionsEncrypted" value="true">
+                <input type="radio" name="wantAssertionsEncrypted" id="wantAssertionsEncryptedon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="wantAssertionsEncrypted" value="false" checked>
+                <input type="radio" name="wantAssertionsEncrypted" id="wantAssertionsEncryptedoff" value="false"
+                    checked>
                 <label for="off">off</label>
             </div>
 
@@ -318,9 +321,9 @@
                     onclick="alert('Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="forceAuthentication" value="true">
+                <input type="radio" name="forceAuthentication" id="forceAuthenticationon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="forceAuthentication" value="false" checked>
+                <input type="radio" name="forceAuthentication" id="forceAuthenticationoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -367,9 +370,9 @@
             </h5>
 
             <div class="radio">
-                <input type="radio" name="signMetadata" value="true">
+                <input type="radio" name="signMetadata" id="signMetadataon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="signMetadata" value="false" checked>
+                <input type="radio" name="signMetadata" id="signMetadataoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -378,9 +381,9 @@
             </h5>
 
             <div class="radio">
-                <input type="radio" name="passSubject" value="true">
+                <input type="radio" name="passSubject" id="passSubjecton" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="passSubject" value="false" checked>
+                <input type="radio" name="passSubject" id="passSubjectoff" value="false" checked>
                 <label for="off">off</label>
 
             </div>
@@ -443,9 +446,9 @@
                     onclick="alert('Enable/disable if tokens must be stored after authenticating users')">
             </h5>
             <div class="radio">
-                <input type="radio" name="storeTokens" value="true">
+                <input type="radio" name="storeToken" id="storeTokenon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="storeTokens" value="false" checked>
+                <input type="radio" name="storeToken" id="storeTokenoff" value="false" checked>
                 <label for="off">off</label>
             </div>
             <h5>Stored Tokens Readable
@@ -453,9 +456,9 @@
                     onclick="alert('Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="storedTokensReadable" value="true">
+                <input type="radio" name="storedTokensReadable" id="storedTokensReadableon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="storedTokensReadable" value="false" checked>
+                <input type="radio" name="storedTokensReadable" id="storedTokensReadableoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -464,9 +467,9 @@
                     onclick="alert('If enabled, email provided by this provider is not verified even if verification is enabled for the realm.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="trustEmail" value="true">
+                <input type="radio" name="trustEmail" id="trustEmailon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="trustEmail" value="false" checked>
+                <input type="radio" name="trustEmail" id="trustEmailoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -475,9 +478,9 @@
                     onclick="alert('If true, users cannot log in through this provider. They can only link to this provider. This is useful if you do not want to allow login from the provider, but want to integrate with a provider')">
             </h5>
             <div class="radio">
-                <input type="radio" name="accountLinkingOnly" value="true">
+                <input type="radio" name="accountLinkingOnly" id="accountLinkingOnlyon" value="true">
                 <label for="on">on </label>
-                <input type="radio" name="accountLinkingOnly" value="false" checked>
+                <input type="radio" name="accountLinkingOnly" id="accountLinkingOnlyoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
@@ -486,9 +489,9 @@
                     onclick="alert('If hidden, login with this provider is possible only if requested explicitly, for example using the *kc_idp_hint* parameter.')">
             </h5>
             <div class="radio">
-                <input type="radio" name="hideLoginPage" value="true">
+                <input type="radio" name="hideLoginPage" id="hideLoginPageon" value="true">
                 <label for="on">on</label>
-                <input type="radio" name="hideLoginPage" value="false" checked>
+                <input type="radio" name="hideLoginPage" id="hideLoginPageoff" value="false" checked>
                 <label for="off">off</label>
             </div>
 
