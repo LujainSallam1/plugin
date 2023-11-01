@@ -123,7 +123,7 @@
                     onclick="alert('The Entity ID that will be used to uniquely identify this SAML Service Provider.')">
 
             </h5>
-            <input type="text" name="spEntityId" id="spEntityId">
+            <input type="text" name="spEntity" id="spEntityId">
 
             <h5>Identity Provider Entity ID
                 <img src="question.png" class="image" alt="question mark"
@@ -342,8 +342,7 @@
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('The certificate in PEM format that must be used to check for signatures. Multiple certificates can be entered, separated by comma (,).')">
             </H5>
-            <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates" placeholder=""
-                disabled>
+            <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates"disabled>
 
             <script>
                 var onRadioButton = document.getElementById("on1");
@@ -394,21 +393,21 @@
                     onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequest subject.')">
             </h5>
 
-            <input type="text" name="allowedClockSkew">
+            <input type="text" name="allowedClockSkew" id="allowedClockSkew">
 
             <h5>Attribute Consuming Service Index
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Index of the Attribute Consuming Service profile to request during authentication.')">
             </h5>
 
-            <input type="text" name="attributeConsumingServiceIndex">
+            <input type="text" name="attributeConsumingServiceIndex" id="attributeConsumingServiceIndex">
 
             <h5>Attribute Consuming Service Name
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Name of the Attribute Consuming Service profile to advertise in the SP metadata.')">
             </h5>
 
-            <input type="text" name="attributeConsumingServiceName">
+            <input type="text" name="attributeConsumingServiceName" id="attributeConsumingServiceName">
 
             <h2>Requested AuthnContext Constraints</h2>
 
@@ -430,14 +429,14 @@
                     onclick="alert('Ordered list of requested AuthnContext DeclRefs.')">
             </h5>
 
-            <input type="text" name="authnContextClassRefs">
+            <input type="text" name="authnContextClassRefs" id="authnContextClassRefs">
 
             <h5>AuthnContext DeclRefs
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Ordered list of requested AuthnContext DeclRefs.')">
             </h5>
 
-            <input type="text" name="authnContextDeclRefs">
+            <input type="text" name="authnContextDeclRefs" id="authnContextDeclRefs">
 
             <h2>Advanced Settings</h2>
 

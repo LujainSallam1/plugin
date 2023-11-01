@@ -7,6 +7,15 @@ const Service_Provider_Entity_ID_input=document.getElementById("spEntityId");
 const Identity_Provider_Entity_ID_input=document.getElementById("idpEntityId");
 const Single_Sign_On_Service_URL_input=document.getElementById("ssoServiceUrl");
 const Single_Logout_Service_URL_input=document.getElementById("sloServiceUrl");
+const allowedClockSkew_input=document.getElementById("allowedClockSkew");
+const attributeConsumingServiceIndex_input=document.getElementById("attributeConsumingServiceIndex");
+const attributeConsumingServiceName_input=document.getElementById("attributeConsumingServiceName");
+const authnContextClassRefs_input=document.getElementById("authnContextClassRefs");
+const authnContextDeclRefs_input=document.getElementById("authnContextDeclRefs");
+
+
+
+
 // let backchannel_value="false";
 // const backchannel_on=document.getElementById("backchannelon");
 // backchannel_on.addEventListener('change', ()=>{
@@ -27,6 +36,13 @@ buttonInput.addEventListener('click', () => {
     const Identity_Provider_Entity_ID= Identity_Provider_Entity_ID_input.value;
     const Single_Sign_On_Service_URL= Single_Sign_On_Service_URL_input.value;
     const Single_Logout_Service_URL= Single_Logout_Service_URL_input.value; 
+    const allowedClockSkew=allowedClockSkew_input.value;
+    const attributeConsumingServiceIndex=attributeConsumingServiceIndex_input.value;
+    const attributeConsumingServiceName=attributeConsumingServiceName_input.value;
+    const authnContextClassRefs=authnContextClassRefs_input.value;
+    const authnContextDeclRefs=authnContextDeclRefs_input.value;
+
+
   
     const url = `http://localhost:8080/api`;
 
@@ -53,7 +69,13 @@ buttonInput.addEventListener('click', () => {
         signSpMetadata:signMetadata_value,
         loginHint:passSubject_value,
         storeToken:storeToken_value,
-        hideOnLoginPage:hideLoginPage_value
+        hideOnLoginPage:hideLoginPage_value,
+        allowedClockSkew:allowedClockSkew,
+        attributeConsumingServiceIndex:attributeConsumingServiceIndex,
+        attributeConsumingServiceName:attributeConsumingServiceName,
+        authnContextClassRefs:authnContextClassRefs,
+        authnContextDeclRefs:authnContextDeclRefs
+
     }};
 
     fetch(url, {
