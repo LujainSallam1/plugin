@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const deleteButtons = document.querySelectorAll(".delete");
+    const deleteButtons = document.querySelectorAll(".delete1");
     const addButton = document.getElementById("addDeclRefs");
     const ClassRefs_items = document.getElementById("DeclRefs_items");
 
