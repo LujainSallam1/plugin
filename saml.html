@@ -250,13 +250,14 @@
             </h5>
             <div class="radio">
 
-                <input type="radio" name="wantAuthnRequestsSigned" value="true" id="on">
+                <input type="radio" name="wantAuthnRequestsSigned" value="true" id="wantAuthnRequestsSignedon">
                 <label for="on">on</label>
-                <input type="radio" name="wantAuthnRequestsSigned" value="false" id="off" checked>
+                <input type="radio" name="wantAuthnRequestsSigned" value="false" id="wantAuthnRequestsSignedoff"
+                    checked>
                 <label for="off">off</label>
 
             </div>
-            <select name="Signature algorithm" id="SignatureAlgorithm" placeholder="" disabled>
+            <select name="Signature algorithm" id="SignatureAlgorithm" disabled>
                 <option value="RSA_SHA1">RSA_SHA1</option>
                 <option value="RSA_SHA256">RSA_SHA256</option>
                 <option value="RSA_SHA256_MGF1">RSA_SHA256_MGF1</option>
@@ -270,8 +271,8 @@
                 <option value="CERT_SUBJECT">CERT_SUBJECT</option>
             </select>
             <script> document.addEventListener("DOMContentLoaded", function () {
-                    var onRadioButton = document.getElementById("on");
-                    var offRadioButton = document.getElementById("off");
+                    var onRadioButton = document.getElementById("wantAuthnRequestsSignedon");
+                    var offRadioButton = document.getElementById("wantAuthnRequestsSignedoff");
                     var additionalField1 = document.getElementById("SignatureAlgorithm");
                     var additionalField2 = document.getElementById("SAMLSignatureKeyName");
 
@@ -342,7 +343,7 @@
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('The certificate in PEM format that must be used to check for signatures. Multiple certificates can be entered, separated by comma (,).')">
             </H5>
-            <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates"disabled>
+            <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates" disabled>
 
             <script>
                 var onRadioButton = document.getElementById("on1");
@@ -423,20 +424,35 @@
                 <option value="better">better</option>
             </select>
 
+            <form class="form-horizontal">
+                <!-- Text input-->
+                <div id="ClassRefs_items" class="form-group">
+                    <h5> AuthnContext ClassRefs <img src="question.png" class="image" alt="question mark"
+                            onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
+                    <div class="col-md-4 margin-bottom">
+                        <input id="authnContextClassRefs" name="authnContextClassRefs" type="text" class="form-control input-md">
 
-            <h5>AuthnContext ClassRefs
-                <img src="question.png" class="image" alt="question mark"
-                    onclick="alert('Ordered list of requested AuthnContext DeclRefs.')">
-            </h5>
+                    </div>
+                </div>
+            </form>
 
-            <input type="text" name="authnContextClassRefs" id="authnContextClassRefs">
+            <button id="addClassRefs" class="btn add-more button-yellow uppercase" type="button">+ Add </button>
+            <button class="delete btn button-white uppercase">- Remove </button>
 
-            <h5>AuthnContext DeclRefs
-                <img src="question.png" class="image" alt="question mark"
-                    onclick="alert('Ordered list of requested AuthnContext DeclRefs.')">
-            </h5>
+            <form class="form-horizontal">
+                <!-- Text input-->
+                <div id="DeclRefs_items" class="form-group">
+                    <h5> AuthnContext DeclRefs <img src="question.png" class="image" alt="question mark"
+                            onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
+                    <div class="col-md-4 margin-bottom">
+                        <input id="authnContextDeclRefs" name="authnContextDeclRefs" type="text" class="form-control input-md">
 
-            <input type="text" name="authnContextDeclRefs" id="authnContextDeclRefs">
+                    </div>
+                </div>
+            </form>
+
+            <button id="addDeclRefs" class="btn add-more button-yellow uppercase" type="button">+ Add </button>
+            <button class="delete1 btn button-white uppercase">- Remove </button>
 
             <h2>Advanced Settings</h2>
 

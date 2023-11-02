@@ -105,3 +105,75 @@ hideLoginPage_on.addEventListener('change', () => {
     hideLoginPage_value = hideLoginPage_on.value;
     console.log(`hideLoginPage_value: ${hideLoginPage_value}`)
 });
+
+let wantAuthnRequestsSigned_value = "false";
+const wantAuthnRequestsSigned_on = document.getElementById("wantAuthnRequestsSignedon");
+wantAuthnRequestsSigned_on.addEventListener('change', () => {
+    wantAuthnRequestsSigned_value = wantAuthnRequestsSigned_on.value;
+    console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned_value}`)
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+ 
+    const deleteButtons = document.querySelectorAll(".delete");
+    const addButton = document.getElementById("addClassRefs");
+    const ClassRefs_items = document.getElementById("ClassRefs_items");
+
+    deleteButtons.forEach(function (button) {
+        button.style.display = "none";
+    });
+
+    addButton.addEventListener("click", function (e) {
+        deleteButtons.forEach(function (button) {
+            button.style.display = "inline";
+            
+        });
+
+        const newItem = document.createElement("div");
+        newItem.className = "next-referral col-4";
+        newItem.innerHTML = '<input id="textinput" name="textinput" type="text" class="form-control input-md">';
+        ClassRefs_items.appendChild(newItem);
+    });
+
+    document.body.addEventListener("click", function (e) {
+        if (e.target.classList.contains("delete")) {
+            const items = document.querySelectorAll(".next-referral");
+            if (items.length > 0) {
+                items[items.length - 1].remove();
+            }
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const deleteButtons = document.querySelectorAll(".delete");
+    const addButton = document.getElementById("addDeclRefs");
+    const ClassRefs_items = document.getElementById("DeclRefs_items");
+
+    deleteButtons.forEach(function (button) {
+        button.style.display = "none";
+    });
+
+    addButton.addEventListener("click", function (e) {
+        deleteButtons.forEach(function (button) {
+            button.style.display = "inline";
+        });
+
+        const newItem = document.createElement("div");
+        newItem.className = "next-referral col-4";
+        newItem.innerHTML = '<input id="textinput" name="textinput" type="text" class="form-control input-md">';
+        ClassRefs_items.appendChild(newItem);
+    });
+
+    document.body.addEventListener("click", function (e) {
+        if (e.target.classList.contains("delete1")) {
+            const items = document.querySelectorAll(".next-referral");
+            if (items.length > 0) {
+                items[items.length - 1].remove();
+            }
+        }
+    });
+});
+
+
+

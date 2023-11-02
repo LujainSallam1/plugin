@@ -18,6 +18,9 @@ const postLoginFlow_input = document.getElementById("postLoginFlow");
 const syncMode_input = document.getElementById("syncMode");
 const principalType_input = document.getElementById("principalType");
 const nameIdPolicy_input = document.getElementById("nameIdPolicy");
+const SignatureAlgorithm_input=document.getElementById("SignatureAlgorithm");
+const SAMLSignatureKeyName_input=document.getElementById("SAMLSignatureKeyName");
+
 
 
 
@@ -31,7 +34,11 @@ const nameIdPolicy_input = document.getElementById("nameIdPolicy");
 // const Backchannel_Logout_input=document.querySelector('input[name="Backchannel"]:checked')
 
 buttonInput.addEventListener('click', () => {
-
+    const inputvalues=[]
+    const inputs = ClassRefs_items.querySelectorAll("input");
+    inputs.forEach(input =>{inputvalues.push(input.value)});
+    console.log(inputvalues);
+    document.getElementById("authnContextClassRefs").value=''
     const redirectUri = redirectUriInput.value;
     const SamlExtended = SamlExtendedInput.value;
     const button = buttonInput.value;
@@ -53,6 +60,8 @@ buttonInput.addEventListener('click', () => {
     var principalType = principalType_input.value;
     var nameIdPolicy = nameIdPolicy_input.value;
     var nameIdPolicy1=`urn:oasis:names:tc:SAML:1.1:nameid-format:${nameIdPolicy}`;
+    var SignatureAlgorithm=SignatureAlgorithm_input.value;
+    var SAMLSignatureKeyName=SAMLSignatureKeyName_input.value;
     const url = `http://localhost:8080/api`;
 
     const data = {
@@ -84,13 +93,15 @@ buttonInput.addEventListener('click', () => {
             allowedClockSkew: allowedClockSkew,
             attributeConsumingServiceIndex: attributeConsumingServiceIndex,
             attributeConsumingServiceName: attributeConsumingServiceName,
-            authnContextClassRefs: authnContextClassRefs,
+            authnContextClassRefs: inputvalues ,
             authnContextDeclRefs: authnContextDeclRefs,
             authnContextComparisonType: comparison,
             syncMode: syncMode,
             principalType: principalType,
-            nameIDPolicyFormat: nameIdPolicy1
-
+            nameIDPolicyFormat: nameIdPolicy1,
+            signatureAlgorithm:SignatureAlgorithm,
+            xmlSigKeyInfoKeyNameTransformer:SAMLSignatureKeyName,
+            wantAuthnRequestsSigned:wantAuthnRequestsSigned_value
         }
     };
 
