@@ -175,5 +175,48 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    var onRadioButton = document.getElementById("wantAuthnRequestsSignedon");
+    var offRadioButton = document.getElementById("wantAuthnRequestsSignedoff");
+    var additionalField1 = document.getElementById("SignatureAlgorithm");
+    var additionalField2 = document.getElementById("SAMLSignatureKeyName");
+
+    onRadioButton.addEventListener("change", function () {
+        if (onRadioButton.checked) {
+            additionalField1.removeAttribute("disabled");
+            additionalField2.removeAttribute("disabled");
+        }
+    });
+
+    offRadioButton.addEventListener("change", function () {
+        if (offRadioButton.checked) {
+            additionalField1.setAttribute("disabled", "true");
+            additionalField2.setAttribute("disabled", "true");
+        }
+    });
+});
+
+var validateSignatures_on = document.getElementById("validateSignatureson");
+var validateSignatures_off = document.getElementById("validateSignaturesoff");
+var additionalField1 = document.getElementById("ValidatingX509Certificates");
+let validateSignatures_value = "false";
+
+validateSignatures_on.addEventListener("change", function () {
+    if (validateSignatures_on.checked) {
+        validateSignatures_value = validateSignatures_on.value;
+        console.log(`validateSignatures_value: ${validateSignatures_value}`)
+        additionalField1.removeAttribute("disabled");
+        ;
+    }
+});
+
+validateSignatures_off.addEventListener("change", function () {
+    if (validateSignatures_off.checked) {
+        validateSignatures_value = validateSignatures_off.value;
+        console.log(`validateSignatures_value: ${validateSignatures_value}`)
+        additionalField1.setAttribute("disabled", "true");
+
+    }
+});
 
 

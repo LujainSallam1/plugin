@@ -11,7 +11,7 @@ app.post('/api', (req, res) => {
     // res.json({massage:`ok ${data}`})
     console.log(data);
 
-    res.json(data);
+     res.json(data);
 });
 
 app.listen(port, () => {

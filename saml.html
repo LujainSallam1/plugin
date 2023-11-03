@@ -154,7 +154,7 @@
                 <label for="on">on</label>
                 <input type="radio" name="Backchannel" value="false" id="backchanneloff" checked>
                 <label for="off">off</label>
-                <!-- <script src="Radio.js"></script> -->
+              
             </div>
 
 
@@ -270,29 +270,6 @@
                 <option value="NONE">NONE</option>
                 <option value="CERT_SUBJECT">CERT_SUBJECT</option>
             </select>
-            <script> document.addEventListener("DOMContentLoaded", function () {
-                    var onRadioButton = document.getElementById("wantAuthnRequestsSignedon");
-                    var offRadioButton = document.getElementById("wantAuthnRequestsSignedoff");
-                    var additionalField1 = document.getElementById("SignatureAlgorithm");
-                    var additionalField2 = document.getElementById("SAMLSignatureKeyName");
-
-                    onRadioButton.addEventListener("change", function () {
-                        if (onRadioButton.checked) {
-                            additionalField1.removeAttribute("disabled");
-                            additionalField2.removeAttribute("disabled");
-                        }
-                    });
-
-                    offRadioButton.addEventListener("change", function () {
-                        if (offRadioButton.checked) {
-                            additionalField1.setAttribute("disabled", "true");
-                            additionalField2.setAttribute("disabled", "true");
-                        }
-                    });
-                });
-            </script>
-
-
 
             <h5>Want Assertions Signed
                 <img src="question.png" class="image" alt="question mark"
@@ -344,32 +321,6 @@
                     onclick="alert('The certificate in PEM format that must be used to check for signatures. Multiple certificates can be entered, separated by comma (,).')">
             </H5>
             <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates" disabled>
-
-            <script>
-                var validateSignatures_on = document.getElementById("validateSignatureson");
-                var validateSignatures_off = document.getElementById("validateSignaturesoff");
-                var additionalField1 = document.getElementById("ValidatingX509Certificates");
-                let validateSignatures_value = "false";
-
-                validateSignatures_on.addEventListener("change", function () {
-                    if (validateSignatures_on.checked) {
-                        validateSignatures_value = validateSignatures_on.value;
-                        console.log(`validateSignatures_value: ${validateSignatures_value}`)
-                        additionalField1.removeAttribute("disabled");
-                        ;
-                    }
-                });
-
-                validateSignatures_off.addEventListener("change", function () {
-                    if (validateSignatures_off.checked) {
-                        validateSignatures_value = validateSignatures_off.value;
-                        console.log(`validateSignatures_value: ${validateSignatures_value}`)
-                        additionalField1.setAttribute("disabled", "true");
-
-                    }
-                });
-
-            </script>
             <h5>Sign Service Provider Metadata
                 <img src="question.png" class="image" alt="question mark"
                     onclick="alert('Enable/disable signature of the provider SAML metadata.')">
@@ -561,8 +512,8 @@
             <button class="btn" type="submit" id="submit">Save</button>
         </form>
     </div>
-    <script src="Radio.js"></script>
-    <script src="script.js"></script>
+    <script src="RadioButtonController.js"></script>
+    <script src="ApiDataSender.js"></script>
     <script src="server.js"></script>
 </body>
 
