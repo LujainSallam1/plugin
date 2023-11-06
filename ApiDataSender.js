@@ -55,7 +55,7 @@ buttonInput.addEventListener('click', () => {
     var SignatureAlgorithm=SignatureAlgorithm_input.value;
     var SAMLSignatureKeyName=SAMLSignatureKeyName_input.value;
     const  ValidatingX509Certificates= ValidatingX509Certificates_input.value;
-    const url = `http://localhost:8080/api`;
+    const url = `http://localhost:3000/api`;
 
     const data = {
         alias: SamlExtended,
