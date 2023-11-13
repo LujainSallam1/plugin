@@ -80,32 +80,9 @@
 <body>
     <h1>Keycloak Authentication</h1>
      
-    <button id="login">Login with Keycloak</button>
-
-    <script>
-        const keycloak = Keycloak({ 
-            url: 'http://localhost:8080', 
-            realm: 'saml', 
-            clientId: 'frontend', 
-            redirectUri: 'https://lujainsallam1.github.io/saml', 
-        });
-
-        document.getElementById('login').addEventListener('click', () => {
-            keycloak.login(); // توجيه المستخدم إلى صفحة تسجيل الدخول
-        });
-
-        keycloak.init({ onLoad: 'login-required' }).success((authenticated) => { 
-            if (authenticated) { 
-                const accessToken = keycloak.token; // الحصول على access token
-                console.log(accessToken)
-                alert("Access Token: " + accessToken);
-            } else { 
-                alert("User authentication failed!"); 
-            } 
-        }).error(() => { 
-            alert("Could not authenticate the user!"); 
-        });
-    </script>
+    <button id="login">access token</button>
+    <button id="logout">Logout</button>
+     <script src="keyloack.js"></script>
     <div class="container">
         <h2>General Settings</h2>
         <form id="GeneralSettings">
@@ -542,7 +519,6 @@
     </div>
     <script src="RadioButtonController.js"></script>
     <script src="ApiDataSender.js"></script>
-    <script src="server.js"></script>
 </body>
 
 </html>
