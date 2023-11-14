@@ -26,20 +26,23 @@ buttonInput.addEventListener('click', () => {
     keycloak.updateToken(180).then((bool) => {
     if (bool) {
       console.log("Token is updated");
-      newAccessToken = keycloak.token;
-
-    
-    
+      newAccessToken = keycloak.token;    
   
     const authnContextClassRefs=[]
     const ClassRefs_inputs= ClassRefs_items.querySelectorAll("input");
     ClassRefs_inputs.forEach(input =>{
-        authnContextClassRefs.push(input.value)});
+            if (input.value.trim() !== "") {
+        authnContextClassRefs.push(input.value);
+        }  
+    });
     console.log(authnContextClassRefs);
     const authnContextDeclRefs=[]
     const DeclRefs_inputs = DeclRefs_items.querySelectorAll("input");
     DeclRefs_inputs.forEach(input =>{
-        authnContextDeclRefs.push(input.value)});
+        if (input.value.trim() !== "") {
+        authnContextDeclRefs.push(input.value);
+        }
+    });
     console.log(authnContextDeclRefs);
     const redirectUri = redirectUriInput.value;
     const SamlExtended = SamlExtendedInput.value;
@@ -81,10 +84,10 @@ buttonInput.addEventListener('click', () => {
         "postBrokerLoginFlowAlias": postLoginFlow,
         config: {
             "postBindingLogout": httpPostBindingLogout_value,
-            "authnContextClassRefs": JSON.stringify(authnContextClassRefs),
+            "authnContextClassRefs": authnContextClassRefs.length > 0 ? JSON.stringify(authnContextClassRefs) : undefined,
             "postBindingResponse": httpPostBindingResponse_value,
             "singleLogoutServiceUrl": Single_Logout_Service_URL,
-            "authnContextDeclRefs":JSON.stringify(authnContextDeclRefs),
+            "authnContextDeclRefs": authnContextDeclRefs.length > 0 ? JSON.stringify(authnContextDeclRefs) : undefined,
             "backchannelSupported": backchannel_value,
             "xmlSigKeyInfoKeyNameTransformer":SAMLSignatureKeyName,
             "idpEntityId": Identity_Provider_Entity_ID,
@@ -124,7 +127,6 @@ buttonInput.addEventListener('click', () => {
 
     removeEmptyStrings(data);
 
-    
     const configKeys = Object.keys(data.config);
     for (const key of configKeys) {
         if (typeof data.config[key] === 'string' && data.config[key].trim() === "") {
