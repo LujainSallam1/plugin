@@ -28,17 +28,19 @@ buttonInput.addEventListener('click', () => {
       console.log("Token is updated");
       newAccessToken = keycloak.token;
 
-      // بعد ذلك يُمكنك استخدام الـ Access Token لإرسال الطلب HTTP
+    
     
   
     const authnContextClassRefs=[]
     const ClassRefs_inputs= ClassRefs_items.querySelectorAll("input");
-    ClassRefs_inputs.forEach(input =>{authnContextClassRefs.push(input.value)});
+    ClassRefs_inputs.forEach(input =>{
+        authnContextClassRefs.push(input.value)});
     console.log(authnContextClassRefs);
     const authnContextDeclRefs=[]
     const DeclRefs_inputs = DeclRefs_items.querySelectorAll("input");
-    DeclRefs_inputs.forEach(input =>{authnContextDeclRefs.push(input.value)});
-    console.log(authnContextClassRefs);
+    DeclRefs_inputs.forEach(input =>{
+        authnContextDeclRefs.push(input.value)});
+    console.log(authnContextDeclRefs);
     const redirectUri = redirectUriInput.value;
     const SamlExtended = SamlExtendedInput.value;
     const button = buttonInput.value;
@@ -79,8 +81,10 @@ buttonInput.addEventListener('click', () => {
         "postBrokerLoginFlowAlias": postLoginFlow,
         config: {
             "postBindingLogout": httpPostBindingLogout_value,
+            "authnContextClassRefs": JSON.stringify(authnContextClassRefs),
             "postBindingResponse": httpPostBindingResponse_value,
             "singleLogoutServiceUrl": Single_Logout_Service_URL,
+            "authnContextDeclRefs":JSON.stringify(authnContextDeclRefs),
             "backchannelSupported": backchannel_value,
             "xmlSigKeyInfoKeyNameTransformer":SAMLSignatureKeyName,
             "idpEntityId": Identity_Provider_Entity_ID,
@@ -120,7 +124,7 @@ buttonInput.addEventListener('click', () => {
 
     removeEmptyStrings(data);
 
-    // التحقق من وجود قيم في الحقول داخل config
+    
     const configKeys = Object.keys(data.config);
     for (const key of configKeys) {
         if (typeof data.config[key] === 'string' && data.config[key].trim() === "") {
@@ -137,7 +141,6 @@ buttonInput.addEventListener('click', () => {
 
     
 
-    // إرسال البيانات إلى الخادم
 console.log(data);
 
 fetch(url, {
