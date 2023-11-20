@@ -93,15 +93,15 @@
 
             </h5>
             <input type="url" name="redirectUri"
-                value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri">
+                value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" readonly>
 
 
             <h5>Alias *
-                <img src="/images/question.png" class="image" alt="question mark"
+                <img src="/images/question.png" class="image" alt="question mark" 
                     onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
             </h5>
 
-            <input type="text" name="alias" required value="saml-extended" id="SamlExtended">
+            <input type="text" name="alias" required value="saml-extended" id="SamlExtended" readonly>
             <h5>Display Name
                 <img src="/images/question.png" class="image" alt="question mark"
                     onclick="alert('Friendly name for Identity Providers')">
