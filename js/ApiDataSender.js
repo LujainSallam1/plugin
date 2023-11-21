@@ -144,32 +144,98 @@ buttonInput.addEventListener('click', () => {
     
 
 console.log(data);
+// Logging the data
+console.log(data);
 
-fetch(url, {
-    method: 'POST',
+// Sending a GET request to check if the plugin exists
+fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+    method: 'GET',
     headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${newAccessToken}`
+        'Authorization': `Bearer ${newAccessToken}`,
     },
-    body: JSON.stringify(data)
 })
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+
+// Handling the response of the GET request
+.then(async checkPluginResponse => {
+    if (checkPluginResponse.ok) {
+        // If the GET request is successful (status 2xx)
+        // Parsing the JSON data from the response
+        const pluginData = await checkPluginResponse.json();
+        console.log(pluginData);
+
+        // Updating the plugin data using a PUT request
+        const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${newAccessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        console.log("Update Plugin Response:", updatePluginResponse);
+
+        // Checking the response status for success
+        if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
+            console.log("Plugin updated/added successfully.");
+        } else {
+            console.error(`Failed to update/add the plugin. Response: ${updatePluginResponse.statusText}`);
+            console.error("Error Details:", await updatePluginResponse.json());
+        }
+    } else if (checkPluginResponse.status === 404) {
+        // If the status is 404, the plugin does not exist, so send a POST request
+        return fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${newAccessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+    } else {
+        // If there is another status, an error occurred
+        console.error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
+        throw new Error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
     }
-    return response.text();
 })
-.then(data => {
-    // Parse JSON if data is not empty, otherwise return an empty object
-    const parsedData = data ? JSON.parse(data) : {};
-    console.log(`Data received: ${JSON.stringify(parsedData)}`);
+
+// Handling the response of the POST request (if executed)
+.then(response => {
+    // ... (Additional code that was commented out)
 })
 .catch(error => {
-    console.error('Error:', error);
+    // ... (Additional code that was commented out)
 });
+
+// Setting a form element value to an empty string
+document.getElementById("ValidatingX509Certificates").value = '';
+
+  
+// fetch(url, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${newAccessToken}`
+//     },
+//     body: JSON.stringify(data)
+// })
+// .then(response => {
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+//     return response.text();
+// })
+// .then(data => {
+//     // Parse JSON if data is not empty, otherwise return an empty object
+//     const parsedData = data ? JSON.parse(data) : {};
+//     console.log(`Data received: ${JSON.stringify(parsedData)}`);
+// })
+// .catch(error => {
+//     console.error('Error:', error);
+// });
 document.getElementById("ValidatingX509Certificates").value = '';
 } else {
     console.log("Token is not updated");
-}
-});
+ }
+ });
     });
