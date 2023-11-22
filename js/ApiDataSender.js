@@ -22,12 +22,15 @@ const SignatureAlgorithm_input=document.getElementById("SignatureAlgorithm");
 const SAMLSignatureKeyName_input=document.getElementById("SAMLSignatureKeyName");
 const ValidatingX509Certificates_input=document.getElementById("ValidatingX509Certificates");
 let newAccessToken;
+// افترض أن لديك عنصر select في HTML بهذا الشكل: <select id="aliasSelect"></select>
+
 buttonInput.addEventListener('click', () => {
+    
     keycloak.updateToken(180).then((bool) => {
     if (bool) {
       console.log("Token is updated");
       newAccessToken = keycloak.token;    
-  
+
     const authnContextClassRefs=[]
     const ClassRefs_inputs= ClassRefs_items.querySelectorAll("input");
     ClassRefs_inputs.forEach(input =>{
@@ -209,30 +212,6 @@ fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/sam
 
 // Setting a form element value to an empty string
 document.getElementById("ValidatingX509Certificates").value = '';
-
-  
-// fetch(url, {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${newAccessToken}`
-//     },
-//     body: JSON.stringify(data)
-// })
-// .then(response => {
-//     if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     return response.text();
-// })
-// .then(data => {
-//     // Parse JSON if data is not empty, otherwise return an empty object
-//     const parsedData = data ? JSON.parse(data) : {};
-//     console.log(`Data received: ${JSON.stringify(parsedData)}`);
-// })
-// .catch(error => {
-//     console.error('Error:', error);
-// });
 document.getElementById("ValidatingX509Certificates").value = '';
 } else {
     console.log("Token is not updated");
