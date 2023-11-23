@@ -6,19 +6,28 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            margin: 0;
+            margin-left: 0;
             padding: 0;
             display: none;
+            background-color: transparent;
+            box-sizing: border-box;
+        }
+
+
+        .readonly {
+            background-color: #f0f0f0;
+            border-radius: 0%;
         }
 
         .container {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 600px;
+            border-radius: 0px;
+            left: 5px;
+            margin: 30px auto;
+            max-width: 1000px;
             padding: 20px;
+            margin-left: 2px;
+            text-align: left;
         }
 
         h2 {
@@ -41,8 +50,9 @@
         select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid#f0f0f0;
+            border-radius: 0px;
+            border-bottom-color: #8a8d90;
         }
 
         input[type="radio"] {
@@ -54,7 +64,7 @@
             color: #fff;
             padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 0px;
             cursor: pointer;
         }
 
@@ -75,33 +85,86 @@
         .btn:hover {
             background-color: #235a91;
         }
+
+        #nav {
+            position: fixed;
+            right: 0;
+            top: 20%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: #151515;
+            padding: 15px;
+        }
+
+        .textbox-container {
+            display: flex;
+            align-items: center;
+        }
+        .textbox-container h5 {
+            display: inline-flex;
+            margin-right: 110px; 
+            align-items: center;
+        }
+
+
+        #nav a {
+            display: block;
+            color: #151515;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
 </head>
+
 <body>
+
     <h1>Keycloak Authentication</h1>
-     
+
+    <div id="nav">
+        <table>
+            <tr>
+                <td> <a href="#GeneralSettings">General settings</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#SAMLSettings">SAML settings</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#RequestedAuthnContextConstraints">Requested AuthnContext Constraints</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#AdvancedSettings">Advanced settings</a></td>
+            </tr>
+
+        </table>
+    </div>
+
     <button id="login">access token</button>
     <button id="logout">Logout</button>
-     <script src="/js/keycloack.js"></script>
+    <script src="/js/keycloack.js"></script>
     <div class="container">
-        <h2>General Settings</h2>
-        <form id="GeneralSettings">
-            <h5>Redirect URI
-                <img src="/images/question.png" class="image" alt="question mark"
-                    onclick="alert('The redirect uri to use when configuring the identity provider.')">
+        <h2>General Settings </h2>
 
-            </h5>
-            <input type="url" name="redirectUri"
-                value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" readonly>
+        <form id="GeneralSettings"">
+                <h5>Redirect URI
+                    <img src="/images/question.png" class="image" alt="question mark"
+                        onclick="alert('The redirect uri to use when configuring the identity provider.')">
+                    </h5>
+                    <input type="url" name="redirectUri" class="readonly"
+                        value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri"
+                        readonly>
 
-
+          
             <h5>Alias *
-                <img src="/images/question.png" class="image" alt="question mark" 
+                <img src="/images/question.png" class="image" alt="question mark"
                     onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
             </h5>
 
-            <input type="text" name="alias" required value="saml-extended" id="SamlExtended" readonly>
+            <input type="text" name="alias" class="readonly" required value="saml-extended" id="SamlExtended" readonly>
             <h5>Display Name
                 <img src="/images/question.png" class="image" alt="question mark"
                     onclick="alert('Friendly name for Identity Providers')">
@@ -122,7 +185,8 @@
             </h5>
             <a href="http://localhost:8080/realms/master/broker/saml-extended/endpoint/descriptor">
                 SAML 2.0 Service Provider Metadata </a>
-            <h2>SAML Settings</h2>
+            </section>
+            <h2 id="SAMLSettings">SAML settings</h2>
 
             <h5>Service Provider Entity ID
                 <img src="/images/question.png" class="image" alt="question mark"
@@ -160,7 +224,7 @@
                 <label for="on">on</label>
                 <input type="radio" name="Backchannel" value="false" id="backchanneloff" checked>
                 <label for="off">off</label>
-              
+
             </div>
 
 
@@ -373,7 +437,7 @@
 
             <input type="text" name="attributeConsumingServiceName" id="attributeConsumingServiceName">
 
-            <h2>Requested AuthnContext Constraints</h2>
+            <h2 id="RequestedAuthnContextConstraints">Requested AuthnContext Constraints</h2>
 
             <h5>Comparison
                 <img src="/images/question.png" class="image" alt="question mark"
@@ -419,7 +483,7 @@
             <button id="addDeclRefs" class="btn add-more button-yellow uppercase" type="button">+ Add </button>
             <button class="delete1 btn button-white uppercase">- Remove </button>
 
-            <h2>Advanced Settings</h2>
+            <h2 id="AdvancedSettings">Advanced Settings</h2>
 
             <h5>Store Tokens
                 <img src="/images/question.png" class="image" alt="question mark"
