@@ -46,7 +46,6 @@ keycloak
           }
 
 
-          // إضافة خيارات جديدة إلى العنصر select
           responseJSON.forEach((flow, index) => {
             const optionElement = document.createElement('option');
             optionElement.value = flow.alias;
