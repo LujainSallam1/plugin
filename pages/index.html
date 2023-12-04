@@ -71,7 +71,7 @@
         }
 
         input[type="number"] {
-            width: 50px;
+            width: 150px;
             padding: 10px;
             border: 1px solid#f0f0f0;
             border-radius: 0px;
@@ -310,7 +310,7 @@
                 onclick="alert('Number defining the order of the providers in GUI (for example, on the Login page). The lowest number will be applied first.')">
         </h5>
 
-        <input type="text" name="displayOrder" id="displayOrder">
+        <input type="number" name="displayOrder" id="displayOrder" min="0">
 
         <h5>Endpoints
             <img src="/images/question.png" class="image" alt="question mark"
@@ -355,7 +355,7 @@
         </h5>
 
         <label class="switch">
-            <input type="checkbox" name="Backchannel" value="false" id="backchannel">
+            <input type="checkbox" name="Backchannel" value="false" id="backchannel" >
             <span class="slider round"></span>
         </label>
 
@@ -830,8 +830,20 @@
         </div>
     </form>
 </div>
+<!-- <script>// عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function () {
+        const storedData = localStorage.getItem('pluginData');
+        if (storedData) {
+            const pluginData = JSON.parse(storedData);
+            console.log(pluginData);
+            document.getElementById('displayName').value=pluginData.displayName;
+        }
+    });
+    </script> -->
+
 <script src="/js/RadioButtonController.js"></script>
 <script src="/js/ApiDataSender.js"></script>
+<script src="/js/stored.js"></script>
 </body>
 
 </html>

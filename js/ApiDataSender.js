@@ -29,6 +29,7 @@ const Linked_Providers_input = document.getElementById("Linked_Providers");
 
 let newAccessToken;
 
+
 buttonInput.addEventListener('click', () => {
 
     keycloak.updateToken(180).then((bool) => {
@@ -137,8 +138,8 @@ buttonInput.addEventListener('click', () => {
                     "charSet": CharacterSet,
                     "metadataValidUntilUnit": Metadata_expires_in,
                     "metadataValidUntilPeriod": metadataValidUntilPeriod,
-                    "linkedProviders":Linked_Providers
-        }
+                    "linkedProviders": Linked_Providers
+                }
             };
             function removeEmptyStrings(obj) {
                 for (const key in obj) {
@@ -185,8 +186,7 @@ buttonInput.addEventListener('click', () => {
                     if (checkPluginResponse.ok) {
                         // If the GET request is successful (status 2xx)
                         // Parsing the JSON data from the response
-                        const pluginData = await checkPluginResponse.json();
-                        console.log(pluginData);
+                        var pluginData = await checkPluginResponse.json();
 
                         // Updating the plugin data using a PUT request
                         const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
@@ -197,7 +197,8 @@ buttonInput.addEventListener('click', () => {
                             },
                             body: JSON.stringify(data),
                         });
-
+                        localStorage.setItem('pluginData', JSON.stringify(pluginData));
+                        console.log(pluginData);
                         console.log("Update Plugin Response:", updatePluginResponse);
 
 
@@ -205,6 +206,7 @@ buttonInput.addEventListener('click', () => {
                         if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
                             console.log("Plugin updated successfully.");
                             alert("Plugin updated successfully.");
+                            localStorage.setItem('pluginData', JSON.stringify(data));
                         } else {
                             console.error(`Failed to update/add the plugin. Response: ${updatePluginResponse.statusText}`);
                             console.error("Error Details:", await updatePluginResponse.json());
@@ -223,6 +225,7 @@ buttonInput.addEventListener('click', () => {
                             .then(response => {
                                 if (response.ok) {
                                     alert("Plugin added successfully.");
+                                    localStorage.setItem('pluginData', JSON.stringify(data));
                                 } else {
                                     console.error('Failed to add plugin:', response.status, response.statusText);
                                     alert("Failed to add plugin");
@@ -254,6 +257,7 @@ buttonInput.addEventListener('click', () => {
             // Setting a form element value to an empty string
             document.getElementById("ValidatingX509Certificates").value = '';
             document.getElementById("ValidatingX509Certificates").value = '';
+
         } else {
             console.log("Token is not updated");
         }
