@@ -8,6 +8,7 @@ const keycloak = Keycloak({
 
 });
 
+
 document.getElementById('login').addEventListener('click', () => {
   keycloak.login();
 });
@@ -24,10 +25,29 @@ keycloak
     if (authenticated) {
       accessToken = keycloak.token;
       console.log(`Access Token: ${accessToken}`);
+      fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', { 
+        method: 'GET', 
+        headers: { 
+            'Authorization': `Bearer ${accessToken}`, 
+        }, 
+    }) 
+    .then(async checkPluginResponse => { 
+        if (checkPluginResponse.ok) { 
+            var pluginData = await checkPluginResponse.json(); 
+            localStorage.setItem('pluginData', JSON.stringify(pluginData)); 
+            var storedData = localStorage.getItem('pluginData'); 
+            var parsedPluginData = JSON.parse(storedData); 
+            console.log(`pluginData: ${JSON.stringify(parsedPluginData)}`); 
+        } 
+    })
+    .catch(error => { 
+        console.error(error); 
+    });
+    
 
       //get flow from KEY
       const selectElement_postLoginFlow = document.getElementById('postLoginFlow');
-      const selectElement_firstLoginFlow= document.getElementById('firstLoginFlow');
+      const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
 
       fetch('http://localhost:8080/admin/realms/master/ui-ext/authentication-management/flows', {
         method: 'GET',
@@ -52,7 +72,7 @@ keycloak
             optionElement.text = flow.alias;
             selectElement_postLoginFlow.add(optionElement);
 
-     
+
           });
           responseJSON.forEach((flow, index) => {
             const optionElement1 = document.createElement('option');

@@ -284,7 +284,7 @@
 <div class="container">
     <h2 id="GeneralSettings">General Settings </h2>
 
-    <form id="GeneralSettings"">
+    <form id="GeneralSettings">
                 <h5>Redirect URI
                     <img src=" /images/question.png" class="image" alt="question mark"
         onclick="alert('The redirect uri to use when configuring the identity provider.')">
@@ -830,20 +830,10 @@
         </div>
     </form>
 </div>
-<!-- <script>// عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function () {
-        const storedData = localStorage.getItem('pluginData');
-        if (storedData) {
-            const pluginData = JSON.parse(storedData);
-            console.log(pluginData);
-            document.getElementById('displayName').value=pluginData.displayName;
-        }
-    });
-    </script> -->
-
+<script src="/js/stored.js"></script>
 <script src="/js/RadioButtonController.js"></script>
 <script src="/js/ApiDataSender.js"></script>
-<script src="/js/stored.js"></script>
+
 </body>
 
 </html>

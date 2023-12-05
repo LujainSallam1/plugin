@@ -1,42 +1,64 @@
-let backchannel_value = "false";
-const backchannel = document.getElementById("backchannel");
+// var backchannel_value;
+// const backchannel = document.getElementById("backchannel");
+// const storedData = localStorage.getItem('pluginData');
+
+// if (storedData) {
+//     var pluginData = JSON.parse(storedData);
+
+//     if (pluginData.config && pluginData.config.backchannelSupported) { 
+//         backchannel_value = pluginData.config.backchannelSupported;
+//         console.log(`backchannel_value: ${backchannel_value}`);
+        
+//         if (pluginData.config.backchannelSupported == "true") {
+//             backchannel.checked = true;
+//         }else{
+//             backchannel.checked = false;
+     
+//         }
+//     }
+
+//     console.log(pluginData);
+// }
+const backchannel=document.getElementById("backchannel")
+var backchannel_value;
 backchannel.addEventListener("change", function () {
     if (backchannel.checked) {
-        backchannel_value = "true";
-        console.log(`backchannel_value: ${backchannel_value}`)
-
-    }
-    else {
-        backchannel_value = backchannel.value;
-        console.log(`backchannel_value: ${backchannel_value}`)
-
-            ;
+        backchannel_value ="true";
+        console.log(`backchannel_value: ${backchannel_value}`);
+    } else {
+        backchannel_value ="false";
+        console.log(`backchannel_value: ${backchannel_value}`);
     }
 });
 
-let allowCreat_value = "false";
-const allowCreat = document.getElementById("allowCreate");
-allowCreat.addEventListener("change", function () {
-    if (allowCreat.checked) {
+
+const allowCreate = document.getElementById("allowCreate");
+var allowCreat_value ;
+allowCreate.addEventListener("change", function () {
+
+    if (allowCreate.checked) {
         allowCreat_value = "true";
         console.log(`allowCreat_value: ${allowCreat_value}`)
 
     }
     else {
-        allowCreat_value = allowCreat.value;
+        allowCreat_value = allowCreate.value;
         console.log(`allowCreat_value: ${allowCreat_value}`)
 
             ;
     }
+
 });
 
 
 
-let httpPostBindingResponse_value = "false";
+var httpPostBindingResponse_value ;
 const httpPostBindingResponse = document.getElementById("httpPostBindingResponse");
 httpPostBindingResponse.addEventListener("change", function () {
     if (httpPostBindingResponse.checked) {
         httpPostBindingResponse_value = "true";
+
+
         console.log(`httpPostBindingResponse_value: ${httpPostBindingResponse_value}`)
 
     }
@@ -101,7 +123,7 @@ wantAssertionsSigned.addEventListener("change", function () {
 });
 
 
-let wantAssertionsEncrypted_value = "false";
+var wantAssertionsEncrypted_value="false" ;
 const wantAssertionsEncrypted = document.getElementById("wantAssertionsEncrypted");
 wantAssertionsEncrypted.addEventListener("change", function () {
     if (wantAssertionsEncrypted.checked) {
@@ -117,7 +139,7 @@ wantAssertionsEncrypted.addEventListener("change", function () {
     }
 });
 
-let forceAuthentication_value = "false";
+var forceAuthentication_value="false" ;
 const forceAuthentication = document.getElementById("forceAuthentication");
 forceAuthentication.addEventListener("change", function () {
     if (forceAuthentication.checked) {
@@ -134,7 +156,7 @@ forceAuthentication.addEventListener("change", function () {
 });
 
 
-let signMetadata_value = "false";
+var signMetadata_value="false" ;
 const signMetadata = document.getElementById("signMetadata");
 signMetadata.addEventListener("change", function () {
     if (signMetadata.checked) {
@@ -150,7 +172,7 @@ signMetadata.addEventListener("change", function () {
     }
 });
 
-let passSubject_value = "false";
+let passSubject_value="false" ;
 const passSubject = document.getElementById("passSubject");
 passSubject.addEventListener("change", function () {
     if (passSubject.checked) {
@@ -166,7 +188,7 @@ passSubject.addEventListener("change", function () {
     }
 });
 
-let storeToken_value = "false";
+var storeToken_value="false" ;
 const storeToken = document.getElementById("storeToken");
 storeToken.addEventListener("change", function () {
     if (storeToken.checked) {
@@ -182,7 +204,7 @@ storeToken.addEventListener("change", function () {
     }
 });
 
-let storedTokensReadable_value = "false";
+var storedTokensReadable_value="false" ;
 const storedTokensReadable = document.getElementById("storedTokensReadable");
 storedTokensReadable.addEventListener("change", function () {
     if (storedTokensReadable.checked) {
@@ -231,6 +253,7 @@ accountLinkingOnly.addEventListener("change", function () {
             ;
     }
 });
+
 let hideLoginPage_value = "false";
 const hideLoginPage = document.getElementById("hideLoginPage");
 hideLoginPage.addEventListener("change", function () {
@@ -250,7 +273,7 @@ hideLoginPage.addEventListener("change", function () {
 
 var SignatureAlgorithm = document.getElementById("SignatureAlgorithm");
 var SAMLSignatureKeyName = document.getElementById("SAMLSignatureKeyName");
-let wantAuthnRequestsSigned_value = "false";
+var wantAuthnRequestsSigned_value="false" ;
 const wantAuthnRequestsSigned = document.getElementById("wantAuthnRequestsSigned");
 wantAuthnRequestsSigned.addEventListener("change", function () {
     if (wantAuthnRequestsSigned.checked) {
@@ -285,13 +308,13 @@ ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     }
 });
 
-
+const ClassRefs_items = document.getElementById("ClassRefs_items");
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const deleteButtons = document.querySelectorAll(".delete");
     const addButton = document.getElementById("addClassRefs");
-    const ClassRefs_items = document.getElementById("ClassRefs_items");
+
 
     deleteButtons.forEach(function (button) {
         button.style.display = "none";
@@ -318,11 +341,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+const DeclRefs_items = document.getElementById("DeclRefs_items");
 
 document.addEventListener("DOMContentLoaded", function () {
     const deleteButtons = document.querySelectorAll(".delete1");
     const addButton = document.getElementById("addDeclRefs");
-    const ClassRefs_items = document.getElementById("DeclRefs_items");
 
     deleteButtons.forEach(function (button) {
         button.style.display = "none";

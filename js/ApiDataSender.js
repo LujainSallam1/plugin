@@ -37,7 +37,7 @@ buttonInput.addEventListener('click', () => {
             console.log("Token is updated");
             newAccessToken = keycloak.token;
 
-            const authnContextClassRefs = []
+            var authnContextClassRefs = []
             const ClassRefs_inputs = ClassRefs_items.querySelectorAll("input");
             ClassRefs_inputs.forEach(input => {
                 if (input.value.trim() !== "") {
@@ -56,17 +56,17 @@ buttonInput.addEventListener('click', () => {
             const redirectUri = redirectUriInput.value;
             const SamlExtended = SamlExtendedInput.value;
             const button = buttonInput.value;
-            const Display_Name = Display_Name_input.value;
-            const Display_Order = Display_Order_input.value;
-            const Service_Provider_Entity_ID = Service_Provider_Entity_ID_input.value;
-            const Identity_Provider_Entity_ID = Identity_Provider_Entity_ID_input.value;
-            const Single_Sign_On_Service_URL = Single_Sign_On_Service_URL_input.value;
-            const Single_Logout_Service_URL = Single_Logout_Service_URL_input.value;
-            const allowedClockSkew = allowedClockSkew_input.value;
-            const attributeConsumingServiceIndex = attributeConsumingServiceIndex_input.value;
-            const attributeConsumingServiceName = attributeConsumingServiceName_input.value;
-            const Artifact_Resolution_Endpoint = Artifact_Resolution_Endpoint_input.value;
-            const CharacterSet = CharacterSet_input.value;
+            var Display_Name = Display_Name_input.value;
+            var Display_Order = Display_Order_input.value;
+            var Service_Provider_Entity_ID = Service_Provider_Entity_ID_input.value;
+            var Identity_Provider_Entity_ID = Identity_Provider_Entity_ID_input.value;
+            var Single_Sign_On_Service_URL = Single_Sign_On_Service_URL_input.value;
+            var Single_Logout_Service_URL = Single_Logout_Service_URL_input.value;
+            var allowedClockSkew = allowedClockSkew_input.value;
+            var attributeConsumingServiceIndex = attributeConsumingServiceIndex_input.value;
+            var attributeConsumingServiceName = attributeConsumingServiceName_input.value;
+            var Artifact_Resolution_Endpoint = Artifact_Resolution_Endpoint_input.value;
+            var CharacterSet = CharacterSet_input.value;
 
             var comparison = comparison_input.value;
             var firstLoginFlow = firstLoginFlow_input.value;
@@ -77,12 +77,12 @@ buttonInput.addEventListener('click', () => {
             var nameIdPolicy1 = `urn:oasis:names:tc:SAML:1.1:nameid-format:${nameIdPolicy}`;
             var SignatureAlgorithm = SignatureAlgorithm_input.value;
             var SAMLSignatureKeyName = SAMLSignatureKeyName_input.value;
-            const ValidatingX509Certificates = ValidatingX509Certificates_input.value;
-            const url = `http://localhost:8080/admin/realms/master/identity-provider/instances`;
-            const Metadata_expires_in = Metadata_expires_in_input.value;
-            const metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
-            const Linked_Providers = Linked_Providers_input.value;
-            const data = {
+            var ValidatingX509Certificates = ValidatingX509Certificates_input.value;
+            var url = `http://localhost:8080/admin/realms/master/identity-provider/instances`;
+            var Metadata_expires_in = Metadata_expires_in_input.value;
+            var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
+            var Linked_Providers = Linked_Providers_input.value;
+            var data = {
                 "alias": SamlExtended,
                 "displayName": Display_Name,
                 "internalId": "a3e9b939-357f-4bff-bac6-8225aec4a9e4",
@@ -110,7 +110,7 @@ buttonInput.addEventListener('click', () => {
                     "authnContextComparisonType": comparison,
                     "syncMode": syncMode,
                     "singleSignOnServiceUrl": Single_Sign_On_Service_URL,
-                    "wantAuthnRequestsSigned": "true",
+                    "wantAuthnRequestsSigned": wantAuthnRequestsSigned_value,
                     "allowedClockSkew": allowedClockSkew,
                     "guiOrder": Display_Order,
                     "validateSignature": validateSignatures_value,
@@ -123,7 +123,7 @@ buttonInput.addEventListener('click', () => {
                     "wantAssertionsEncrypted": wantAssertionsEncrypted_value,
                     "signatureAlgorithm": SignatureAlgorithm,
                     "wantAssertionsSigned": wantAssertionsSigned_value,
-                    "postBindingAuthnRequest": wantAuthnRequestsSigned_value,
+                    "postBindingAuthnRequest":httpPostBindingAuthnRequest_value,
                     "forceAuthn": forceAuthentication_value,
                     "attributeConsumingServiceIndex": attributeConsumingServiceIndex,
                     "principalType": principalType,
@@ -170,8 +170,6 @@ buttonInput.addEventListener('click', () => {
 
 
             console.log(data);
-            // Logging the data
-            console.log(data);
 
             // Sending a GET request to check if the plugin exists
             fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
@@ -186,8 +184,6 @@ buttonInput.addEventListener('click', () => {
                     if (checkPluginResponse.ok) {
                         // If the GET request is successful (status 2xx)
                         // Parsing the JSON data from the response
-                        var pluginData = await checkPluginResponse.json();
-
                         // Updating the plugin data using a PUT request
                         const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
                             method: 'PUT',
@@ -196,9 +192,13 @@ buttonInput.addEventListener('click', () => {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify(data),
-                        });
-                        localStorage.setItem('pluginData', JSON.stringify(pluginData));
-                        console.log(pluginData);
+                        }                      
+
+                        );
+                        console.log(data)
+                        localStorage.setItem('pluginData', JSON.stringify(data));
+                        
+
                         console.log("Update Plugin Response:", updatePluginResponse);
 
 
@@ -206,7 +206,7 @@ buttonInput.addEventListener('click', () => {
                         if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
                             console.log("Plugin updated successfully.");
                             alert("Plugin updated successfully.");
-                            localStorage.setItem('pluginData', JSON.stringify(data));
+
                         } else {
                             console.error(`Failed to update/add the plugin. Response: ${updatePluginResponse.statusText}`);
                             console.error("Error Details:", await updatePluginResponse.json());
@@ -225,7 +225,7 @@ buttonInput.addEventListener('click', () => {
                             .then(response => {
                                 if (response.ok) {
                                     alert("Plugin added successfully.");
-                                    localStorage.setItem('pluginData', JSON.stringify(data));
+                                    // localStorage.setItem('pluginData', JSON.stringify(data));
                                 } else {
                                     console.error('Failed to add plugin:', response.status, response.statusText);
                                     alert("Failed to add plugin");
