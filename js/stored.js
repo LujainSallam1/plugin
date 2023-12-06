@@ -197,51 +197,214 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }
             }
+            if (pluginData.config && pluginData.config.validateSignature) {
+                validateSignatures_value = pluginData.config.validateSignature;
+                console.log(`validateSignatures_value: ${validateSignatures_value}`);
 
+                if (pluginData.config.validateSignature == "true") {
+                    console.log(`validateSignatures_value: ${validateSignatures_value}`)
+                    additionalField1.removeAttribute("disabled");
+                    validateSignatures.checked = true;
 
+                } else {
+                    console.log(`validateSignatures_value: ${validateSignatures_value}`)
+                    additionalField1.setAttribute("disabled", "true");
+                    validateSignatures.checked = false;
 
-
-            if (pluginData.config && pluginData.config.authnContextClassRefs) {
-                updateField('authnContextClassRefs', pluginData.config.authnContextClassRefs);
-                console.log(authnContextClassRefs)
-
-            };
-
-
-
-            if (pluginData.displayName) {
-                updateField('displayName', pluginData.displayName);
+                }
             }
-            if (pluginData.config.guiOrder) {
-                updateField('displayOrder', pluginData.config.guiOrder);
+            if (pluginData.config && pluginData.config.validateSignature) {
+                validateSignatures_value = pluginData.config.validateSignature;
+                console.log(`validateSignatures_value: ${validateSignatures_value}`);
+
+                if (pluginData.config.validateSignature == "true") {
+                    console.log(`validateSignatures_value: ${validateSignatures_value}`)
+                    additionalField1.removeAttribute("disabled");
+
+                    validateSignatures.checked = true;
+                } else {
+                    validateSignatures.checked = false;
+                    additionalField1.setAttribute("disabled", "true");
+
+                }
             }
-            if (pluginData.config.entityId) {
-                updateField('spEntityId', pluginData.config.entityId)
+            if (pluginData.config && pluginData.config.signArtifactResolutionRequest) {
+                Sign_Artifact_Resolution_Request_value = pluginData.config.signArtifactResolutionRequest;
+                console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request_value}`);
+
+                if (pluginData.config.signArtifactResolutionRequest == "true") {
+                    console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request_value}`)
+
+                    Sign_Artifact_Resolution_Request.checked = true;
+                } else {
+                    Sign_Artifact_Resolution_Request.checked = false;
+
+
+                }
             }
-            if (pluginData.config.idpEntityId) {
-                updateField('idpEntityId', pluginData.config.idpEntityId)
+            if (pluginData.config && pluginData.config.artifactResolutionHTTPArtifact) {
+                ArtifactResolution_via_HTTP_ARTIFACT_value = pluginData.config.artifactResolutionHTTPArtifact;
+                console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`);
+
+                if (pluginData.config.artifactResolutionHTTPArtifact == "true") {
+                    console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`)
+                    ArtifactResolution_via_HTTP_ARTIFACT.checked = true;
+                } else {
+                    ArtifactResolution_via_HTTP_ARTIFACT.checked = false;
+
+                }
             }
-            if (pluginData.config.singleSignOnServiceUrl) {
-                updateField('ssoServiceUrl', pluginData.config.singleSignOnServiceUrl);
+            if (pluginData.config && pluginData.config.artifactResolutionHTTPArtifact) {
+                Sign_Service_Provider_Metadata_value = pluginData.config.artifactResolutionHTTPArtifact;
+                console.log(`Sign_Service_Provider_Metadata_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`);
+
+                if (pluginData.config.artifactResolutionHTTPArtifact == "true") {
+                    console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`)
+                    Sign_Service_Provider_Metadata.checked = true;
+                } else {
+                    Sign_Service_Provider_Metadata.checked = false;
+
+                }
             }
-            if (pluginData.config.singleLogoutServiceUrl) {
-                updateField('sloServiceUrl', pluginData.config.singleLogoutServiceUrl);
+            if (pluginData.config && pluginData.config.artifactResolutionSOAP) {
+                Artifact_Resolution_with_SOAP_value = pluginData.config.artifactResolutionSOAP;
+                console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP_value}`);
+
+                if (pluginData.config.artifactResolutionSOAP == "true") {
+                    console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP_value}`)
+                    Artifact_Resolution_with_SOAP.checked = true;
+                } else {
+                    Artifact_Resolution_with_SOAP.checked = false;
+
+                }
+            }
+            if (pluginData.config && pluginData.config.artifactResolutionWithXmlHeader) {
+
+                Artifact_Resolution_with_XML_header_value = pluginData.config.artifactResolutionWithXmlHeader;
+                console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header_value}`);
+
+                if (pluginData.config.artifactResolutionWithXmlHeader == "true") {
+                    console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header_value}`)
+                    Artifact_Resolution_with_XML_header.checked = true;
+                } else {
+                    Artifact_Resolution_with_XML_header.checked = false;
+
+                }
             }
 
-            if (pluginData.config.nameIDPolicyFormat) {
-                const valueAfterFormat = extractValueAfterFormat(pluginData.config.nameIDPolicyFormat);
-                updateField('nameIdPolicy', valueAfterFormat);
-                console.log(valueAfterFormat);
-            }
-            if (pluginData.config.principalType) {
-                updateField('principalType', pluginData.config.principalType);
+            if (pluginData.config && pluginData.config.mutualTls) {
+                Mutual_TLS_value = pluginData.config.mutualTls;
+                console.log(`Mutual_TLS_value: ${Mutual_TLS_value}`);
+
+                if (pluginData.config.mutualTls == "true") {
+                    console.log(`Mutual_TLS_value: ${Mutual_TLS_value}`)
+                    Mutual_TLS.checked = true;
+                } else {
+                    Mutual_TLS.checked = false;
+
+                }
             }
 
+            if (pluginData.config && pluginData.config.artifactResolution) {
+                Artifact_Resolution_value = pluginData.config.artifactResolution;
+                console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`);
+
+                if (pluginData.config.artifactResolution == "true") {
+                    console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
+                    Artifact_Resolution.checked = true;
+                    console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
+                    additionalField_endpoint.removeAttribute("disabled");
+                } else {
+                    Artifact_Resolution.checked = false;
+                    console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
+                    additionalField_endpoint.setAttribute("disabled", "true");
+
+                }
+            }
 
         }
-    }
+        Artifact_Resolution_value
 
-});
+
+
+        function processAuthnContextArray(id, container) {
+            var element = document.getElementById(id);
+            if (pluginData.config && pluginData.config[id]) {
+                var myArray = JSON.parse(pluginData.config[id]);
+                updateField(id, myArray[0]);
+                for (var i = 1; i < myArray.length; i++) {
+                    const newItem = document.createElement("div");
+                    newItem.className = "next-referral col-4";
+                    newItem.innerHTML = '<input id="textinput_' + i + '" name="textinput" type="text" class="form-control input-md" value="' + myArray[i] + '">';
+                    container.appendChild(newItem);
+                }
+                console.log(pluginData.config[id]);
+            }
+        }
+
+        processAuthnContextArray("authnContextClassRefs", ClassRefs_items);
+        processAuthnContextArray("authnContextDeclRefs", DeclRefs_items);
+
+
+
+
+        if (pluginData.displayName) {
+            updateField('displayName', pluginData.displayName);
+        }
+        if (pluginData.config.guiOrder) {
+            updateField('displayOrder', pluginData.config.guiOrder);
+        }
+        if (pluginData.config.entityId) {
+            updateField('spEntityId', pluginData.config.entityId)
+        }
+        if (pluginData.config.idpEntityId) {
+            updateField('idpEntityId', pluginData.config.idpEntityId)
+        }
+        if (pluginData.config.singleSignOnServiceUrl) {
+            updateField('ssoServiceUrl', pluginData.config.singleSignOnServiceUrl);
+        }
+        if (pluginData.config.singleLogoutServiceUrl) {
+            updateField('sloServiceUrl', pluginData.config.singleLogoutServiceUrl);
+        }
+
+        if (pluginData.config.nameIDPolicyFormat) {
+            const valueAfterFormat = extractValueAfterFormat(pluginData.config.nameIDPolicyFormat);
+            updateField('nameIdPolicy', valueAfterFormat);
+            console.log(valueAfterFormat);
+        }
+        if (pluginData.config.principalType) {
+            updateField('principalType', pluginData.config.principalType);
+        }
+        if (pluginData.config.signatureAlgorithm) {
+            updateField('SignatureAlgorithm', pluginData.config.signatureAlgorithm);
+        }
+        if (pluginData.config.xmlSigKeyInfoKeyNameTransformer) {
+            updateField('SAMLSignatureKeyName', pluginData.config.xmlSigKeyInfoKeyNameTransformer);
+        }
+        if (pluginData.config.signingCertificate) {
+            updateField('ValidatingX509Certificates', pluginData.config.signingCertificate);
+        }
+        if (pluginData.config.metadataValidUntilUnit) {
+            updateField('Metadata_expires_in', pluginData.config.metadataValidUntilUnit);
+        }
+        if (pluginData.config.metadataValidUntilPeriod) {
+            updateField('metadataValidUntilPeriod', pluginData.config.metadataValidUntilPeriod);
+        }
+        if (pluginData.config.linkedProviders) {
+            updateField('Linked_Providers', pluginData.config.linkedProviders);
+        }
+        if (pluginData.config.artifactResolutionEndpoint) {
+            updateField('Artifact_Resolution_Endpoint', pluginData.config.artifactResolutionEndpoint);
+        }
+        if (pluginData.config.charSet) {
+            updateField('CharacterSet', pluginData.config.charSet);
+        }
+
+        
+    }
+}
+
+);
 
 function extractValueAfterFormat(text) {
     const regex = /nameid-format:(\w+)/;

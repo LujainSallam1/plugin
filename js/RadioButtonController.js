@@ -19,8 +19,8 @@
 
 //     console.log(pluginData);
 // }
-const backchannel=document.getElementById("backchannel")
 var backchannel_value;
+const backchannel=document.getElementById("backchannel")
 backchannel.addEventListener("change", function () {
     if (backchannel.checked) {
         backchannel_value ="true";
@@ -74,7 +74,7 @@ httpPostBindingResponse.addEventListener("change", function () {
 
 
 
-let httpPostBindingAuthnRequest_value = "false";
+var httpPostBindingAuthnRequest_value = "false";
 const httpPostBindingAuthnRequest = document.getElementById("httpPostBindingAuthnRequest");
 httpPostBindingAuthnRequest.addEventListener("change", function () {
     if (httpPostBindingAuthnRequest.checked) {
@@ -292,7 +292,7 @@ wantAuthnRequestsSigned.addEventListener("change", function () {
         ;
     }
 });
-let ArtifactResolutionService_in_metadata_value = "false";
+var ArtifactResolutionService_in_metadata_value ;
 const ArtifactResolutionService_in_metadata = document.getElementById("ArtifactResolutionService_in_metadata");
 ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     if (ArtifactResolutionService_in_metadata.checked) {
@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const newItem = document.createElement("div");
         newItem.className = "next-referral col-4";
         newItem.innerHTML = '<input id="textinput" name="textinput" type="text" class="form-control input-md">';
-        ClassRefs_items.appendChild(newItem);
+        DeclRefs_items.appendChild(newItem);
     });
 
     document.body.addEventListener("click", function (e) {
@@ -416,7 +416,7 @@ Artifact_Resolution.addEventListener("change", function () {
 }
 );
 
-let Sign_Artifact_Resolution_Request_value = "false";
+var Sign_Artifact_Resolution_Request_value = "false";
 const Sign_Artifact_Resolution_Request = document.getElementById("Sign_Artifact_Resolution_Request");
 Sign_Artifact_Resolution_Request.addEventListener("change", function () {
     if (Sign_Artifact_Resolution_Request.checked) {
@@ -431,7 +431,7 @@ Sign_Artifact_Resolution_Request.addEventListener("change", function () {
             ;
     }
 });
-let ArtifactResolution_via_HTTP_ARTIFACT_value = "false";
+var ArtifactResolution_via_HTTP_ARTIFACT_value = "false";
 const ArtifactResolution_via_HTTP_ARTIFACT = document.getElementById("ArtifactResolution_via_HTTP_ARTIFACT");
 ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
     if (ArtifactResolution_via_HTTP_ARTIFACT.checked) {
@@ -446,7 +446,7 @@ ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
             ;
     }
 });
-let Sign_Service_Provider_Metadata_value = "false";
+var Sign_Service_Provider_Metadata_value = "false";
 const Sign_Service_Provider_Metadata = document.getElementById("Sign_Service_Provider_Metadata");
 Sign_Service_Provider_Metadata.addEventListener("change", function () {
     if (Sign_Service_Provider_Metadata.checked) {

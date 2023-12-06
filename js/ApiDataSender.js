@@ -1,5 +1,5 @@
 const redirectUriInput = document.getElementById("redirectUri");
-const SamlExtendedInput = document.getElementById("SamlExtended");
+const SamlExtended_input = document.getElementById("SamlExtended");
 const buttonInput = document.getElementById("submit");
 const Display_Name_input = document.getElementById("displayName");
 const Display_Order_input = document.getElementById("displayOrder");
@@ -27,7 +27,8 @@ const Metadata_expires_in_input = document.getElementById("Metadata_expires_in")
 const metadataValidUntilPeriod_input = document.getElementById("metadataValidUntilPeriod");
 const Linked_Providers_input = document.getElementById("Linked_Providers");
 
-let newAccessToken;
+
+var newAccessToken;
 
 
 buttonInput.addEventListener('click', () => {
@@ -54,7 +55,6 @@ buttonInput.addEventListener('click', () => {
             });
             console.log(authnContextDeclRefs);
             const redirectUri = redirectUriInput.value;
-            const SamlExtended = SamlExtendedInput.value;
             const button = buttonInput.value;
             var Display_Name = Display_Name_input.value;
             var Display_Order = Display_Order_input.value;
@@ -82,6 +82,8 @@ buttonInput.addEventListener('click', () => {
             var Metadata_expires_in = Metadata_expires_in_input.value;
             var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
             var Linked_Providers = Linked_Providers_input.value;
+            var SamlExtended=SamlExtended_input.value;
+            
             var data = {
                 "alias": SamlExtended,
                 "displayName": Display_Name,
@@ -182,9 +184,7 @@ buttonInput.addEventListener('click', () => {
                 // Handling the response of the GET request
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
-                        // If the GET request is successful (status 2xx)
-                        // Parsing the JSON data from the response
-                        // Updating the plugin data using a PUT request
+                        var pluginData = await checkPluginResponse.json(); 
                         const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
                             method: 'PUT',
                             headers: {
@@ -196,7 +196,6 @@ buttonInput.addEventListener('click', () => {
 
                         );
                         console.log(data)
-                        localStorage.setItem('pluginData', JSON.stringify(data));
                         
 
                         console.log("Update Plugin Response:", updatePluginResponse);
@@ -206,6 +205,8 @@ buttonInput.addEventListener('click', () => {
                         if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
                             console.log("Plugin updated successfully.");
                             alert("Plugin updated successfully.");
+                            localStorage.setItem('pluginData', JSON.stringify(data));
+
 
                         } else {
                             console.error(`Failed to update/add the plugin. Response: ${updatePluginResponse.statusText}`);
@@ -225,7 +226,7 @@ buttonInput.addEventListener('click', () => {
                             .then(response => {
                                 if (response.ok) {
                                     alert("Plugin added successfully.");
-                                    // localStorage.setItem('pluginData', JSON.stringify(data));
+                                     localStorage.setItem('pluginData', JSON.stringify(data));
                                 } else {
                                     console.error('Failed to add plugin:', response.status, response.statusText);
                                     alert("Failed to add plugin");
@@ -255,8 +256,6 @@ buttonInput.addEventListener('click', () => {
                 });
 
             // Setting a form element value to an empty string
-            document.getElementById("ValidatingX509Certificates").value = '';
-            document.getElementById("ValidatingX509Certificates").value = '';
 
         } else {
             console.log("Token is not updated");
