@@ -8,42 +8,45 @@
 //     if (pluginData.config && pluginData.config.backchannelSupported) { 
 //         backchannel_value = pluginData.config.backchannelSupported;
 //         console.log(`backchannel_value: ${backchannel_value}`);
-        
+
 //         if (pluginData.config.backchannelSupported == "true") {
 //             backchannel.checked = true;
 //         }else{
 //             backchannel.checked = false;
-     
+
 //         }
 //     }
 
 //     console.log(pluginData);
 // }
-var backchannel_value;
-const backchannel=document.getElementById("backchannel")
+
+const backchannel = document.getElementById("backchannel");
+var storedData = localStorage.getItem('pluginData');
+var pluginData = JSON.parse(storedData);
+backchannel.value = pluginData.config.backchannelSupported ? pluginData.config.backchannelSupported : false;
 backchannel.addEventListener("change", function () {
     if (backchannel.checked) {
-        backchannel_value ="true";
-        console.log(`backchannel_value: ${backchannel_value}`);
+        backchannel.value = true;
+        console.log(`backchannel_value: ${backchannel.value}`);
     } else {
-        backchannel_value ="false";
-        console.log(`backchannel_value: ${backchannel_value}`);
+        backchannel.value = false;
+        console.log(`backchannel_value: ${backchannel.value}`);
     }
 });
 
 
 const allowCreate = document.getElementById("allowCreate");
-var allowCreat_value ;
+allowCreate.value = pluginData.config.allowCreate ? pluginData.config.allowCreate : false;
 allowCreate.addEventListener("change", function () {
 
     if (allowCreate.checked) {
-        allowCreat_value = "true";
-        console.log(`allowCreat_value: ${allowCreat_value}`)
+        allowCreate.value = true;
+        console.log(`allowCreat_value: ${allowCreate.value}`)
 
     }
     else {
-        allowCreat_value = allowCreate.value;
-        console.log(`allowCreat_value: ${allowCreat_value}`)
+        allowCreate.value = false;
+        console.log(`allowCreat_value: ${allowCreate.value}`)
 
             ;
     }
@@ -52,19 +55,20 @@ allowCreate.addEventListener("change", function () {
 
 
 
-var httpPostBindingResponse_value ;
+
 const httpPostBindingResponse = document.getElementById("httpPostBindingResponse");
+httpPostBindingResponse.value = pluginData.config.postBindingResponse ? pluginData.config.postBindingResponse : false;
 httpPostBindingResponse.addEventListener("change", function () {
     if (httpPostBindingResponse.checked) {
-        httpPostBindingResponse_value = "true";
+        httpPostBindingResponse.value = "true";
 
 
-        console.log(`httpPostBindingResponse_value: ${httpPostBindingResponse_value}`)
+        console.log(`httpPostBindingResponse.value: ${httpPostBindingResponse.value}`)
 
     }
     else {
-        httpPostBindingResponse_value = httpPostBindingResponse.value;
-        console.log(`httpPostBindingResponse_value: ${httpPostBindingResponse_value}`)
+        httpPostBindingResponse.value = false;
+        console.log(`httpPostBindingResponse_value: ${httpPostBindingResponse.value}`)
 
             ;
     }
@@ -74,163 +78,171 @@ httpPostBindingResponse.addEventListener("change", function () {
 
 
 
-var httpPostBindingAuthnRequest_value = "false";
+
 const httpPostBindingAuthnRequest = document.getElementById("httpPostBindingAuthnRequest");
+httpPostBindingAuthnRequest.value = pluginData.config.postBindingAuthnRequest ? pluginData.config.postBindingAuthnRequest : false;
 httpPostBindingAuthnRequest.addEventListener("change", function () {
     if (httpPostBindingAuthnRequest.checked) {
-        httpPostBindingAuthnRequest_value = "true";
-        console.log(`httpPostBindingAuthnRequest_value: ${httpPostBindingAuthnRequest_value}`)
+        httpPostBindingAuthnRequest.value = true;
+        console.log(`httpPostBindingAuthnRequest_value: ${httpPostBindingAuthnRequest.value}`)
 
     }
     else {
-        httpPostBindingAuthnRequest_value = httpPostBindingAuthnRequest.value;
-        console.log(`httpPostBindingAuthnRequest_value: ${httpPostBindingAuthnRequest_value}`)
+        httpPostBindingAuthnRequest.value = false;
+        console.log(`httpPostBindingAuthnRequest_value: ${httpPostBindingAuthnRequest.value}`)
 
             ;
     }
 });
 
-let httpPostBindingLogout_value = "false";
 const httpPostBindingLogout = document.getElementById("httpPostBindingLogout");
+httpPostBindingLogout.value = pluginData.config.postBindingLogout ? pluginData.config.postBindingLogout : false;
 httpPostBindingLogout.addEventListener("change", function () {
     if (httpPostBindingLogout.checked) {
-        httpPostBindingLogout_value = "true";
-        console.log(`httpPostBindingLogout_value: ${httpPostBindingLogout_value}`)
+        httpPostBindingLogout.value = true;
+        console.log(`httpPostBindingLogout_value: ${httpPostBindingLogout.value}`)
 
     }
     else {
-        httpPostBindingLogout_value = httpPostBindingLogout.value;
-        console.log(`httpPostBindingLogout_value: ${httpPostBindingLogout_value}`)
+        httpPostBindingLogout.value = false;
+        console.log(`httpPostBindingLogout_value: ${httpPostBindingLogout.value}`)
 
             ;
     }
 });
 
-let wantAssertionsSigned_value = "false";
+
 const wantAssertionsSigned = document.getElementById("wantAssertionsSigned");
+wantAssertionsSigned.value = pluginData.config.wantAssertionsSigned ? pluginData.config.wantAssertionsSigned : false;
 wantAssertionsSigned.addEventListener("change", function () {
     if (wantAssertionsSigned.checked) {
-        wantAssertionsSigned_value = "true";
-        console.log(`wantAssertionsSigned_value: ${wantAssertionsSigned_value}`)
+        wantAssertionsSigned.value = true;
+        console.log(`wantAssertionsSigned_value: ${wantAssertionsSigned.value}`)
 
     }
     else {
-        wantAssertionsSigned_value = wantAssertionsSigned.value;
-        console.log(`wantAssertionsSigned_value: ${wantAssertionsSigned_value}`)
+        wantAssertionsSigned.value = false;
+        console.log(`wantAssertionsSigned_value: ${wantAssertionsSigned.value}`)
 
             ;
     }
 });
 
 
-var wantAssertionsEncrypted_value="false" ;
 const wantAssertionsEncrypted = document.getElementById("wantAssertionsEncrypted");
+wantAssertionsEncrypted.value = pluginData.config.wantAssertionsEncrypted ? pluginData.config.wantAssertionsEncrypted : false;
 wantAssertionsEncrypted.addEventListener("change", function () {
     if (wantAssertionsEncrypted.checked) {
-        wantAssertionsEncrypted_value = "true";
-        console.log(`wantAssertionsEncrypted_value: ${wantAssertionsEncrypted_value}`)
+        wantAssertionsEncrypted.value = true;
+        console.log(`wantAssertionsEncrypted_value: ${wantAssertionsEncrypted.value}`)
 
     }
     else {
-        wantAssertionsEncrypted_value = wantAssertionsEncrypted.value;
-        console.log(`wantAssertionsEncrypted_value: ${wantAssertionsEncrypted_value}`)
+        wantAssertionsEncrypted_value = false;
+        console.log(`wantAssertionsEncrypted_value: ${wantAssertionsEncrypted.value}`)
 
             ;
     }
 });
 
-var forceAuthentication_value="false" ;
+
 const forceAuthentication = document.getElementById("forceAuthentication");
+forceAuthentication.value = pluginData.config.forceAuthn ? pluginData.config.forceAuthn : false;
 forceAuthentication.addEventListener("change", function () {
     if (forceAuthentication.checked) {
-        forceAuthentication_value = "true";
-        console.log(`forceAuthentication_value: ${forceAuthentication_value}`)
+        forceAuthentication.value = true;
+        console.log(`forceAuthentication_value: ${forceAuthentication.value}`)
 
     }
     else {
-        forceAuthentication_value = forceAuthentication.value;
-        console.log(`forceAuthentication_value: ${forceAuthentication_value}`)
+        forceAuthentication.value = false;
+        console.log(`forceAuthentication_value: ${forceAuthentication.value}`)
 
             ;
     }
 });
 
 
-var signMetadata_value="false" ;
+
 const signMetadata = document.getElementById("signMetadata");
+signMetadata.value = pluginData.config.signSpMetadata ? pluginData.config.signSpMetadata : false
 signMetadata.addEventListener("change", function () {
     if (signMetadata.checked) {
-        signMetadata_value = "true";
-        console.log(`signMetadata_value: ${signMetadata_value}`)
+        signMetadata.value = true;
+        console.log(`signMetadata_value: ${signMetadata.value}`)
 
     }
     else {
-        signMetadata_value = signMetadata.value;
-        console.log(`signMetadata_value: ${signMetadata_value}`)
+        signMetadata.value = false;
+        console.log(`signMetadata_value: ${signMetadata.value}`)
 
             ;
     }
 });
 
-let passSubject_value="false" ;
+
 const passSubject = document.getElementById("passSubject");
+passSubject.value = pluginData.config.loginHint ? pluginData.config.loginHint : false;
 passSubject.addEventListener("change", function () {
     if (passSubject.checked) {
-        passSubject_value = "true";
-        console.log(`passSubject_value: ${passSubject_value}`)
+        passSubject.value = true;
+        console.log(`passSubject_value: ${passSubject.value}`)
 
     }
     else {
-        passSubject_value = passSubject.value;
-        console.log(`passSubject_value: ${passSubject_value}`)
+        passSubject.value = false;
+        console.log(`passSubject_value: ${passSubject.value}`)
 
             ;
     }
 });
 
-var storeToken_value="false" ;
+
 const storeToken = document.getElementById("storeToken");
+storeToken.value = pluginData.storeToken ? pluginData.storeToken : false;
 storeToken.addEventListener("change", function () {
     if (storeToken.checked) {
-        storeToken_value = "true";
-        console.log(`storeToken_value: ${storeToken_value}`)
+        storeToken.value = true;
+        console.log(`storeToken_value: ${storeToken.value}`)
 
     }
     else {
-        storeToken_value = storeToken.value;
-        console.log(`storeToken_value: ${storeToken_value}`)
+        storeToken.value = false;
+        console.log(`storeToken_value: ${storeToken.value}`)
 
             ;
     }
 });
 
-var storedTokensReadable_value="false" ;
+
 const storedTokensReadable = document.getElementById("storedTokensReadable");
+storedTokensReadable.value = pluginData.addReadTokenRoleOnCreate ? pluginData.addReadTokenRoleOnCreate : false;
 storedTokensReadable.addEventListener("change", function () {
     if (storedTokensReadable.checked) {
-        storedTokensReadable_value = "true";
-        console.log(`storedTokensReadable_value: ${storedTokensReadable_value}`)
+        storedTokensReadable.value = true;
+        console.log(`storedTokensReadable_value: ${storedTokensReadable.value}`)
 
     }
     else {
-        storedTokensReadable_value = storedTokensReadable.value;
-        console.log(`storedTokensReadable_value: ${storedTokensReadable_value}`)
+        storedTokensReadable.value = false;
+        console.log(`storedTokensReadable_value: ${storedTokensReadable.value}`)
 
             ;
     }
 });
 
-let trustEmail_value = "false";
+
 const trustEmail = document.getElementById("trustEmail");
+trustEmail.value = pluginData.trustEmail ? pluginData.trustEmail : false;
 trustEmail.addEventListener("change", function () {
     if (trustEmail.checked) {
-        trustEmail_value = "true";
-        console.log(`trustEmail_value: ${trustEmail_value}`)
+        trustEmail.value = true;
+        console.log(`trustEmail_value: ${trustEmail.value}`)
 
     }
     else {
-        trustEmail_value = trustEmail.value;
-        console.log(`trustEmail_value: ${trustEmail_value}`)
+        trustEmail.value = false;
+        console.log(`trustEmail_value: ${trustEmail.value}`)
 
             ;
     }
@@ -238,33 +250,35 @@ trustEmail.addEventListener("change", function () {
 
 
 
-let accountLinkingOnly_value = "false";
+
 const accountLinkingOnly = document.getElementById("accountLinkingOnly");
+accountLinkingOnly.value = pluginData.linkOnly ? pluginData.linkOnly : false;
 accountLinkingOnly.addEventListener("change", function () {
     if (accountLinkingOnly.checked) {
-        accountLinkingOnly_value = "true";
-        console.log(`accountLinkingOnly_value: ${accountLinkingOnly_value}`)
+        accountLinkingOnly.value = true;
+        console.log(`accountLinkingOnly_value: ${accountLinkingOnly.value}`)
 
     }
     else {
-        accountLinkingOnly_value = accountLinkingOnly.value;
-        console.log(`accountLinkingOnly_value: ${accountLinkingOnly_value}`)
+        accountLinkingOnly.value = false;
+        console.log(`accountLinkingOnly_value: ${accountLinkingOnly.value}`)
 
             ;
     }
 });
 
-let hideLoginPage_value = "false";
+
 const hideLoginPage = document.getElementById("hideLoginPage");
+hideLoginPage.value = pluginData.config.hideOnLoginPage ? pluginData.config.hideOnLoginPage : false;
 hideLoginPage.addEventListener("change", function () {
     if (hideLoginPage.checked) {
-        hideLoginPage_value = "true";
-        console.log(`hideLoginPage_value: ${hideLoginPage_value}`)
+        hideLoginPage.value = true;
+        console.log(`hideLoginPage_value: ${hideLoginPage.value}`)
 
     }
     else {
-        hideLoginPage_value = hideLoginPage.value;
-        console.log(`hideLoginPage_value: ${hideLoginPage_value}`)
+        hideLoginPage.value = false;
+        console.log(`hideLoginPage_value: ${hideLoginPage.value}`)
 
             ;
     }
@@ -273,36 +287,38 @@ hideLoginPage.addEventListener("change", function () {
 
 var SignatureAlgorithm = document.getElementById("SignatureAlgorithm");
 var SAMLSignatureKeyName = document.getElementById("SAMLSignatureKeyName");
-var wantAuthnRequestsSigned_value="false" ;
+
 const wantAuthnRequestsSigned = document.getElementById("wantAuthnRequestsSigned");
+wantAuthnRequestsSigned.value = pluginData.config.wantAuthnRequestsSigned ? pluginData.config.wantAuthnRequestsSigned : false;
 wantAuthnRequestsSigned.addEventListener("change", function () {
     if (wantAuthnRequestsSigned.checked) {
-        wantAuthnRequestsSigned_value = "true";
+        wantAuthnRequestsSigned.value = true;
         SignatureAlgorithm.removeAttribute("disabled");
         SAMLSignatureKeyName.removeAttribute("disabled");
-        console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned_value}`)
+        console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
 
     }
     else {
-        wantAuthnRequestsSigned_value = wantAuthnRequestsSigned.value;
-        console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned_value}`)
+        wantAuthnRequestsSigned.value = false;
+        console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
         SignatureAlgorithm.setAttribute("disabled", "true");
         SAMLSignatureKeyName.setAttribute("disabled", "true");
 
         ;
     }
 });
-var ArtifactResolutionService_in_metadata_value ;
+
 const ArtifactResolutionService_in_metadata = document.getElementById("ArtifactResolutionService_in_metadata");
+ArtifactResolutionService_in_metadata.value = pluginData.config.includeArtifactResolutionServiceMetadata ? pluginData.config.includeArtifactResolutionServiceMetadata : false;
 ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     if (ArtifactResolutionService_in_metadata.checked) {
-        ArtifactResolutionService_in_metadata_value = "true";
-        console.log(`ArtifactResolutionService_in_metadata_value: ${ArtifactResolutionService_in_metadata_value}`)
+        ArtifactResolutionService_in_metadata.value = true;
+        console.log(`ArtifactResolutionService_in_metadata_value: ${ArtifactResolutionService_in_metadata.value}`)
 
     }
     else {
-        ArtifactResolutionService_in_metadata_value = ArtifactResolutionService_in_metadata.value;
-        console.log(`ArtifactResolutionService_in_metadata_value: ${ArtifactResolutionService_in_metadata_value}`)
+        ArtifactResolutionService_in_metadata.value = false;
+        console.log(`ArtifactResolutionService_in_metadata_value: ${ArtifactResolutionService_in_metadata.value}`)
 
             ;
     }
@@ -375,20 +391,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var validateSignatures = document.getElementById("validateSignatures");
 var additionalField1 = document.getElementById("ValidatingX509Certificates");
-let validateSignatures_value = "false";
+validateSignatures.value = pluginData.config.validateSignature ? pluginData.config.validateSignature : false;
 
 
 validateSignatures.addEventListener("change", function () {
     if (validateSignatures.checked) {
-        validateSignatures_value = "true";
-        console.log(`validateSignatures_value: ${validateSignatures_value}`)
+        validateSignatures.value = true;
+        console.log(`validateSignatures_value: ${validateSignatures.value}`)
         additionalField1.removeAttribute("disabled");
 
 
     }
     else {
-        validateSignatures_value = validateSignatures.value;
-        console.log(`validateSignatures_value: ${validateSignatures_value}`)
+        validateSignatures.value = false;
+        console.log(`validateSignatures_value: ${validateSignatures.value}`)
         additionalField1.setAttribute("disabled", "true");
         ;
     }
@@ -396,117 +412,120 @@ validateSignatures.addEventListener("change", function () {
 
 var Artifact_Resolution = document.getElementById("Artifact_Resolution");
 var additionalField_endpoint = document.getElementById("Artifact_Resolution_Endpoint");
-let Artifact_Resolution_value = "false";
-
+Artifact_Resolution.value = pluginData.config.artifactResolution ? pluginData.config.artifactResolution : false;
 
 Artifact_Resolution.addEventListener("change", function () {
     if (Artifact_Resolution.checked) {
-        Artifact_Resolution_value = "true";
-        console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
+        Artifact_Resolution.value = true;
+        console.log(`Artifact_Resolution_value: ${Artifact_Resolution.value}`)
         additionalField_endpoint.removeAttribute("disabled");
-
 
     }
     else {
-        Artifact_Resolution_value = Artifact_Resolution.value;
-        console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
+        Artifact_Resolution.value = false;
+        console.log(`Artifact_Resolution_value: ${Artifact_Resolution.value}`)
         additionalField_endpoint.setAttribute("disabled", "true");
         ;
     }
 }
 );
 
-var Sign_Artifact_Resolution_Request_value = "false";
+
 const Sign_Artifact_Resolution_Request = document.getElementById("Sign_Artifact_Resolution_Request");
+Sign_Artifact_Resolution_Request.value = pluginData.config.signArtifactResolutionRequest ? pluginData.config.signArtifactResolutionRequest : false;
 Sign_Artifact_Resolution_Request.addEventListener("change", function () {
     if (Sign_Artifact_Resolution_Request.checked) {
-        Sign_Artifact_Resolution_Request_value = "true";
-        console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request_value}`)
+        Sign_Artifact_Resolution_Request.value = true;
+        console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request.value}`)
 
     }
     else {
-        Sign_Artifact_Resolution_Request_value = Sign_Artifact_Resolution_Request.value;
-        console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request_value}`)
+        Sign_Artifact_Resolution_Request.value = false;
+        console.log(`Sign_Artifact_Resolution_Request_value: ${Sign_Artifact_Resolution_Request.value}`)
 
             ;
     }
 });
-var ArtifactResolution_via_HTTP_ARTIFACT_value = "false";
+
 const ArtifactResolution_via_HTTP_ARTIFACT = document.getElementById("ArtifactResolution_via_HTTP_ARTIFACT");
+ArtifactResolution_via_HTTP_ARTIFACT.value = pluginData.config.artifactResolutionHTTPArtifact ? pluginData.config.artifactResolutionHTTPArtifact : false;
 ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
     if (ArtifactResolution_via_HTTP_ARTIFACT.checked) {
-        ArtifactResolution_via_HTTP_ARTIFACT_value = "true";
-        console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`)
+        ArtifactResolution_via_HTTP_ARTIFACT.value = true;
+        console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT.value}`)
 
     }
     else {
-        ArtifactResolution_via_HTTP_ARTIFACT_value = ArtifactResolution_via_HTTP_ARTIFACT.value;
-        console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT_value}`)
+        ArtifactResolution_via_HTTP_ARTIFACT.value = false;
+        console.log(`ArtifactResolution_via_HTTP_ARTIFACT_value: ${ArtifactResolution_via_HTTP_ARTIFACT.value}`)
 
             ;
     }
 });
-var Sign_Service_Provider_Metadata_value = "false";
-const Sign_Service_Provider_Metadata = document.getElementById("Sign_Service_Provider_Metadata");
-Sign_Service_Provider_Metadata.addEventListener("change", function () {
-    if (Sign_Service_Provider_Metadata.checked) {
-        Sign_Service_Provider_Metadata_value = "true";
-        console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
+// var Sign_Service_Provider_Metadata_value = "false";
+// const Sign_Service_Provider_Metadata = document.getElementById("Sign_Service_Provider_Metadata");
+// Sign_Service_Provider_Metadata.addEventListener("change", function () {
+//     if (Sign_Service_Provider_Metadata.checked) {
+//         Sign_Service_Provider_Metadata_value = "true";
+//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
 
-    }
-    else {
-        Sign_Service_Provider_Metadata_value = Sign_Service_Provider_Metadata.value;
-        console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
+//     }
+//     else {
+//         Sign_Service_Provider_Metadata_value = Sign_Service_Provider_Metadata.value;
+//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
 
-            ;
-    }
-});
+//             ;
+//     }
+// });
 
 
-let Artifact_Resolution_with_SOAP_value = "false";
+
 const Artifact_Resolution_with_SOAP = document.getElementById("Artifact_Resolution_with_SOAP");
+Artifact_Resolution_with_SOAP.value = pluginData.config.artifactResolutionSOAP ? pluginData.config.artifactResolutionSOAP : false;
 Artifact_Resolution_with_SOAP.addEventListener("change", function () {
     if (Artifact_Resolution_with_SOAP.checked) {
-        Artifact_Resolution_with_SOAP_value = "true";
-        console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP_value}`)
+        Artifact_Resolution_with_SOAP.value = true;
+        console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP.value}`)
 
     }
     else {
-        Artifact_Resolution_with_SOAP_value = Artifact_Resolution_with_SOAP.value;
-        console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP_value}`)
+        Artifact_Resolution_with_SOAP.value = false;
+        console.log(`Artifact_Resolution_with_SOAP_value: ${Artifact_Resolution_with_SOAP.value}`)
 
             ;
     }
 });
 
 
-let Artifact_Resolution_with_XML_header_value = "false";
+
 const Artifact_Resolution_with_XML_header = document.getElementById("Artifact_Resolution_with_XML_header");
+Artifact_Resolution_with_XML_header.value = pluginData.config.artifactResolutionWithXmlHeader ? pluginData.config.artifactResolutionWithXmlHeader : false;
 Artifact_Resolution_with_XML_header.addEventListener("change", function () {
     if (Artifact_Resolution_with_XML_header.checked) {
-        Artifact_Resolution_with_XML_header_value = "true";
-        console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header_value}`)
+        Artifact_Resolution_with_XML_header.value = true;
+        console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header.value}`)
 
     }
     else {
-        Artifact_Resolution_with_XML_header_value = Artifact_Resolution_with_XML_header.value;
-        console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header_value}`)
+        Artifact_Resolution_with_XML_header.value = false;
+        console.log(`Artifact_Resolution_with_XML_header_value: ${Artifact_Resolution_with_XML_header.value}`)
 
             ;
     }
 });
 
-let Mutual_TLS_value = "false";
+
 const Mutual_TLS = document.getElementById("Mutual_TLS");
+Mutual_TLS.value = pluginData.config.mutualTls ? pluginData.config.mutualTls : false;
 Mutual_TLS.addEventListener("change", function () {
     if (Mutual_TLS.checked) {
-        Mutual_TLS_value = "true";
-        console.log(`Mutual_TLS_value: ${Mutual_TLS_value}`)
+        Mutual_TLS.value = true;
+        console.log(`Mutual_TLS_value: ${Mutual_TLS.value}`)
 
     }
     else {
-        Mutual_TLS_value = Mutual_TLS.value;
-        console.log(`Mutual_TLS_value: ${Mutual_TLS_value}`)
+        Mutual_TLS.value = false;
+        console.log(`Mutual_TLS_value: ${Mutual_TLS.value}`)
 
             ;
     }
