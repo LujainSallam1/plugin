@@ -25,25 +25,25 @@ keycloak
     if (authenticated) {
       accessToken = keycloak.token;
       console.log(`Access Token: ${accessToken}`);
-      fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', { 
-        method: 'GET', 
-        headers: { 
-            'Authorization': `Bearer ${accessToken}`, 
-        }, 
-    }) 
-    .then(async checkPluginResponse => { 
-        if (checkPluginResponse.ok) { 
-            var pluginData = await checkPluginResponse.json(); 
-            localStorage.setItem('pluginData', JSON.stringify(pluginData)); 
-            var storedData = localStorage.getItem('pluginData'); 
-            var parsedPluginData = JSON.parse(storedData); 
-            console.log(`pluginData: ${JSON.stringify(parsedPluginData)}`); 
-        } 
-    })
-    .catch(error => { 
-        console.error(error); 
-    });
-    
+      const SamlExtended_input = document.getElementById("SamlExtended");
+      var alias=SamlExtended_input.value;
+      fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      })
+        .then(async checkPluginResponse => {
+          if (checkPluginResponse.ok) {
+            var pluginData = await checkPluginResponse.json();
+            localStorage.setItem('pluginData', JSON.stringify(pluginData));
+            console.log(`pluginData: ${JSON.stringify(pluginData)}`);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
 
       //get flow from KEY
       const selectElement_postLoginFlow = document.getElementById('postLoginFlow');

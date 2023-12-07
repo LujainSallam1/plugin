@@ -82,12 +82,11 @@ buttonInput.addEventListener('click', () => {
             var Metadata_expires_in = Metadata_expires_in_input.value;
             var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
             var Linked_Providers = Linked_Providers_input.value;
-            var SamlExtended=SamlExtended_input.value;
+            var alias=SamlExtended_input.value;
             
             var data = {
-                "alias": SamlExtended,
+                "alias": alias,
                 "displayName": Display_Name,
-                "internalId": "a3e9b939-357f-4bff-bac6-8225aec4a9e4",
                 "providerId": "saml-extended",
                 "enabled": "true",
                 "updateProfileFirstLoginMode": "on",
@@ -174,7 +173,7 @@ buttonInput.addEventListener('click', () => {
             console.log(data);
 
             // Sending a GET request to check if the plugin exists
-            fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${newAccessToken}`,
@@ -185,7 +184,7 @@ buttonInput.addEventListener('click', () => {
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
                         var pluginData = await checkPluginResponse.json(); 
-                        const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+                        const updatePluginResponse = await fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                             method: 'PUT',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,
