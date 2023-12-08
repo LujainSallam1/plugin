@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAML List and Edit</title>
+  <style>
+    #samlDetails {
+      margin-top: 20px;
+    }
+
+    #editSAML {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+      <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
+
+</head>
+<body>
+<select id="samlList" onchange="displaySAMLDetails()">
+</select>
+<button id="logout">Logout</button>
+<button id="add_plugin">
+    <a href=http://localhost:3000/index.html>add_plugin</a>
+</button>
+<div id="resultsContainer"></div>
+
+
+<script src="/js/keycloack.js"></script>
+   
+
+
+
+
+</body>
+</html>

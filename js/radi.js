@@ -3,7 +3,6 @@
 const backchannel = document.getElementById("backchannel");
 var storedData = localStorage.getItem('pluginData');
 var pluginData = JSON.parse(storedData);
-backchannel.value = pluginData.config.backchannelSupported ? pluginData.config.backchannelSupported : false;
 backchannel.addEventListener("change", function () {
     if (backchannel.checked) {
         backchannel.value = true;
@@ -16,7 +15,6 @@ backchannel.addEventListener("change", function () {
 
 
 const allowCreate = document.getElementById("allowCreate");
-allowCreate.value = pluginData.config.allowCreate ? pluginData.config.allowCreate : false;
 allowCreate.addEventListener("change", function () {
 
     if (allowCreate.checked) {
@@ -37,7 +35,6 @@ allowCreate.addEventListener("change", function () {
 
 
 const httpPostBindingResponse = document.getElementById("httpPostBindingResponse");
-httpPostBindingResponse.value = pluginData.config.postBindingResponse ? pluginData.config.postBindingResponse : false;
 httpPostBindingResponse.addEventListener("change", function () {
     if (httpPostBindingResponse.checked) {
         httpPostBindingResponse.value = "true";
@@ -60,7 +57,6 @@ httpPostBindingResponse.addEventListener("change", function () {
 
 
 const httpPostBindingAuthnRequest = document.getElementById("httpPostBindingAuthnRequest");
-httpPostBindingAuthnRequest.value = pluginData.config.postBindingAuthnRequest ? pluginData.config.postBindingAuthnRequest : false;
 httpPostBindingAuthnRequest.addEventListener("change", function () {
     if (httpPostBindingAuthnRequest.checked) {
         httpPostBindingAuthnRequest.value = true;
@@ -76,7 +72,6 @@ httpPostBindingAuthnRequest.addEventListener("change", function () {
 });
 
 const httpPostBindingLogout = document.getElementById("httpPostBindingLogout");
-httpPostBindingLogout.value = pluginData.config.postBindingLogout ? pluginData.config.postBindingLogout : false;
 httpPostBindingLogout.addEventListener("change", function () {
     if (httpPostBindingLogout.checked) {
         httpPostBindingLogout.value = true;
@@ -93,7 +88,6 @@ httpPostBindingLogout.addEventListener("change", function () {
 
 
 const wantAssertionsSigned = document.getElementById("wantAssertionsSigned");
-wantAssertionsSigned.value = pluginData.config.wantAssertionsSigned ? pluginData.config.wantAssertionsSigned : false;
 wantAssertionsSigned.addEventListener("change", function () {
     if (wantAssertionsSigned.checked) {
         wantAssertionsSigned.value = true;
@@ -110,7 +104,6 @@ wantAssertionsSigned.addEventListener("change", function () {
 
 
 const wantAssertionsEncrypted = document.getElementById("wantAssertionsEncrypted");
-wantAssertionsEncrypted.value = pluginData.config.wantAssertionsEncrypted ? pluginData.config.wantAssertionsEncrypted : false;
 wantAssertionsEncrypted.addEventListener("change", function () {
     if (wantAssertionsEncrypted.checked) {
         wantAssertionsEncrypted.value = true;
@@ -127,7 +120,6 @@ wantAssertionsEncrypted.addEventListener("change", function () {
 
 
 const forceAuthentication = document.getElementById("forceAuthentication");
-forceAuthentication.value = pluginData.config.forceAuthn ? pluginData.config.forceAuthn : false;
 forceAuthentication.addEventListener("change", function () {
     if (forceAuthentication.checked) {
         forceAuthentication.value = true;
@@ -145,7 +137,6 @@ forceAuthentication.addEventListener("change", function () {
 
 
 const signMetadata = document.getElementById("signMetadata");
-signMetadata.value = pluginData.config.signSpMetadata ? pluginData.config.signSpMetadata : false
 signMetadata.addEventListener("change", function () {
     if (signMetadata.checked) {
         signMetadata.value = true;
@@ -162,7 +153,6 @@ signMetadata.addEventListener("change", function () {
 
 
 const passSubject = document.getElementById("passSubject");
-passSubject.value = pluginData.config.loginHint ? pluginData.config.loginHint : false;
 passSubject.addEventListener("change", function () {
     if (passSubject.checked) {
         passSubject.value = true;
@@ -179,7 +169,6 @@ passSubject.addEventListener("change", function () {
 
 
 const storeToken = document.getElementById("storeToken");
-storeToken.value = pluginData.storeToken ? pluginData.storeToken : false;
 storeToken.addEventListener("change", function () {
     if (storeToken.checked) {
         storeToken.value = true;
@@ -196,7 +185,6 @@ storeToken.addEventListener("change", function () {
 
 
 const storedTokensReadable = document.getElementById("storedTokensReadable");
-storedTokensReadable.value = pluginData.addReadTokenRoleOnCreate ? pluginData.addReadTokenRoleOnCreate : false;
 storedTokensReadable.addEventListener("change", function () {
     if (storedTokensReadable.checked) {
         storedTokensReadable.value = true;
@@ -213,7 +201,6 @@ storedTokensReadable.addEventListener("change", function () {
 
 
 const trustEmail = document.getElementById("trustEmail");
-trustEmail.value = pluginData.trustEmail ? pluginData.trustEmail : false;
 trustEmail.addEventListener("change", function () {
     if (trustEmail.checked) {
         trustEmail.value = true;
@@ -232,7 +219,6 @@ trustEmail.addEventListener("change", function () {
 
 
 const accountLinkingOnly = document.getElementById("accountLinkingOnly");
-accountLinkingOnly.value = pluginData.linkOnly ? pluginData.linkOnly : false;
 accountLinkingOnly.addEventListener("change", function () {
     if (accountLinkingOnly.checked) {
         accountLinkingOnly.value = true;
@@ -249,7 +235,6 @@ accountLinkingOnly.addEventListener("change", function () {
 
 
 const hideLoginPage = document.getElementById("hideLoginPage");
-hideLoginPage.value = pluginData.config.hideOnLoginPage ? pluginData.config.hideOnLoginPage : false;
 hideLoginPage.addEventListener("change", function () {
     if (hideLoginPage.checked) {
         hideLoginPage.value = true;
@@ -269,7 +254,6 @@ var SignatureAlgorithm = document.getElementById("SignatureAlgorithm");
 var SAMLSignatureKeyName = document.getElementById("SAMLSignatureKeyName");
 
 const wantAuthnRequestsSigned = document.getElementById("wantAuthnRequestsSigned");
-wantAuthnRequestsSigned.value = pluginData.config.wantAuthnRequestsSigned ? pluginData.config.wantAuthnRequestsSigned : false;
 wantAuthnRequestsSigned.addEventListener("change", function () {
     if (wantAuthnRequestsSigned.checked) {
         wantAuthnRequestsSigned.value = true;
@@ -289,7 +273,6 @@ wantAuthnRequestsSigned.addEventListener("change", function () {
 });
 
 const ArtifactResolutionService_in_metadata = document.getElementById("ArtifactResolutionService_in_metadata");
-ArtifactResolutionService_in_metadata.value = pluginData.config.includeArtifactResolutionServiceMetadata ? pluginData.config.includeArtifactResolutionServiceMetadata : false;
 ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     if (ArtifactResolutionService_in_metadata.checked) {
         ArtifactResolutionService_in_metadata.value = true;
@@ -371,7 +354,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var validateSignatures = document.getElementById("validateSignatures");
 var additionalField1 = document.getElementById("ValidatingX509Certificates");
-validateSignatures.value = pluginData.config.validateSignature ? pluginData.config.validateSignature : false;
 
 
 validateSignatures.addEventListener("change", function () {
@@ -392,7 +374,6 @@ validateSignatures.addEventListener("change", function () {
 
 var Artifact_Resolution = document.getElementById("Artifact_Resolution");
 var additionalField_endpoint = document.getElementById("Artifact_Resolution_Endpoint");
-Artifact_Resolution.value = pluginData.config.artifactResolution ? pluginData.config.artifactResolution : false;
 
 Artifact_Resolution.addEventListener("change", function () {
     if (Artifact_Resolution.checked) {
@@ -412,7 +393,6 @@ Artifact_Resolution.addEventListener("change", function () {
 
 
 const Sign_Artifact_Resolution_Request = document.getElementById("Sign_Artifact_Resolution_Request");
-Sign_Artifact_Resolution_Request.value = pluginData.config.signArtifactResolutionRequest ? pluginData.config.signArtifactResolutionRequest : false;
 Sign_Artifact_Resolution_Request.addEventListener("change", function () {
     if (Sign_Artifact_Resolution_Request.checked) {
         Sign_Artifact_Resolution_Request.value = true;
@@ -428,7 +408,6 @@ Sign_Artifact_Resolution_Request.addEventListener("change", function () {
 });
 
 const ArtifactResolution_via_HTTP_ARTIFACT = document.getElementById("ArtifactResolution_via_HTTP_ARTIFACT");
-ArtifactResolution_via_HTTP_ARTIFACT.value = pluginData.config.artifactResolutionHTTPArtifact ? pluginData.config.artifactResolutionHTTPArtifact : false;
 ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
     if (ArtifactResolution_via_HTTP_ARTIFACT.checked) {
         ArtifactResolution_via_HTTP_ARTIFACT.value = true;
@@ -461,7 +440,6 @@ ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
 
 
 const Artifact_Resolution_with_SOAP = document.getElementById("Artifact_Resolution_with_SOAP");
-Artifact_Resolution_with_SOAP.value = pluginData.config.artifactResolutionSOAP ? pluginData.config.artifactResolutionSOAP : false;
 Artifact_Resolution_with_SOAP.addEventListener("change", function () {
     if (Artifact_Resolution_with_SOAP.checked) {
         Artifact_Resolution_with_SOAP.value = true;
@@ -479,7 +457,6 @@ Artifact_Resolution_with_SOAP.addEventListener("change", function () {
 
 
 const Artifact_Resolution_with_XML_header = document.getElementById("Artifact_Resolution_with_XML_header");
-Artifact_Resolution_with_XML_header.value = pluginData.config.artifactResolutionWithXmlHeader ? pluginData.config.artifactResolutionWithXmlHeader : false;
 Artifact_Resolution_with_XML_header.addEventListener("change", function () {
     if (Artifact_Resolution_with_XML_header.checked) {
         Artifact_Resolution_with_XML_header.value = true;
@@ -496,7 +473,6 @@ Artifact_Resolution_with_XML_header.addEventListener("change", function () {
 
 
 const Mutual_TLS = document.getElementById("Mutual_TLS");
-Mutual_TLS.value = pluginData.config.mutualTls ? pluginData.config.mutualTls : false;
 Mutual_TLS.addEventListener("change", function () {
     if (Mutual_TLS.checked) {
         Mutual_TLS.value = true;

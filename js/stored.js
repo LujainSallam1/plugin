@@ -1,9 +1,12 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     var storedData = localStorage.getItem('pluginData');
+    console.log(pluginData);
     if (storedData) {
         if (storedData) {
 
             var pluginData = JSON.parse(storedData);
+            console.log(pluginData);
 
             function toggleCheckbox(configKey, checkbox) {
 
@@ -185,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pluginData.config.charSet) {
             updateField('CharacterSet', pluginData.config.charSet);
         }
+       
+     
 
 
     }
