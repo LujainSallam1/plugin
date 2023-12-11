@@ -1,6 +1,6 @@
 
 
-const backchannel = document.getElementById("backchannel");
+
 var storedData = localStorage.getItem('pluginData');
 var pluginData = JSON.parse(storedData);
 backchannel.value = pluginData.config.backchannelSupported ? pluginData.config.backchannelSupported : false;
@@ -304,7 +304,6 @@ ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     }
 });
 
-const ClassRefs_items = document.getElementById("ClassRefs_items");
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -391,7 +390,6 @@ validateSignatures.addEventListener("change", function () {
 });
 
 var Artifact_Resolution = document.getElementById("Artifact_Resolution");
-var additionalField_endpoint = document.getElementById("Artifact_Resolution_Endpoint");
 Artifact_Resolution.value = pluginData.config.artifactResolution ? pluginData.config.artifactResolution : false;
 
 Artifact_Resolution.addEventListener("change", function () {

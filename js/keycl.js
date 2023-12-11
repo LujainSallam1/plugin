@@ -1,4 +1,4 @@
-let accessToken;
+var accessToken;
 const keycloak = Keycloak({
   url: 'http://localhost:8080',
   realm: 'master',
@@ -9,9 +9,6 @@ const keycloak = Keycloak({
 });
 
 
-// document.getElementById('login').addEventListener('click', () => {
-//   keycloak.login();
-// });
 
 document.getElementById('logout').addEventListener('click', () => {
   const clientid = 'frontend';
@@ -27,54 +24,6 @@ keycloak
       console.log(`Access Token: ${accessToken}`);
 
 
-      // //get flow from KEY
-      // const selectElement_postLoginFlow = document.getElementById('postLoginFlow');
-      // const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
-
-      // fetch('http://localhost:8080/admin/realms/master/ui-ext/authentication-management/flows', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Authorization': `Bearer ${accessToken}`,
-      //   },
-      // })
-      //   .then(response => response.json())
-      //   .then(responseJSON => {
-
-      //     while (selectElement_postLoginFlow.firstChild) {
-      //       selectElement_postLoginFlow.removeChild(selectElement_postLoginFlow.firstChild);
-      //     }
-      //     while (selectElement_firstLoginFlow.firstChild) {
-      //       selectElement_firstLoginFlow.removeChild(selectElement_firstLoginFlow.firstChild);
-      //     }
-
-
-      //     responseJSON.forEach((flow, index) => {
-      //       const optionElement = document.createElement('option');
-      //       optionElement.value = flow.alias;
-      //       optionElement.text = flow.alias;
-      //       selectElement_postLoginFlow.add(optionElement);
-
-
-      //     });
-      //     responseJSON.forEach((flow, index) => {
-      //       const optionElement1 = document.createElement('option');
-      //       optionElement1.value = flow.alias;
-      //       optionElement1.text = flow.alias;
-      //       selectElement_firstLoginFlow.add(optionElement1);
-      //       console.log(flow.id);
-      //       console.log(flow.alias);
-      //     });
-
-
-
-
-      //     console.log("Alias values have been successfully added to the select element.");
-      //   })
-      //   .catch(error => {
-      //     console.error(error);
-      //   });
-
-      // Check if the user has the "admin" role
       getAllPlugins();
 
       function getAllPlugins() {
@@ -102,7 +51,10 @@ keycloak
         var resultsContainer = document.getElementById('resultsContainer');
 
         if (resultsContainer) {
+            // var samlProviders = data.filter(plugin => plugin.providerId== 'saml-extended').map(plugin => plugin.alias); 
+ 
           plugins.forEach(plugin => {
+            if (plugin.providerId== 'saml-extended'){
             var resultItem = document.createElement('div');
             var link = document.createElement('a');
             link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
@@ -117,6 +69,7 @@ keycloak
             });
             resultItem.appendChild(link);
             resultsContainer.appendChild(resultItem);
+        }
           });
         } else {
           console.log("resultsContainer not exists");

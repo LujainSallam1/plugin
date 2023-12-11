@@ -1,38 +1,5 @@
-const redirectUriInput = document.getElementById("redirectUri");
-const SamlExtended_input = document.getElementById("SamlExtended");
-const buttonInput = document.getElementById("submit");
-const Display_Name_input = document.getElementById("displayName");
-const Display_Order_input = document.getElementById("displayOrder");
-const Service_Provider_Entity_ID_input = document.getElementById("spEntityId");
-const Identity_Provider_Entity_ID_input = document.getElementById("idpEntityId");
-const Single_Sign_On_Service_URL_input = document.getElementById("ssoServiceUrl");
-const Single_Logout_Service_URL_input = document.getElementById("sloServiceUrl");
-const allowedClockSkew_input = document.getElementById("allowedClockSkew");
-const attributeConsumingServiceIndex_input = document.getElementById("attributeConsumingServiceIndex");
-const attributeConsumingServiceName_input = document.getElementById("attributeConsumingServiceName");
-const authnContextClassRefs_input = document.getElementById("authnContextClassRefs");
-const authnContextDeclRefs_input = document.getElementById("authnContextDeclRefs");
-const comparison_input = document.getElementById("comparison");
-const firstLoginFlow_input = document.getElementById("firstLoginFlow");
-const postLoginFlow_input = document.getElementById("postLoginFlow");
-const syncMode_input = document.getElementById("syncMode");
-const principalType_input = document.getElementById("principalType");
-const nameIdPolicy_input = document.getElementById("nameIdPolicy");
-const SignatureAlgorithm_input = document.getElementById("SignatureAlgorithm");
-const SAMLSignatureKeyName_input = document.getElementById("SAMLSignatureKeyName");
-const ValidatingX509Certificates_input = document.getElementById("ValidatingX509Certificates");
-const Artifact_Resolution_Endpoint_input = document.getElementById("Artifact_Resolution_Endpoint");
-const CharacterSet_input = document.getElementById("CharacterSet");
-const Metadata_expires_in_input = document.getElementById("Metadata_expires_in");
-const metadataValidUntilPeriod_input = document.getElementById("metadataValidUntilPeriod");
-const Linked_Providers_input = document.getElementById("Linked_Providers");
-
-
-var newAccessToken;
-
-
-buttonInput.addEventListener('click', () => {
-
+button.addEventListener('click', () => {
+    
     keycloak.updateToken(180).then((bool) => {
         if (bool) {
             console.log("Token is updated");
@@ -55,7 +22,6 @@ buttonInput.addEventListener('click', () => {
             });
             console.log(authnContextDeclRefs);
             const redirectUri = redirectUriInput.value;
-            const button = buttonInput.value;
             var Display_Name = Display_Name_input.value;
             var Display_Order = Display_Order_input.value;
             var Service_Provider_Entity_ID = Service_Provider_Entity_ID_input.value;
@@ -82,61 +48,60 @@ buttonInput.addEventListener('click', () => {
             var Metadata_expires_in = Metadata_expires_in_input.value;
             var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
             var Linked_Providers = Linked_Providers_input.value;
-            var SamlExtended=SamlExtended_input.value;
+            var alias=alias_input.value;
             
             var data = {
-                "alias": SamlExtended,
+                "alias": alias,
                 "displayName": Display_Name,
-                "internalId": "a3e9b939-357f-4bff-bac6-8225aec4a9e4",
                 "providerId": "saml-extended",
                 "enabled": "true",
                 "updateProfileFirstLoginMode": "on",
-                "trustEmail": trustEmail_value,
-                "storeToken": storeToken_value,
-                "addReadTokenRoleOnCreate": storedTokensReadable_value,
+                "trustEmail": trustEmail.value,
+                "storeToken": storeToken.value,
+                "addReadTokenRoleOnCreate": storedTokensReadable.value,
                 "authenticateByDefault": "false",
-                "linkOnly": accountLinkingOnly_value,
+                "linkOnly": accountLinkingOnly.value,
                 "firstBrokerLoginFlowAlias": firstLoginFlow,
                 "postBrokerLoginFlowAlias": postLoginFlow,
                 config: {
-                    "postBindingLogout": httpPostBindingLogout_value,
+                    "postBindingLogout": httpPostBindingLogout.value,
                     "authnContextClassRefs": authnContextClassRefs.length > 0 ? JSON.stringify(authnContextClassRefs) : undefined,
-                    "postBindingResponse": httpPostBindingResponse_value,
+                    "postBindingResponse": httpPostBindingResponse.value,
                     "singleLogoutServiceUrl": Single_Logout_Service_URL,
                     "authnContextDeclRefs": authnContextDeclRefs.length > 0 ? JSON.stringify(authnContextDeclRefs) : undefined,
-                    "backchannelSupported": backchannel_value,
+                    "backchannelSupported":  backchannel.value,
                     "xmlSigKeyInfoKeyNameTransformer": SAMLSignatureKeyName,
                     "idpEntityId": Identity_Provider_Entity_ID,
-                    "loginHint": passSubject_value,
-                    "allowCreate": allowCreat_value,
+                    "loginHint": passSubject.value,
+                    "allowCreate": allowCreate.value,
                     "authnContextComparisonType": comparison,
                     "syncMode": syncMode,
                     "singleSignOnServiceUrl": Single_Sign_On_Service_URL,
-                    "wantAuthnRequestsSigned": wantAuthnRequestsSigned_value,
+                    "wantAuthnRequestsSigned": wantAuthnRequestsSigned.value,
                     "allowedClockSkew": allowedClockSkew,
                     "guiOrder": Display_Order,
-                    "validateSignature": validateSignatures_value,
-                    "hideOnLoginPage": hideLoginPage_value,
+                    "validateSignature": validateSignatures.value,
+                    "hideOnLoginPage": hideLoginPage.value,
                     "signingCertificate": ValidatingX509Certificates,
                     "nameIDPolicyFormat": nameIdPolicy1,
                     "entityId": Service_Provider_Entity_ID,
                     "attributeConsumingServiceName": attributeConsumingServiceName,
-                    "signSpMetadata": signMetadata_value,
-                    "wantAssertionsEncrypted": wantAssertionsEncrypted_value,
+                    "signSpMetadata": signMetadata.value,
+                    "wantAssertionsEncrypted": wantAssertionsEncrypted.value,
                     "signatureAlgorithm": SignatureAlgorithm,
-                    "wantAssertionsSigned": wantAssertionsSigned_value,
-                    "postBindingAuthnRequest":httpPostBindingAuthnRequest_value,
-                    "forceAuthn": forceAuthentication_value,
+                    "wantAssertionsSigned": wantAssertionsSigned.value,
+                    "postBindingAuthnRequest":httpPostBindingAuthnRequest.value,
+                    "forceAuthn": forceAuthentication.value,
                     "attributeConsumingServiceIndex": attributeConsumingServiceIndex,
                     "principalType": principalType,
-                    "includeArtifactResolutionServiceMetadata": ArtifactResolutionService_in_metadata_value,
-                    "artifactResolution": Artifact_Resolution_value,
+                    "includeArtifactResolutionServiceMetadata": ArtifactResolutionService_in_metadata.value,
+                    "artifactResolution": Artifact_Resolution.value,
                     "artifactResolutionEndpoint": Artifact_Resolution_Endpoint,
-                    "signArtifactResolutionRequest": Sign_Artifact_Resolution_Request_value,
-                    "artifactResolutionSOAP": Artifact_Resolution_with_SOAP_value,
-                    "artifactResolutionWithXmlHeader": Artifact_Resolution_with_XML_header_value,
-                    "artifactResolutionHTTPArtifact": ArtifactResolution_via_HTTP_ARTIFACT_value,
-                    "mutualTls": Mutual_TLS_value,
+                    "signArtifactResolutionRequest": Sign_Artifact_Resolution_Request.value,
+                    "artifactResolutionSOAP": Artifact_Resolution_with_SOAP.value,
+                    "artifactResolutionWithXmlHeader": Artifact_Resolution_with_XML_header.value,
+                    "artifactResolutionHTTPArtifact": ArtifactResolution_via_HTTP_ARTIFACT.value,
+                    "mutualTls": Mutual_TLS.value,
                     "charSet": CharacterSet,
                     "metadataValidUntilUnit": Metadata_expires_in,
                     "metadataValidUntilPeriod": metadataValidUntilPeriod,
@@ -174,7 +139,7 @@ buttonInput.addEventListener('click', () => {
             console.log(data);
 
             // Sending a GET request to check if the plugin exists
-            fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${newAccessToken}`,
@@ -185,7 +150,7 @@ buttonInput.addEventListener('click', () => {
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
                         var pluginData = await checkPluginResponse.json(); 
-                        const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances/saml-extended', {
+                        const updatePluginResponse = await fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                             method: 'PUT',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,
@@ -262,4 +227,3 @@ buttonInput.addEventListener('click', () => {
         }
     });
 });
-

@@ -1,6 +1,7 @@
 const redirectUriInput = document.getElementById("redirectUri");
-const SamlExtended_input = document.getElementById("SamlExtended");
+const alias_input = document.getElementById("alias");
 const buttonInput = document.getElementById("submit");
+const button = document.getElementById("edit");
 const Display_Name_input = document.getElementById("displayName");
 const Display_Order_input = document.getElementById("displayOrder");
 const Service_Provider_Entity_ID_input = document.getElementById("spEntityId");
@@ -26,5 +27,5 @@ const CharacterSet_input = document.getElementById("CharacterSet");
 const Metadata_expires_in_input = document.getElementById("Metadata_expires_in");
 const metadataValidUntilPeriod_input = document.getElementById("metadataValidUntilPeriod");
 const Linked_Providers_input = document.getElementById("Linked_Providers");
-
-
+const additionalField_endpoint=document.getElementById("Artifact_Resolution_Endpoint");
+const ClassRefs_items = document.getElementById("ClassRefs_items");
