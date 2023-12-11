@@ -20,9 +20,10 @@ keycloak
   .init({ onLoad: 'login-required' })
   .then((authenticated) => {
     if (authenticated) {
+        
       accessToken = keycloak.token;
       console.log(`Access Token: ${accessToken}`);
-
+      localStorage.setItem('accessToken', keycloak.token);
 
       getAllPlugins();
 
@@ -64,6 +65,7 @@ keycloak
             link.addEventListener('click', function (event) {
               event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
               getPluginDetails(plugin.alias);
+              localStorage.setItem('pluginalias', plugin.alias);
               console.log`(plugin:${plugin.alias})`
               
             });

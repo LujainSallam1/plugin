@@ -833,10 +833,47 @@
 
 
 
-
 <script src="/js/fielder.js"></script>
+
+<script>
+    var accesstoken = localStorage.getItem('accessToken');
+    var pluginalias=localStorage.getItem('pluginalias')
+    // استرجاع بيانات المكون باستخدام طلب GET
+    if (accesstoken) {
+        // استخدم storedToken كما تحتاج
+console.log(accesstoken)
+        fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${pluginalias}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accesstoken}`,
+            },
+        })
+            .then(async checkPluginResponse => {
+                if (checkPluginResponse.status === 200) {
+                    // المكون موجود، يمكنك الآن معالجة المعلومات
+                    const pluginData = await checkPluginResponse.json();
+                    console.log('Plugin Details:', pluginData);
+                    localStorage.setItem('pluginData', JSON.stringify(pluginData));
+
+                    // يمكنك استخدام pluginData كما تريد هنا
+                } else {
+                    // المكون غير موجود، يمكنك إجراء الإجراء المناسب (مثل رسالة خطأ)
+                    console.error("Plugin not found.");
+                    alert("Plugin not found.");
+                }
+            })
+            .catch(error => {
+                console.error('Error during the process:', error);
+            });
+    }
+    else {
+        console.error('No stored access token found.');
+    }
+</script>
 <script src="/js/stored.js"></script>
+
 <script src="/js/RadioButtonController.js"></script>
+
 <script src="/js/editplugin.js"></script>
 
 
