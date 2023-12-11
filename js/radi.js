@@ -287,7 +287,7 @@ ArtifactResolutionService_in_metadata.addEventListener("change", function () {
     }
 });
 
-const ClassRefs_items = document.getElementById("ClassRefs_items");
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -373,7 +373,7 @@ validateSignatures.addEventListener("change", function () {
 });
 
 var Artifact_Resolution = document.getElementById("Artifact_Resolution");
-var additionalField_endpoint = document.getElementById("Artifact_Resolution_Endpoint");
+
 
 Artifact_Resolution.addEventListener("change", function () {
     if (Artifact_Resolution.checked) {

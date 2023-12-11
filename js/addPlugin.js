@@ -1,3 +1,4 @@
+
 buttonInput.addEventListener('click', () => {
     var authnContextClassRefs = []
 const ClassRefs_inputs = ClassRefs_items.querySelectorAll("input");
@@ -43,7 +44,7 @@ var url = `http://localhost:8080/admin/realms/master/identity-provider/instances
 var Metadata_expires_in = Metadata_expires_in_input.value;
 var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
 var Linked_Providers = Linked_Providers_input.value;
-var alias=SamlExtended_input.value;
+var alias=alias_input.value;
 
 var data = {
     "alias": alias,
