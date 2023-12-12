@@ -1,4 +1,4 @@
-let accessToken;
+var accessToken;
 const keycloak = Keycloak({
   url: 'http://localhost:8080',
   realm: 'master',
@@ -9,9 +9,9 @@ const keycloak = Keycloak({
 });
 
 
-// document.getElementById('login').addEventListener('click', () => {
-//   keycloak.login();
-// });
+document.getElementById('login').addEventListener('click', () => {
+  keycloak.login();
+});
 
 document.getElementById('logout').addEventListener('click', () => {
   const clientid = 'frontend';
@@ -25,54 +25,54 @@ keycloak
     if (authenticated) {
       accessToken = keycloak.token;
       console.log(`Access Token: ${accessToken}`);
+      localStorage.setItem('accessToken', keycloak.token);
+
+      //get flow from KEY
+      const selectElement_postLoginFlow = document.getElementById('postLoginFlow');
+      const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
+
+      fetch('http://localhost:8080/admin/realms/master/ui-ext/authentication-management/flows', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      })
+        .then(response => response.json())
+        .then(responseJSON => {
+
+          while (selectElement_postLoginFlow.firstChild) {
+            selectElement_postLoginFlow.removeChild(selectElement_postLoginFlow.firstChild);
+          }
+          while (selectElement_firstLoginFlow.firstChild) {
+            selectElement_firstLoginFlow.removeChild(selectElement_firstLoginFlow.firstChild);
+          }
 
 
-      // //get flow from KEY
-      // const selectElement_postLoginFlow = document.getElementById('postLoginFlow');
-      // const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
-
-      // fetch('http://localhost:8080/admin/realms/master/ui-ext/authentication-management/flows', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Authorization': `Bearer ${accessToken}`,
-      //   },
-      // })
-      //   .then(response => response.json())
-      //   .then(responseJSON => {
-
-      //     while (selectElement_postLoginFlow.firstChild) {
-      //       selectElement_postLoginFlow.removeChild(selectElement_postLoginFlow.firstChild);
-      //     }
-      //     while (selectElement_firstLoginFlow.firstChild) {
-      //       selectElement_firstLoginFlow.removeChild(selectElement_firstLoginFlow.firstChild);
-      //     }
+          responseJSON.forEach((flow, index) => {
+            const optionElement = document.createElement('option');
+            optionElement.value = flow.alias;
+            optionElement.text = flow.alias;
+            selectElement_postLoginFlow.add(optionElement);
 
 
-      //     responseJSON.forEach((flow, index) => {
-      //       const optionElement = document.createElement('option');
-      //       optionElement.value = flow.alias;
-      //       optionElement.text = flow.alias;
-      //       selectElement_postLoginFlow.add(optionElement);
-
-
-      //     });
-      //     responseJSON.forEach((flow, index) => {
-      //       const optionElement1 = document.createElement('option');
-      //       optionElement1.value = flow.alias;
-      //       optionElement1.text = flow.alias;
-      //       selectElement_firstLoginFlow.add(optionElement1);
-      //       console.log(flow.id);
-      //       console.log(flow.alias);
-      //     });
+          });
+          responseJSON.forEach((flow, index) => {
+            const optionElement1 = document.createElement('option');
+            optionElement1.value = flow.alias;
+            optionElement1.text = flow.alias;
+            selectElement_firstLoginFlow.add(optionElement1);
+            console.log(flow.id);
+            console.log(flow.alias);
+          });
 
 
 
 
-      //     console.log("Alias values have been successfully added to the select element.");
-      //   })
-      //   .catch(error => {
-      //     console.error(error);
-      //   });
+          console.log("Alias values have been successfully added to the select element.");
+        })
+        .catch(error => {
+          console.error(error);
+        });
 
       // Check if the user has the "admin" role
       getAllPlugins();
@@ -107,13 +107,10 @@ keycloak
             var link = document.createElement('a');
             link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
             link.textContent = plugin.alias;
-
             // اضافة حدث النقر على الرابط
             link.addEventListener('click', function (event) {
               event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
               getPluginDetails(plugin.alias);
-              console.log`(plugin:${plugin.alias})`
-              
             });
             resultItem.appendChild(link);
             resultsContainer.appendChild(resultItem);
@@ -128,7 +125,8 @@ keycloak
         keycloak.updateToken(180).then((bool) => {
           if (bool) {
             console.log("Token is updated");
-            newAccessToken1 = keycloak.token;
+            var newAccessToken1 = keycloak.token;
+            localStorage.setItem('accessToken', newAccessToken1)
 
             fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
               method: 'GET',
@@ -158,6 +156,41 @@ keycloak
           });
       }
 
+      var accesstoken = localStorage.getItem('accessToken');
+      var pluginalias = localStorage.getItem('pluginalias')
+      // استرجاع بيانات المكون باستخدام طلب GET
+      console.log(accesstoken)
+      if (accesstoken) {
+        // استخدم storedToken كما تحتاج
+        console.log(accesstoken)
+        fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${pluginalias}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accesstoken}`,
+          },
+        })
+          .then(async checkPluginResponse => {
+            if (checkPluginResponse.status === 200) {
+              // المكون موجود، يمكنك الآن معالجة المعلومات
+              const pluginData = await checkPluginResponse.json();
+              console.log('Plugin Details:', pluginData);
+              localStorage.setItem('pluginData', JSON.stringify(pluginData));
+
+              // يمكنك استخدام pluginData كما تريد هنا
+            } else {
+              // المكون غير موجود، يمكنك إجراء الإجراء المناسب (مثل رسالة خطأ)
+              console.error("Plugin not found.");
+              alert("Plugin not found.");
+            }
+          })
+          .catch(error => {
+            console.error('Error during the process:', error);
+          });
+      }
+      else {
+        console.error('No stored access token found.');
+      }
+
 
       const tokenParsed = keycloak.tokenParsed;
       const roles = tokenParsed.realm_access.roles;
@@ -173,6 +206,7 @@ keycloak
         window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
 
       }
+      localStorage.setItem('accessToken', keycloak.token);
       console.log("Access Token:", accessToken);
 
     }
