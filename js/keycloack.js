@@ -1,3 +1,4 @@
+keycloack
 var accessToken;
 const keycloak = Keycloak({
   url: 'http://localhost:8080',
@@ -97,33 +98,75 @@ keycloak
             console.error('Error during the process:', error);
           });
       }
-
       function updatePluginList(plugins) {
+        // Get the container where the results will be displayed
         var resultsContainer = document.getElementById('resultsContainer');
-
+      
         if (resultsContainer) {
+          // Create a table element
+          var table = document.createElement('table');
+      
+          // Add the table header
+          var headerRow = document.createElement('tr');
+          var headerNameCell = document.createElement('th');
+          headerNameCell.textContent = 'Name';
+          var headerProviderCell = document.createElement('th');
+          headerProviderCell.textContent = 'Provider details';
+          var headerButtonCell = document.createElement('th');
+          headerButtonCell.textContent = 'Actions';
+          headerRow.appendChild(headerNameCell);
+          headerRow.appendChild(headerProviderCell);
+          headerRow.appendChild(headerButtonCell);
+          table.appendChild(headerRow);
+      
+          // Add rows to the table
           plugins.forEach(plugin => {
-            var resultItem = document.createElement('div');
+            var row = document.createElement('tr');
+      
+            // Create a link
             var link = document.createElement('a');
-            link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
+            link.href = 'http://localhost:3000/editplugin.html';
             link.textContent = plugin.alias;
-            resultItem.classList.add('result-item')
-        
-            resultsContainer.appendChild(document.createElement('br'));
-            // اضافة حدث النقر على الرابط
+      
+            // Add click event to the link
             link.addEventListener('click', function (event) {
-              event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
+              event.preventDefault();
               getPluginDetails(plugin.alias);
+              localStorage.setItem('pluginalias', plugin.alias);
             });
-            resultsContainer.appendChild(resultItem);
-            resultsContainer.appendChild(link);
-            var br = document.createElement('br');
-            resultsContainer.appendChild(br);
+      
+            // Add the link to the row
+            var nameCell = document.createElement('td');
+            nameCell.appendChild(link);
+            row.appendChild(nameCell);
+      
+            // Add other information to the row
+            var providerCell = document.createElement('td');
+            providerCell.textContent = 'Saml-extended';
+            row.appendChild(providerCell);
+      
+            // Add button without image
+            var buttonCell = document.createElement('td');
+            var button = document.createElement('button');
+            button.textContent = 'Action';
+            button.addEventListener('click', function () {
+              // Add the behavior associated with the button here
+              handleButtonClick(plugin.alias);
+            });
+            buttonCell.appendChild(button);
+            row.appendChild(buttonCell);
+      
+            // Add the row to the table
+            table.appendChild(row);
           });
+      
+          // Add the table to the results container
+          resultsContainer.appendChild(table);
         } else {
           console.log("resultsContainer not exists");
         }
       }
+      
 
 
       function getPluginDetails(alias) {
@@ -226,4 +269,3 @@ keycloak
   .catch(() => {
     alert("Could not authenticate the user!");
   });
-
