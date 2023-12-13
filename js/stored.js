@@ -1,6 +1,6 @@
-
+var storedData = localStorage.getItem('pluginData');
 document.addEventListener('DOMContentLoaded', function () {
-    var storedData = localStorage.getItem('pluginData');
+ 
     console.log(pluginData);
 
     if (storedData) {

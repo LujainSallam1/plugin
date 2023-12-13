@@ -107,18 +107,24 @@ keycloak
             var link = document.createElement('a');
             link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
             link.textContent = plugin.alias;
+            resultItem.classList.add('result-item')
+        
+            resultsContainer.appendChild(document.createElement('br'));
             // اضافة حدث النقر على الرابط
             link.addEventListener('click', function (event) {
               event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
               getPluginDetails(plugin.alias);
             });
-            resultItem.appendChild(link);
             resultsContainer.appendChild(resultItem);
+            resultsContainer.appendChild(link);
+            var br = document.createElement('br');
+            resultsContainer.appendChild(br);
           });
         } else {
           console.log("resultsContainer not exists");
         }
       }
+
 
       function getPluginDetails(alias) {
 
@@ -172,10 +178,10 @@ keycloak
           .then(async checkPluginResponse => {
             if (checkPluginResponse.status === 200) {
               // المكون موجود، يمكنك الآن معالجة المعلومات
-              const pluginData = await checkPluginResponse.json();
+              var pluginData = await checkPluginResponse.json();
               console.log('Plugin Details:', pluginData);
               localStorage.setItem('pluginData', JSON.stringify(pluginData));
-
+              console.log(pluginData);
               // يمكنك استخدام pluginData كما تريد هنا
             } else {
               // المكون غير موجود، يمكنك إجراء الإجراء المناسب (مثل رسالة خطأ)

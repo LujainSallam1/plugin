@@ -23,7 +23,7 @@ keycloak
 
             accessToken = keycloak.token;
             console.log(`Access Token: ${accessToken}`);
-            localStorage.setItem('accessToken', keycloak.token);
+        
 
             getAllPlugins();
             
@@ -51,33 +51,57 @@ keycloak
 
             function updatePluginList(plugins) {
                 var resultsContainer = document.getElementById('resultsContainer');
-
+              
                 if (resultsContainer) {
-                    // var samlProviders = data.filter(plugin => plugin.providerId== 'saml-extended').map(plugin => plugin.alias); 
-
-                    plugins.forEach(plugin => {
-                        if (plugin.providerId == 'saml-extended') {
-                            var resultItem = document.createElement('div');
-                            var link = document.createElement('a');
-                            link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
-                            link.textContent = plugin.alias;
-
-                            // اضافة حدث النقر على الرابط
-                            link.addEventListener('click', function (event) {
-                                event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
-                                getPluginDetails(plugin.alias);
-                                localStorage.setItem('pluginalias', plugin.alias);
-                                console.log`(plugin:${plugin.alias})`
-
-                            });
-                            resultItem.appendChild(link);
-                            resultsContainer.appendChild(resultItem);
-                        }
+                  // إنشاء جدول
+                  var table = document.createElement('table');
+              
+                  // إضافة هيدر الجدول
+                  var headerRow = document.createElement('tr');
+                  var headerNameCell = document.createElement('th');
+                  headerNameCell.textContent = 'Name';
+                  var headerProviderCell = document.createElement('th');
+                  headerProviderCell.textContent = 'Provider details';
+                  headerRow.appendChild(headerNameCell);
+                  headerRow.appendChild(headerProviderCell);
+                  table.appendChild(headerRow);
+              
+                  // إضافة الصفوف إلى الجدول
+                  plugins.forEach(plugin => {
+                    var row = document.createElement('tr');
+              
+                    // إنشاء الرابط
+                    var link = document.createElement('a');
+                    link.href = 'http://localhost:3000/editplugin.html'; // تحديد الرابط المؤقت، يمكنك تحديده بناءً على احتياجاتك
+                    link.textContent = plugin.alias;
+              
+                    // اضافة حدث النقر على الرابط
+                    link.addEventListener('click', function (event) {
+                      event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
+                      getPluginDetails(plugin.alias);
                     });
+              
+                    // إضافة الرابط إلى الصف
+                    var nameCell = document.createElement('td');
+                    nameCell.appendChild(link);
+                    row.appendChild(nameCell);
+              
+                    // إضافة باقي المعلومات إلى الصف
+                    var providerCell = document.createElement('td');
+                    providerCell.textContent = 'Saml-extended'; // قم بتغيير هذا الجزء بتفاصيل مزود الخدمة الفعلية
+                    row.appendChild(providerCell);
+              
+                    // إضافة الصف إلى الجدول
+                    table.appendChild(row);
+                  });
+              
+                  // إضافة الجدول إلى النتائج
+                  resultsContainer.appendChild(table);
                 } else {
-                    console.log("resultsContainer not exists");
+                  console.log("resultsContainer not exists");
                 }
-            }
+              }
+              
 
             function getPluginDetails(alias) {
 
