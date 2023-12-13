@@ -164,6 +164,7 @@ keycloak
 
       var accesstoken = localStorage.getItem('accessToken');
       var pluginalias = localStorage.getItem('pluginalias')
+      console.log(pluginalias)
       // استرجاع بيانات المكون باستخدام طلب GET
       console.log(accesstoken)
       if (accesstoken) {

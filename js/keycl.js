@@ -79,7 +79,10 @@ keycloak
                     link.addEventListener('click', function (event) {
                       event.preventDefault(); // منع النقرة من فتح الرابط مباشرة
                       getPluginDetails(plugin.alias);
+                     
+                      localStorage.setItem('pluginalias', plugin.alias)
                     });
+                    console.log(plugin.alias)
               
                     // إضافة الرابط إلى الصف
                     var nameCell = document.createElement('td');
