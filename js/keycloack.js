@@ -1,4 +1,3 @@
-keycloack
 var accessToken;
 const keycloak = Keycloak({
   url: 'http://localhost:8080',

@@ -158,6 +158,7 @@ keycloak
                         button.addEventListener('click', function () {
                             // Add the behavior associated with the button here
                             handleDeleteButtonClick(plugin.alias);
+                          
                         });
                         buttonCell.appendChild(button);
                         row.appendChild(buttonCell);
@@ -226,13 +227,17 @@ keycloak
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error('Failed to delete plugin');
+                                   
                                 }
+                                alert('Plugin deleted successfully!');
                                 // Optionally update the UI or perform additional actions on success
                             })
                             .catch(error => {
                                 console.error('Error deleting plugin:', error.message);
                                 // Handle the error as needed
+                                alert('Failed to delete plugin. Please try again.');
                             });
+                           
                     }
                 });
             }
