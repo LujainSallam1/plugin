@@ -154,6 +154,7 @@ keycloak
                         // Add button without image
                         var buttonCell = document.createElement('td');
                         var button = document.createElement('button');
+                        button.classList.add('btn');
                         button.textContent = 'Delete';
                         button.addEventListener('click', function () {
                             // Add the behavior associated with the button here
