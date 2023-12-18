@@ -39,12 +39,6 @@ function extraSpecialHandler(req, res) {
   
   app.use(keycloak.middleware());
   
-  // حماية مسار /index.html باستخدام دور "admin" واستخدام دالة extraSpecialHandler
-  // app.get('/index.html', keycloak.protect('admin'), (req, res) => {
-  //   console.log('User has access to /index.html');
-  //   extraSpecialHandler(req, res);
-  // });
-  
 
   app.get('/index', (req, res) => {
     console.log('User has access to /index');
