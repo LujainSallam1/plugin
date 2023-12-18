@@ -54,7 +54,7 @@ button.addEventListener('click', () => {
                 "alias": alias,
                 "displayName": Display_Name,
                 "providerId": "saml-extended",
-                "enabled": "true",
+                "enabled":enabled.value,
                 "updateProfileFirstLoginMode": "on",
                 "trustEmail": trustEmail.value,
                 "storeToken": storeToken.value,
@@ -166,7 +166,7 @@ button.addEventListener('click', () => {
 
                         );
                         console.log(data)
-                        
+                        localStorage.setItem('pluginData', JSON.stringify(data));
 
                         console.log("Update Plugin Response:", updatePluginResponse);
 

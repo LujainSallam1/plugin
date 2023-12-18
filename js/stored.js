@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             function toggleCheckbox(configKey, checkbox) {
 
                 if (pluginData.config && pluginData.config[configKey]) {
-                    if (pluginData.config[configKey] == "true") {
+                    if (pluginData.config[configKey] == "true" ) {
                         checkbox.checked = true;
                     } else {
                         checkbox.checked = false;
@@ -25,15 +25,17 @@ document.addEventListener('DOMContentLoaded', function () {
             function toggleCheckbox1(configKey1, checkbox1) {
 
                 if (pluginData&& pluginData[configKey1]) {
-                    if (pluginData[configKey1] == "true") {
+                    if (pluginData[configKey1] == true || pluginData[configKey1]=="true") {
                         checkbox1.checked = true;
                     } else {
                         checkbox1.checked = false;
 
                     }
                 }
-
+              
             }
+            
+         
             toggleCheckbox('backchannelSupported', backchannel)
             toggleCheckbox('allowCreate', allowCreate)
             toggleCheckbox('postBindingResponse', httpPostBindingResponse)
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleCheckbox('artifactResolutionSOAP', Artifact_Resolution_with_SOAP)
             toggleCheckbox('artifactResolutionWithXmlHeader', Artifact_Resolution_with_XML_header)
             toggleCheckbox('mutualTls', Mutual_TLS)
+            toggleCheckbox1('enabled', enabled)
 
             
             if (pluginData.config && pluginData.config.wantAuthnRequestsSigned) {

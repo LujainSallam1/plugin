@@ -242,8 +242,6 @@
         .selector {
             margin-left: 10px;
         }
-   
-        
     </style>
     <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
 </head>
@@ -252,37 +250,45 @@
         <img src="/images/KEY_logo.png" alt="Logo">
     </div>
 </header>
-
-<h1>Keycloak Authentication</h1>
-
-<div id="nav">
-    <table>
-        <tr>
-            <td> <a href="#GeneralSettings">General settings</a></td>
-        </tr>
-        <tr>
-            <td> <a href="#SAMLSettings">SAML settings</a></td>
-        </tr>
-        <tr>
-            <td> <a href="#RequestedAuthnContextConstraints">Requested AuthnContext Constraints</a></td>
-        </tr>
-        <tr>
-            <td> <a href="#AdvancedSettings">Advanced settings</a></td>
-        </tr>
-        <tr>
-            <td> <a href="#ArtifactResolution">Artifact Resolution</a></td>
-        </tr>
-        <tr>
-            <td> <a href="#Metadata ">Metadata</a></td>
-        </tr>
-
-    </table>
-</div>
-
-<button id="login">access token</button>
-<button id="logout">Logout</button>
-<script src="/js/keycloack.js"></script>
 <div class="container">
+
+
+    <div id="nav">
+        <table>
+            <tr>
+                <td> <a href="#GeneralSettings">General settings</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#SAMLSettings">SAML settings</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#RequestedAuthnContextConstraints">Requested AuthnContext Constraints</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#AdvancedSettings">Advanced settings</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#ArtifactResolution">Artifact Resolution</a></td>
+            </tr>
+            <tr>
+                <td> <a href="#Metadata ">Metadata</a></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <button id="login">access token</button>
+    <button id="logout">Logout</button>
+    <div>
+        <h1>Keycloak Authentication</h1>
+        <h5>enabled </h5>
+        <label class="switch">
+            <input type="checkbox" name="enabled" id="enabled" value="true">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <script src="/js/keycloack.js"></script>
+
     <h2 id="GeneralSettings">General Settings </h2>
 
     <form id="GeneralSettings">
@@ -299,7 +305,7 @@
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
         </h5>
 
-        <input type="text" class="readonly" name="alias" id="alias"  readonly>
+        <input type="text" class="readonly" name="alias" id="alias" readonly>
         <h5>Display Name
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Friendly name for Identity Providers')">
@@ -824,7 +830,7 @@
                 onclick="alert('Use Mutual TLS for Artifact Resolution .')">
         </h5>
         <label class="switch">
-            <input type="checkbox" name="Mutual_TLS  " id="Mutual_TLS" value="false">
+            <input type="checkbox" name="Mutual_TLS" id="Mutual_TLS" value="false">
             <span class="slider round"></span>
         </label>
         <div><button class="btn" type="submit" id="edit">Save</button>
@@ -834,8 +840,8 @@
 
 
 
- <script src="/js/fielder.js"></script>
- <script src="/js/stored.js"></script>
+<script src="/js/fielder.js"></script>
+<script src="/js/stored.js"></script>
 <script src="/js/RadioButtonControllerEditPlugin.js"></script>
 <script src="/js/editplugin.js"></script>
 

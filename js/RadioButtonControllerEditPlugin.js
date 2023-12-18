@@ -440,21 +440,7 @@ ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
             ;
     }
 });
-// var Sign_Service_Provider_Metadata_value = "false";
-// const Sign_Service_Provider_Metadata = document.getElementById("Sign_Service_Provider_Metadata");
-// Sign_Service_Provider_Metadata.addEventListener("change", function () {
-//     if (Sign_Service_Provider_Metadata.checked) {
-//         Sign_Service_Provider_Metadata_value = "true";
-//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
 
-//     }
-//     else {
-//         Sign_Service_Provider_Metadata_value = Sign_Service_Provider_Metadata.value;
-//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
-
-//             ;
-//     }
-// });
 
 
 
@@ -495,6 +481,7 @@ Artifact_Resolution_with_XML_header.addEventListener("change", function () {
 
 const Mutual_TLS = document.getElementById("Mutual_TLS");
 Mutual_TLS.value = pluginData.config.mutualTls ? pluginData.config.mutualTls : false;
+
 Mutual_TLS.addEventListener("change", function () {
     if (Mutual_TLS.checked) {
         Mutual_TLS.value = true;
@@ -504,6 +491,21 @@ Mutual_TLS.addEventListener("change", function () {
     else {
         Mutual_TLS.value = false;
         console.log(`Mutual_TLS_value: ${Mutual_TLS.value}`)
+
+            ;
+    }
+});
+const enabled = document.getElementById("enabled");
+enabled.value = pluginData.enabled ? pluginData.enabled : false;
+console.log(enabled.value)
+enabled.addEventListener("change", function () {
+    if (enabled.checked) {
+        enabled.value = true;
+        console.log(`enabled: ${enabled.value}`)
+    }
+    else {
+        enabled.value = false;
+        console.log(`enabled: ${enabled.value}`)
 
             ;
     }
