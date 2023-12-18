@@ -254,7 +254,7 @@ keycloak
             } else {
                 alert("User does not have admin role. Access denied.");
                 const clientid = 'frontend';
-                const postLogoutRedirect = 'http://localhost:3000/index.html';
+                const postLogoutRedirect = 'http://localhost:3000/list.html';
                 window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
 
             }
