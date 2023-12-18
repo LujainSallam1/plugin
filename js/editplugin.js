@@ -108,6 +108,10 @@ button.addEventListener('click', () => {
                     "linkedProviders": Linked_Providers
                 }
             };
+            if (!data.config.singleSignOnServiceUrl || data.config.singleSignOnServiceUrl.trim() === "") {
+                console.error("singleSignOnServiceUrl is missing or empty.");
+                alert("singleSignOnServiceUrl is missing or empty.");
+            } else {
             function removeEmptyStrings(obj) {
                 for (const key in obj) {
                     if (typeof obj[key] === 'string' && obj[key].trim() === "") {
@@ -137,6 +141,7 @@ button.addEventListener('click', () => {
 
 
             console.log(data);
+
 
             // Sending a GET request to check if the plugin exists
             fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
@@ -201,7 +206,7 @@ button.addEventListener('click', () => {
 
                                 console.error('Network error or failed to send request:', error);
                             });
-
+                        
 
                     } else {
                         // If there is another status, an error occurred
@@ -219,7 +224,7 @@ button.addEventListener('click', () => {
                 .catch(error => {
                     // ... (Additional code that was commented out)
                 });
-
+            }
             // Setting a form element value to an empty string
 
         } else {
