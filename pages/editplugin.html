@@ -393,12 +393,6 @@
             <option value="FRIENDLY_ATTRIBUTE">Attribute [Friendly Name]</option>
         </select>
 
-        <h5>Principal attribute
-            <img src="/images/question.png" class="image" alt="question mark"
-                onclick="alert('Name or Friendly Name of the attribute used to identify external users.')">
-        </h5>
-        <input type="text" name="Principal attribute" id="Principalattribute">
-
 
 
         <h5>Allow Create
@@ -457,7 +451,10 @@
             <input type="checkbox" name="wantAuthnRequestsSigned" value="false" id="wantAuthnRequestsSigned">
             <span class="slider round"></span>
         </label>
-
+        <h5>Signature algorithm
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('The signature algorithm to use to sign documents. Note that *SHA1* based algorithms are deprecated and can be removed in the future. It is recommended to stick to some more secure algorithm instead of *_SHA1')">
+        </h5>
         <select name="Signature algorithm" id="SignatureAlgorithm" disabled>
             <option value="RSA_SHA1">RSA_SHA1</option>
             <option value="RSA_SHA256">RSA_SHA256</option>
@@ -466,6 +463,10 @@
             <option value="RSA_SHA512_MGF1">RSA_SHA512_MGF1</option>
             <option value="DSA_SHA1">DSA_SHA1</option>
         </select>
+        <h5>Encryption Algorithm
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('Encryption algorithm, which is used by SAML IDP for encryption of SAML documents, assertions or IDs. The corresponding decryption key for decrypt SAML document parts will be chosen based on this configured algorithm and should be available in realm keys for the encryption (ENC) usage. If algorithm is not configured, then any supported algorithm is allowed and decryption key will be chosen based on the algorithm configured in SAML document itself')">
+        </h5>
         <select name="SAML signature key name " id="SAMLSignatureKeyName" disabled>
             <option value="KEY-ID">KEY-ID</option>
             <option value="NONE">NONE</option>
@@ -530,7 +531,7 @@
 
 
         <h5>Pass Subject
-            <img src="/images/question.png" class="image" alt="question mark" onclick="alert('')">
+            <img src="/images/question.png" class="image" alt="question mark" onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequests Subject.')">
         </h5>
 
 
@@ -544,17 +545,17 @@
         <h5>Allowed Clock Skew
 
             <img src="/images/question.png" class="image" alt="question mark"
-                onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequest subject.')">
+                onclick="alert('Clock skew in seconds that is tolerated when validating identity provider tokens. Default value is zero.')">
         </h5>
 
-        <input type="text" name="allowedClockSkew" id="allowedClockSkew">
+        <input type="number" min="0" value="0" name="allowedClockSkew" id="allowedClockSkew">
 
         <h5>Attribute Consuming Service Index
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Index of the Attribute Consuming Service profile to request during authentication.')">
         </h5>
 
-        <input type="text" name="attributeConsumingServiceIndex" id="attributeConsumingServiceIndex">
+        <input type="number" min="0" value="0" name="attributeConsumingServiceIndex" id="attributeConsumingServiceIndex">
 
         <h5>Attribute Consuming Service Name
             <img src="/images/question.png" class="image" alt="question mark"
