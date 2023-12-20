@@ -104,6 +104,8 @@ buttonInput.addEventListener('click', () => {
             "linkedProviders": Linked_Providers
         }
     };
+
+
     function removeEmptyStrings(obj) {
         for (const key in obj) {
             if (typeof obj[key] === 'string' && obj[key].trim() === "") {
@@ -131,12 +133,23 @@ buttonInput.addEventListener('click', () => {
     }
     console.log(data);
 
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("resultsContainer").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "data.txt", true);
+        xhttp.send();
+    }
 
 
 
     // Update token and execute the following code when the token is successfully updated 
     keycloak.updateToken(180).then((bool) => {
         if (bool) {
+
             // Code to be executed after token update 
             var newAccessToken = keycloak.token;
 
@@ -165,9 +178,13 @@ buttonInput.addEventListener('click', () => {
 
                         // Handle the response of the POST request 
                         if (updatePluginResponse.ok) {
+
                             alert("Plugin added successfully.");
                             localStorage.setItem('pluginData', JSON.stringify(data));
-                      
+                            getAllPlugins(newAccessToken);
+                            localStorage.setItem('reloadFlag', 'true');
+                            //  window.location.href = 'http://localhost:3000/list.html';
+
                         } else {
                             console.error('Failed to add plugin:', updatePluginResponse.status, updatePluginResponse.statusText);
                             alert("Failed to add plugin");

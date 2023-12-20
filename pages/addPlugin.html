@@ -3,7 +3,6 @@
 <head>
     <title>General Settings</title>
     <style>
-
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -279,13 +278,14 @@
     </table>
 </div>
 <div class="container">
-    <h1>Saml-extended</h1></h1>
+    <h1>Saml-extended</h1>
+    </h1>
     <button class="btn" id="login">access token</button>
     <button class="btn" id="logout">Logout</button>
     <div>
         <h5>enabled </h5>
         <label class="switch">
-            <input type="checkbox" name="enabled" id="enabled" value="true">
+            <input type="checkbox" name="enabled" id="enabled" value="true" checked>
             <span class="slider round"></span>
         </label>
     </div>
@@ -535,7 +535,8 @@
 
 
         <h5>Pass Subject
-            <img src="/images/question.png" class="image" alt="question mark" onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequests Subject.')">
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequests Subject.')">
         </h5>
 
 
@@ -559,7 +560,8 @@
                 onclick="alert('Index of the Attribute Consuming Service profile to request during authentication.')">
         </h5>
 
-        <input type="number" min="0" value="0" name="attributeConsumingServiceIndex" id="attributeConsumingServiceIndex">
+        <input type="number" min="0" value="0" name="attributeConsumingServiceIndex"
+            id="attributeConsumingServiceIndex">
 
         <h5>Attribute Consuming Service Name
             <img src="/images/question.png" class="image" alt="question mark"
@@ -842,10 +844,11 @@
         </div>
     </form>
 </div>
-
 <script src="/js/fielder.js"></script>
-<script src="/js/RadioButtonControllerAddPlugin.js"></script >
-        <script src="/js/addPlugin.js"></script>
+<script src="/js/RadioButtonControllerAddPlugin.js"></script>
+<script src="/js/addPlugin.js"></script>
+
+
 
 </body>
 

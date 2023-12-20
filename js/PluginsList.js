@@ -1,15 +1,4 @@
-var accessToken;
-var Plugins;
-const keycloak = Keycloak({
-    url: 'http://localhost:8080',
-    realm: 'master',
-    clientId: 'frontend',
-    redirectUri: 'http://localhost:3000/list.html',
-    enableDebug: true,
-
-});
-
- function getAllPlugins(accessToken) {
+function getAllPlugins(accessToken) {
     fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
         method: 'GET',
         headers: {
@@ -173,55 +162,3 @@ function getPluginDetails(alias, accessToken) {
             console.error('Error during the process:', error);
         });
 }
-window.addEventListener('storage', function (event) {
-    // التحقق مما إذا كان هناك تحديثات لتطبيقها
-    if (event.key === 'pluginDataUpdated') {
-        getAllPlugins(accessToken);
-        alert('Plugin list updated successfully!');
-        // قم بحذف البيانات من LocalStorage لتجنب تكرار التحديثات
-        localStorage.removeItem('pluginDataUpdated');
-    }
-});
-document.getElementById('logout').addEventListener('click', () => {
-    const clientid = 'frontend';
-    const postLogoutRedirect = 'http://localhost:3000/list.html';
-    window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
-});
-
-keycloak
-    .init({ onLoad: 'login-required' })
-    .then((authenticated) => {
-        if (authenticated) {
-
-            accessToken = keycloak.token;
-            console.log(`Access Token: ${accessToken}`);
-
-
-            getAllPlugins(accessToken);
-
-            const tokenParsed = keycloak.tokenParsed;
-            const roles = tokenParsed.realm_access.roles;
-
-
-            if (roles.includes("admin")) {
-                console.log("User has 'admin' role");
-                document.body.style.display = 'block';
-            } else {
-                alert("User does not have admin role. Access denied.");
-                const clientid = 'frontend';
-                const postLogoutRedirect = 'http://localhost:3000/list.html';
-                window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
-
-            }
-            console.log("Access Token:", accessToken);
-
-        }
-        else {
-
-            alert("User authentication failed!");
-
-        }
-    })
-    .catch(() => {
-        alert("Could not authenticate the user!");
-    });

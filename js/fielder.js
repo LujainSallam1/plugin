@@ -29,3 +29,4 @@ const metadataValidUntilPeriod_input = document.getElementById("metadataValidUnt
 const Linked_Providers_input = document.getElementById("Linked_Providers");
 const additionalField_endpoint=document.getElementById("Artifact_Resolution_Endpoint");
 const ClassRefs_items = document.getElementById("ClassRefs_items");
+var resultsContainer = document.getElementById('resultsContainer');
