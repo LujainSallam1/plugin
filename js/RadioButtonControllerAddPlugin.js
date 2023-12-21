@@ -288,64 +288,71 @@ ArtifactResolutionService_in_metadata.addEventListener("change", function () {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
+    const deleteButtonsClassRefs = document.querySelectorAll(".delete");
+    const addButtonClassRefs = document.getElementById("addClassRefs");
+    const ClassRefs_items = document.getElementById("ClassRefs_items");
 
-    const deleteButtons = document.querySelectorAll(".delete");
-    const addButton = document.getElementById("addClassRefs");
-
-
-    deleteButtons.forEach(function (button) {
+    deleteButtonsClassRefs.forEach(function (button) {
         button.style.display = "none";
     });
 
-    addButton.addEventListener("click", function (e) {
-        deleteButtons.forEach(function (button) {
+    addButtonClassRefs.addEventListener("click", function (e) {
+        deleteButtonsClassRefs.forEach(function (button) {
             button.style.display = "inline";
-
         });
 
         const newItem = document.createElement("div");
         newItem.className = "next-referral col-4";
-        newItem.innerHTML = '<input id="textinput" name="textinput" type="text" class="form-control input-md">';
+        newItem.innerHTML = '<input name="textinputClassRefs" type="text" class="input_text">';
         ClassRefs_items.appendChild(newItem);
     });
 
     document.body.addEventListener("click", function (e) {
         if (e.target.classList.contains("delete")) {
-            const items = document.querySelectorAll(".next-referral");
+            const items = ClassRefs_items.querySelectorAll(".next-referral");
             if (items.length > 0) {
                 items[items.length - 1].remove();
+                deleteButtonsClassRefs.forEach(function (button, index) {
+                    if (index === items.length - 1) {
+                        button.style.display = "none";
+                    }
+                });
             }
         }
     });
 });
-const DeclRefs_items = document.getElementById("DeclRefs_items");
 
 document.addEventListener("DOMContentLoaded", function () {
-    const deleteButtons = document.querySelectorAll(".delete1");
-    const addButton = document.getElementById("addDeclRefs");
+    const deleteButtonsDeclRefs = document.querySelectorAll(".delete1");
+    const addButtonDeclRefs = document.getElementById("addDeclRefs");
+    const DeclRefs_items = document.getElementById("DeclRefs_items");
 
-    deleteButtons.forEach(function (button) {
+    deleteButtonsDeclRefs.forEach(function (button) {
         button.style.display = "none";
     });
 
-    addButton.addEventListener("click", function (e) {
-        deleteButtons.forEach(function (button) {
+    addButtonDeclRefs.addEventListener("click", function (e) {
+        deleteButtonsDeclRefs.forEach(function (button) {
             button.style.display = "inline";
         });
 
         const newItem = document.createElement("div");
         newItem.className = "next-referral col-4";
-        newItem.innerHTML = '<input id="textinput" name="textinput" type="text" class="form-control input-md">';
+        newItem.innerHTML = '<input name="textinputDeclRefs" type="text" class="input_text">';
         DeclRefs_items.appendChild(newItem);
     });
 
     document.body.addEventListener("click", function (e) {
         if (e.target.classList.contains("delete1")) {
-            const items = document.querySelectorAll(".next-referral");
+            const items = DeclRefs_items.querySelectorAll(".next-referral");
             if (items.length > 0) {
                 items[items.length - 1].remove();
+                deleteButtonsDeclRefs.forEach(function (button, index) {
+                    if (index === items.length - 1) {
+                        button.style.display = "none";
+                    }
+                });
             }
         }
     });
