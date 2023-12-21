@@ -152,53 +152,62 @@ buttonInput.addEventListener('click', () => {
 
             // Code to be executed after token update 
             var newAccessToken = keycloak.token;
-
-            // Sending a GET request to check if the plugin exists 
-            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': ` Bearer ${newAccessToken}`, // Fix here
-                },
-            })
-                .then(async checkPluginResponse => {
-                    if (checkPluginResponse.ok) {
-                        console.log("Plugin exists.");
-                        alert("Plugin exists.");
-                        // Add your logic for updating the existing plugin if needed 
-                    } else if (checkPluginResponse.status === 404) {
-                        // Plugin not found, add it using a POST request 
-                        const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': ` Bearer ${newAccessToken}`, // Fix here
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(data),
-                        });
-
-                        // Handle the response of the POST request 
-                        if (updatePluginResponse.ok) {
-
-                            alert("Plugin added successfully.");
-                            localStorage.setItem('pluginData', JSON.stringify(data));
-                            getAllPlugins(newAccessToken);
-                            localStorage.setItem('reloadFlag', 'true');
-                            //  window.location.href = 'http://localhost:3000/list.html';
-
-                        } else {
-                            console.error('Failed to add plugin:', updatePluginResponse.status, updatePluginResponse.statusText);
-                            alert("Failed to add plugin");
-                        }
-                    } else {
-                        // If there is another status, an error occurred 
-                        console.error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
-                        alert("Failed to retrieve the plugin");
-                        throw new Error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
-                    }
+            if (alias) {
+                // Sending a GET request to check if the plugin exists 
+                fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': ` Bearer ${newAccessToken}`, // Fix here
+                    },
                 })
-                .catch(error => {
-                    console.error('Error during the process:', error);
-                });
+                    .then(async checkPluginResponse => {
+                        if (checkPluginResponse.ok) {
+                            console.log("Plugin exists.");
+                            alert("Plugin exists.");
+                            // Add your logic for updating the existing plugin if needed 
+                        } else if (checkPluginResponse.status === 404) {
+                            // Plugin not found, add it using a POST request 
+                            const updatePluginResponse = await fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': ` Bearer ${newAccessToken}`, // Fix here
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            }
+
+                            );
+
+                            // Handle the response of the POST request 
+                            if (updatePluginResponse.ok) {
+
+                                alert("Plugin added successfully.");
+                                localStorage.setItem('pluginData', JSON.stringify(data));
+                                localStorage.setItem('pluginalias', pluginData.alias);
+                                
+                                getAllPlugins(newAccessToken);
+                                localStorage.setItem('reloadFlag', 'true');
+                                window.location.href = 'http://localhost:3000/editplugin.html';
+
+                            } else {
+                                console.error('Failed to add plugin:', updatePluginResponse.status, updatePluginResponse.statusText);
+                                alert("Failed to add plugin");
+                            }
+                        } else {
+                            // If there is another status, an error occurred 
+                            console.error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
+                            alert("Failed to retrieve the plugin");
+                            throw new Error(`Failed to retrieve the plugin. Response: ${checkPluginResponse.statusText}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error during the process:', error);
+                    });
+            }
+            else {
+                alert("alias is empty")
+            }
         }
+
     });
 });

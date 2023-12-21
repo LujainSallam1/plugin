@@ -75,12 +75,10 @@ keycloak
         });
 
       var accesstoken = localStorage.getItem('accessToken');
-      var pluginalias = localStorage.getItem('pluginalias')
-      console.log(pluginalias)
       console.log(accesstoken)
       if (accesstoken) {
         console.log(accesstoken)
-        fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${pluginalias}`, {
+        fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${pluginData.alias}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${accesstoken}`,

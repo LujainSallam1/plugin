@@ -134,7 +134,6 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
                     resultsContainer.innerHTML = '';
 
                     getAllPlugins(accessToken);
-                    alert('Plugin deleted successfully!');
                     // Optionally update the UI or perform additional actions on success
                 })
                 .catch(error => {
@@ -182,6 +181,7 @@ function getPluginDetails(alias, accessToken) {
             console.error('Error during the process:', error);
         });
 }
+window.updatePluginList = updatePluginList;
 
 document.getElementById('logout').addEventListener('click', () => {
     const clientid = 'frontend';
