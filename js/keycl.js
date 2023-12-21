@@ -9,7 +9,7 @@ const keycloak = Keycloak({
 
 });
 
- function getAllPlugins(accessToken) {
+function getAllPlugins(accessToken) {
     fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
         method: 'GET',
         headers: {
@@ -55,45 +55,52 @@ function updatePluginList(plugins, accessToken) {
 
         // Add rows to the table
         plugins.forEach(plugin => {
-            var row = document.createElement('tr');
+            if (plugin.providerId == 'saml-extended') {
+                var row = document.createElement('tr');
 
-            // Create a link
-            var link = document.createElement('a');
-            link.href = 'http://localhost:3000/editplugin.html';
-            link.textContent = plugin.alias;
+                // Create a link
+                var link = document.createElement('a');
+                link.href = 'http://localhost:3000/editplugin.html';
+                if (plugin.displayName) {
+                    link.textContent = plugin.displayName;
+                }
+                else { link.textContent = plugin.alias; }
 
-            // Add click event to the link
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                getPluginDetails(plugin.alias);
-                localStorage.setItem('pluginalias', plugin.alias);
-            });
 
-            // Add the link to the row
-            var nameCell = document.createElement('td');
-            nameCell.appendChild(link);
-            row.appendChild(nameCell);
 
-            // Add other information to the row
-            var providerCell = document.createElement('td');
-            providerCell.textContent = 'Saml-extended';
-            row.appendChild(providerCell);
+                // Add click event to the link
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    getPluginDetails(plugin.alias);
+                    localStorage.setItem('pluginalias', plugin.alias);
+                });
 
-            // Add button without image
-            var buttonCell = document.createElement('td');
-            var button = document.createElement('button');
-            button.classList.add('btn');
-            button.textContent = 'Delete';
-            button.addEventListener('click', function () {
-                // Add the behavior associated with the button here
-                handleDeleteButtonClick(plugin.alias, accessToken);
+                // Add the link to the row
+                var nameCell = document.createElement('td');
+                nameCell.appendChild(link);
+                row.appendChild(nameCell);
 
-            });
-            buttonCell.appendChild(button);
-            row.appendChild(buttonCell);
+                // Add other information to the row
+                var providerCell = document.createElement('td');
+                providerCell.textContent = 'Saml-extended';
+                row.appendChild(providerCell);
 
-            // Add the row to the table
-            table.appendChild(row);
+                // Add button without image
+                var buttonCell = document.createElement('td');
+                var button = document.createElement('button');
+                button.classList.add('btn');
+                button.textContent = 'Delete';
+                button.addEventListener('click', function () {
+                    // Add the behavior associated with the button here
+                    handleDeleteButtonClick(plugin.alias, accessToken);
+
+                });
+                buttonCell.appendChild(button);
+                row.appendChild(buttonCell);
+
+                // Add the row to the table
+                table.appendChild(row);
+            }
         });
 
         // Add the table to the results container
@@ -125,7 +132,7 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
                     }
                     var resultsContainer = document.getElementById('resultsContainer');
                     resultsContainer.innerHTML = '';
-                  
+
                     getAllPlugins(accessToken);
                     alert('Plugin deleted successfully!');
                     // Optionally update the UI or perform additional actions on success
@@ -139,7 +146,7 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
         }
     });
 }
-window.updatePluginList=updatePluginList;
+window.updatePluginList = updatePluginList;
 
 
 function getPluginDetails(alias, accessToken) {
@@ -159,6 +166,8 @@ function getPluginDetails(alias, accessToken) {
                     if (response.ok) {
                         var pluginData = await response.json();
                         window.location.href = 'http://localhost:3000/editplugin.html'
+                        localStorage.setItem('pluginData', JSON.stringify(pluginData));
+
                         console.log('Plugin Details:', pluginData);
                     } else {
                         console.error('Failed to fetch plugin details:', response.status, response.statusText);
@@ -173,15 +182,7 @@ function getPluginDetails(alias, accessToken) {
             console.error('Error during the process:', error);
         });
 }
-window.addEventListener('storage', function (event) {
-    // التحقق مما إذا كان هناك تحديثات لتطبيقها
-    if (event.key === 'pluginDataUpdated') {
-        getAllPlugins(accessToken);
-        alert('Plugin list updated successfully!');
-        // قم بحذف البيانات من LocalStorage لتجنب تكرار التحديثات
-        localStorage.removeItem('pluginDataUpdated');
-    }
-});
+
 document.getElementById('logout').addEventListener('click', () => {
     const clientid = 'frontend';
     const postLogoutRedirect = 'http://localhost:3000/list.html';
