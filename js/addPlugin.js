@@ -1,6 +1,6 @@
 
 buttonInput.addEventListener('click', () => {
-
+ 
     var authnContextClassRefs = []
     const ClassRefs_inputs = ClassRefs_items.querySelectorAll("input");
     ClassRefs_inputs.forEach(input => {
@@ -106,7 +106,40 @@ buttonInput.addEventListener('click', () => {
         }
     };
 
+    if (!alias) {
+        alert("Alias is empty");
+        alias_input.classList.remove('input_text');
+        alias_input.classList.add('red-border');
+        console.log(alias_input.value);
+        alias_input.focus();
+        errorMessage.textContent = "Required field !";
+        return; // Exit the function if alias_input is empty
+    }
 
+    // Check if Single_Sign_On_Service_URL is empty
+    if (!Single_Sign_On_Service_URL) {
+        Single_Sign_On_Service_URL_input.classList.remove('input_text');
+        Single_Sign_On_Service_URL_input.classList.add('red-border');
+        Single_Sign_On_Service_URL_input.focus();
+        errorMessage_URL.textContent = "Required field !";
+  
+        return; // Exit the function if Single_Sign_On_Service_URL is empty
+    }
+    
+    if (!Single_Sign_On_Service_URL_input.checkValidity()) {
+        Single_Sign_On_Service_URL_input.classList.remove('input_text');
+        Single_Sign_On_Service_URL_input.classList.add('red-border');
+        Single_Sign_On_Service_URL_input.focus();
+        errorMessage_URL.textContent = "Enter a valid URL !";
+        return
+    }
+    if (!Single_Logout_Service_URL_input.checkValidity()) {
+        Single_Logout_Service_URL_input.classList.remove('input_text');
+        Single_Logout_Service_URL_input.classList.add('red-border');
+        Single_Logout_Service_URL_input.focus();
+        errorMessage_URL_logout.textContent = "Enter a valid URL !";
+        return
+    }
     function removeEmptyStrings(obj) {
         for (const key in obj) {
             if (typeof obj[key] === 'string' && obj[key].trim() === "") {
@@ -164,25 +197,7 @@ buttonInput.addEventListener('click', () => {
                 errorMessage_URL.textContent = "Required field !";
                 return; // Exit the function if alias_input is empty
             }
-            if (!alias) {
-                alert("Alias is empty");
-                alias_input.classList.remove('input_text');
-                alias_input.classList.add('red-border');
-                console.log(alias_input.value);
-                alias_input.focus();
-                errorMessage.textContent = "Required field !";
-                return; // Exit the function if alias_input is empty
-            }
-
-            // Check if Single_Sign_On_Service_URL is empty
-            if (!Single_Sign_On_Service_URL) {
-                Single_Sign_On_Service_URL_input.classList.remove('input_text');
-                Single_Sign_On_Service_URL_input.classList.add('red-border');
-                Single_Sign_On_Service_URL_input.focus();
-                errorMessage_URL.textContent = "Required field !";
-                return; // Exit the function if Single_Sign_On_Service_URL is empty
-            }
-
+    
             // Sending a GET request to check if the plugin exists 
             fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                 method: 'GET',

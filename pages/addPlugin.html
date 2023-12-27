@@ -369,12 +369,13 @@
         </h5>
         <span class="error-message" id="errorMessage_URL"></span>
 
-        <input type="url" name="ssoServiceUrl" id="ssoServiceUrl" class="input_text">
+        <input type="url" name="ssoServiceUrl" id="ssoServiceUrl" class="input_text" required>
 
         <h5>Single Logout Service URL
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The Url that must be used to send logout requests.')">
         </h5>
+        <span class="error-message" id="errorMessage_URL_logout"></span>
         <input type="url" name="sloServiceUrl" id="sloServiceUrl" class="input_text">
 
         <h5>Backchannel Logout

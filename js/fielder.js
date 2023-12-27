@@ -33,3 +33,5 @@ const ClassRefs_items = document.getElementById("ClassRefs_items");
 var resultsContainer = document.getElementById('resultsContainer');
 var errorMessage = document.getElementById("errorMessage");
 var errorMessage_URL = document.getElementById("errorMessage_URL");
+var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
+
