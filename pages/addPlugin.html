@@ -12,13 +12,12 @@
             background-color: transparent;
             box-sizing: border-box;
         }
-
         .red-border {
             border: 1px solid red;
             width: 100%;
             padding: 10px;
             border-radius: 0px;
-        
+
         }
 
         .readonly {
@@ -68,9 +67,9 @@
             margin-bottom: 5px;
         }
 
-        
-    
-       .input_text,
+
+
+        .input_text,
         select {
             width: 100%;
             padding: 10px;
@@ -256,6 +255,10 @@
         .selector {
             margin-left: 10px;
         }
+        .error-message {
+            color: red;
+            font-weight: bold;
+          }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
 </head>
@@ -320,8 +323,9 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
         </h5>
+        <span class="error-message" id="errorMessage"></span>
+        <input type="text" name="alias" id="alias" class="input_text">
 
-        <input type="text" name="alias" id="alias" class="input_text" >
         <h5>Display Name
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Friendly name for Identity Providers')">
@@ -357,12 +361,13 @@
                 onclick="alert('The Entity ID used to validate the Issuer for received SAML assertions. If empty, no Issuer validation is performed.')">
 
         </h5>
-        <input type="text"  class="input_text" name="idpEntityId" id="idpEntityId">
+        <input type="text" class="input_text" name="idpEntityId" id="idpEntityId">
 
         <h5>Single Sign-On Service URL *
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The Url that must be used to send authentication requests (SAML AuthnRequest).')">
         </h5>
+        <span class="error-message" id="errorMessage_URL"></span>
 
         <input type="url" name="ssoServiceUrl" id="ssoServiceUrl" class="input_text">
 
@@ -533,7 +538,8 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The certificate in PEM format that must be used to check for signatures. Multiple certificates can be entered, separated by comma (,).')">
         </H5>
-        <input type="text" id="ValidatingX509Certificates" class="input_text" name="ValidatingX509Certificates" disabled>
+        <input type="text" id="ValidatingX509Certificates" class="input_text" name="ValidatingX509Certificates"
+            disabled>
         <h5>Sign Service Provider Metadata
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Enable/disable signature of the provider SAML metadata.')">
@@ -604,7 +610,7 @@
                         onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
                     <input id="authnContextClassRefs" name="authnContextClassRefs" class="input_text" type="text"
-                        class="form-control input-md" >
+                        class="form-control input-md">
 
                 </div>
             </div>
@@ -615,12 +621,11 @@
 
         <form class="form-horizontal">
             <!-- Text input-->
-            <div id="DeclRefs_items" class="form-group" >
+            <div id="DeclRefs_items" class="form-group">
                 <h5> AuthnContext DeclRefs <img src="/images/question.png" class="image" alt="question mark"
                         onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
-                    <input id="authnContextDeclRefs" name="authnContextDeclRefs" type="text"
-                        class="input_text">
+                    <input id="authnContextDeclRefs" name="authnContextDeclRefs" type="text" class="input_text">
 
                 </div>
             </div>
@@ -741,7 +746,7 @@
                 onclick="alert('List of aliases that are linked to this one(and will be in the generated metadata).')">
 
         </h5>
-        <input type="text"  class="input_text" name="Linked Providers" id="Linked_Providers">
+        <input type="text" class="input_text" name="Linked Providers" id="Linked_Providers">
 
         <script>
             var quantityField = document.getElementById("quantity");
@@ -773,7 +778,8 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Specifies the url for Artifact Resolution')">
         </h5>
-        <input type="text" class="input_text" id="Artifact_Resolution_Endpoint" name="Artifact_Resolution_Endpoint" disabled>
+        <input type="text" class="input_text" id="Artifact_Resolution_Endpoint" name="Artifact_Resolution_Endpoint"
+            disabled>
         <h5>Sign Service Provider Metadata
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Specifies the url for Artifact Resolution')">

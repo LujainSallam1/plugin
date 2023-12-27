@@ -15,6 +15,24 @@
         .readonly {
             background-color: #f0f0f0;
             border-radius: 0%;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid#f0f0f0;
+            border-radius: 0px;
+            border-bottom-color: #8a8d90;
+        }
+
+        .red-border {
+            border: 1px solid red;
+            width: 100%;
+            padding: 10px;
+            border-radius: 0px;
+
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
         }
 
         .header a {
@@ -54,8 +72,7 @@
             margin-bottom: 5px;
         }
 
-        input[type="text"],
-        input[type="url"],
+        .input_text,
         select {
             width: 100%;
             padding: 10px;
@@ -63,6 +80,7 @@
             border-radius: 0px;
             border-bottom-color: #8a8d90;
         }
+
 
         input[type="radio"] {
             margin-right: 5px;
@@ -279,10 +297,10 @@
     <button id="login" class="btn">access token</button>
     <button id="logout" class="btn">Logout</button>
     <div>
-       
+
         <h5>enabled </h5>
         <label class="switch">
-            <input type="checkbox" name="enabled" id="enabled" checked value="true">
+            <input type="checkbox" name="enabled" id="enabled" value="true">
             <span class="slider round"></span>
         </label>
     </div>
@@ -295,7 +313,7 @@
             <img src=" /images/question.png" class="image" alt="question mark"
                 onclick="alert('The redirect uri to use when configuring the identity provider.')">
         </h5>
-        <input type="url" name="redirectUri" class="readonly"
+        <input type="url" name="redirectUri" class="readonly" 
             value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" readonly>
 
 
@@ -309,7 +327,7 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Friendly name for Identity Providers')">
         </h5>
-        <input type="text" name="displayName" id="displayName">
+        <input type="text" class="input_text" name="displayName" id="displayName">
 
         <h5>Display Order
             <img src="/images/question.png" class="image" alt="question mark"
@@ -333,27 +351,27 @@
                 onclick="alert('The Entity ID that will be used to uniquely identify this SAML Service Provider.')">
 
         </h5>
-        <input type="text" name="spEntity" id="spEntityId">
+        <input type="text" class="input_text" name="spEntity" id="spEntityId">
 
         <h5>Identity Provider Entity ID
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The Entity ID used to validate the Issuer for received SAML assertions. If empty, no Issuer validation is performed.')">
 
         </h5>
-        <input type="text" name="idpEntityId" id="idpEntityId">
+        <input type="text" class="input_text" name="idpEntityId" id="idpEntityId">
 
         <h5>Single Sign-On Service URL *
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The Url that must be used to send authentication requests (SAML AuthnRequest).')">
         </h5>
-
-        <input type="url" name="ssoServiceUrl" id="ssoServiceUrl">
-
+        <span class="error-message" id="errorMessage_URL_edit"></span>
+        <input type="url" name="ssoServiceUrl" id="ssoServiceUrl" class="input_text">
+  
         <h5>Single Logout Service URL
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The Url that must be used to send logout requests.')">
         </h5>
-        <input type="url" name="sloServiceUrl" id="sloServiceUrl">
+        <input type="url" name="sloServiceUrl" id="sloServiceUrl" class="input_text">
 
         <h5>Backchannel Logout
             <img src="/images/question.png" class="image" alt="question mark"
@@ -515,7 +533,8 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The certificate in PEM format that must be used to check for signatures. Multiple certificates can be entered, separated by comma (,).')">
         </H5>
-        <input type="text" id="ValidatingX509Certificates" name="ValidatingX509Certificates" disabled>
+        <input type="text" class="input_text" id="ValidatingX509Certificates" name="ValidatingX509Certificates"
+            disabled>
         <h5>Sign Service Provider Metadata
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Enable/disable signature of the provider SAML metadata.')">
@@ -527,7 +546,8 @@
 
 
         <h5>Pass Subject
-            <img src="/images/question.png" class="image" alt="question mark" onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequests Subject.')">
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('During login phase, forward an optional login_hint query parameter to SAML AuthnRequests Subject.')">
         </h5>
 
 
@@ -551,14 +571,15 @@
                 onclick="alert('Index of the Attribute Consuming Service profile to request during authentication.')">
         </h5>
 
-        <input type="number" min="0" value="0" name="attributeConsumingServiceIndex" id="attributeConsumingServiceIndex">
+        <input type="number" min="0" value="0" name="attributeConsumingServiceIndex"
+            id="attributeConsumingServiceIndex">
 
         <h5>Attribute Consuming Service Name
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Name of the Attribute Consuming Service profile to advertise in the SP metadata.')">
         </h5>
 
-        <input type="text" name="attributeConsumingServiceName" id="attributeConsumingServiceName">
+        <input type="text" class="input_text" name="attributeConsumingServiceName" id="attributeConsumingServiceName">
 
         <h2 id="RequestedAuthnContextConstraints">Requested AuthnContext Constraints</h2>
 
@@ -580,7 +601,7 @@
                 <h5> AuthnContext ClassRefs <img src="/images/question.png" class="image" alt="question mark"
                         onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
-                    <input id="authnContextClassRefs" name="authnContextClassRefs" type="text"
+                    <input id="authnContextClassRefs" class="input_text" name="authnContextClassRefs" type="text"
                         class="form-control input-md">
 
                 </div>
@@ -596,7 +617,7 @@
                 <h5> AuthnContext DeclRefs <img src="/images/question.png" class="image" alt="question mark"
                         onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
-                    <input id="authnContextDeclRefs" name="authnContextDeclRefs" type="text"
+                    <input id="authnContextDeclRefs" class="input_text" name="authnContextDeclRefs" type="text"
                         class="form-control input-md">
 
                 </div>
@@ -718,7 +739,7 @@
                 onclick="alert('List of aliases that are linked to this one(and will be in the generated metadata).')">
 
         </h5>
-        <input type="text" name="Linked Providers" id="Linked_Providers">
+        <input type="text" class="input_text" name="Linked Providers" id="Linked_Providers">
 
         <script>
             var quantityField = document.getElementById("quantity");
@@ -750,8 +771,9 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Specifies the url for Artifact Resolution')">
         </h5>
-        <input type="text" id="Artifact_Resolution_Endpoint" name="Artifact_Resolution_Endpoint" disabled>
-        
+        <input type="text" class="input_text" id="Artifact_Resolution_Endpoint" name="Artifact_Resolution_Endpoint"
+            disabled>
+
         <h5> Artifact Resolution Service in metadata
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('This will include an artifactResolutionService in your metadata (sometimes required)')">

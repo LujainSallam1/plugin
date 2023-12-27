@@ -154,12 +154,14 @@ buttonInput.addEventListener('click', () => {
             // Code to be executed after token update 
             var newAccessToken = keycloak.token;
             if (!alias && !Single_Sign_On_Service_URL) {
-                alert("Alias and Single_Sign_On_Service_URL is empty");
                 alias_input.classList.remove('input_text');
                 alias_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.classList.remove('input_text');
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 console.log(alias_input.value);
+                alias_input.focus();
+                errorMessage.textContent = "Required field !";
+                errorMessage_URL.textContent = "Required field !";
                 return; // Exit the function if alias_input is empty
             }
             if (!alias) {
@@ -167,14 +169,17 @@ buttonInput.addEventListener('click', () => {
                 alias_input.classList.remove('input_text');
                 alias_input.classList.add('red-border');
                 console.log(alias_input.value);
+                alias_input.focus();
+                errorMessage.textContent = "Required field !";
                 return; // Exit the function if alias_input is empty
             }
 
             // Check if Single_Sign_On_Service_URL is empty
             if (!Single_Sign_On_Service_URL) {
-                alert("Single Sign-On Service URL is empty");
                 Single_Sign_On_Service_URL_input.classList.remove('input_text');
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
+                Single_Sign_On_Service_URL_input.focus();
+                errorMessage_URL.textContent = "Required field !";
                 return; // Exit the function if Single_Sign_On_Service_URL is empty
             }
 
