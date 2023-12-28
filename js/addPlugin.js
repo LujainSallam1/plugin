@@ -1,6 +1,6 @@
 
 buttonInput.addEventListener('click', () => {
- 
+
     var authnContextClassRefs = []
     const ClassRefs_inputs = ClassRefs_items.querySelectorAll("input");
     ClassRefs_inputs.forEach(input => {
@@ -122,10 +122,10 @@ buttonInput.addEventListener('click', () => {
         Single_Sign_On_Service_URL_input.classList.add('red-border');
         Single_Sign_On_Service_URL_input.focus();
         errorMessage_URL.textContent = "Required field !";
-  
+
         return; // Exit the function if Single_Sign_On_Service_URL is empty
     }
-    
+
     if (!Single_Sign_On_Service_URL_input.checkValidity()) {
         Single_Sign_On_Service_URL_input.classList.remove('input_text');
         Single_Sign_On_Service_URL_input.classList.add('red-border');
@@ -197,7 +197,7 @@ buttonInput.addEventListener('click', () => {
                 errorMessage_URL.textContent = "Required field !";
                 return; // Exit the function if alias_input is empty
             }
-    
+
             // Sending a GET request to check if the plugin exists 
             fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
                 method: 'GET',
@@ -207,8 +207,11 @@ buttonInput.addEventListener('click', () => {
             })
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
-                        console.log("Plugin exists.");
-                        alert("Plugin exists.");
+                        alias_input.classList.remove('input_text');
+                        alias_input.classList.add('red-border');
+                        alias_input.focus();
+                        errorMessage.textContent=("Choose a unique *alias* that does not exist");
+                        alert(`Could not create the identity provider: Identity Provider "${alias}" already exists.`);
                         // Add your logic for updating the existing plugin if needed 
                     } else if (checkPluginResponse.status === 404) {
                         // Plugin not found, add it using a POST request 
