@@ -193,6 +193,7 @@ button.addEventListener('click', () => {
                         if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
                             console.log("Plugin updated successfully.");
                             alert("Plugin updated successfully.");
+                            getAllPlugins(newAccessToken);
                             localStorage.setItem('pluginData', JSON.stringify(data));
 
 
@@ -214,7 +215,9 @@ button.addEventListener('click', () => {
                             .then(response => {
                                 if (response.ok) {
                                     alert("Plugin added successfully.");
+
                                     localStorage.setItem('pluginData', JSON.stringify(data));
+                                        
                                 } else {
                                     console.error('Failed to add plugin:', response.status, response.statusText);
                                     alert("Failed to add plugin");
@@ -224,7 +227,7 @@ button.addEventListener('click', () => {
 
                                 console.error('Network error or failed to send request:', error);
                             });
-
+                 
 
                     } else {
                         // If there is another status, an error occurred

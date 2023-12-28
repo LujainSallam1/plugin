@@ -137,6 +137,17 @@
 
     <div id="resultsContainer"></div>
     <script src="/js/keycl.js"></script>
+    <script>
+
+      // Ensure execution when coming back from cache
+      window.addEventListener('pageshow', function (event) {
+        // If this is the first load (not from cache)
+        if (event.persisted) {
+          // Reload the page invisibly
+          document.location.reload(true);
+        }
+      });
+    </script>
   </div>
 
 
