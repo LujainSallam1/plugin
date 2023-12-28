@@ -137,27 +137,6 @@
 
     <div id="resultsContainer"></div>
     <script src="/js/keycl.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", function () {
-        // فحص قيمة التخزين المحلي لتحديد ما إذا كان يجب إعادة تحميل الصفحة
-        var reloadFlag = localStorage.getItem('reloadFlag');
-
-        if (reloadFlag === 'true') {
-          // حذف العلامة بعد الفحص
-          localStorage.removeItem('reloadFlag');
-
-          // إعادة تحميل الصفحة بشكل غير مرئي
-          document.location.reload(true);
-        }
-
-        // التأكد من التنفيذ عند العودة من الكاش
-        window.addEventListener('pageshow', function (event) {
-          // إذا كانت هذه هي العملية الأولى (التحميل ليس من الكاش)
-          if (event.persisted) {
-            // إعادة تحميل الصفحة بشكل غير مرئي
-            document.location.reload(true);
-          }
-        });
-      });</script>
   </div>
 
 

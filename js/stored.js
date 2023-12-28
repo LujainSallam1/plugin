@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (var i = 1; i < myArray.length; i++) {
                     const newItem = document.createElement("div");
                     newItem.className = "next-referral col-4";
-                    newItem.innerHTML = '<input id="textinput_' + i + '" name="textinput" type="text" class="form-control input-md" value="' + myArray[i] + '">';
+                    newItem.innerHTML = '<input id="textinput_' + i + '" name="textinput" type="text" class="input_text" value="' + myArray[i] + '">';
                     container.appendChild(newItem);
                 }
                 console.log(pluginData.config[id]);

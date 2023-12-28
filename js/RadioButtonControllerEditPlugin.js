@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ClassRefs_items = document.getElementById("ClassRefs_items");
 
     deleteButtonsClassRefs.forEach(function (button) {
-        button.style.display = "none";
+        button.style.display = "inline";
     });
 
     addButtonClassRefs.addEventListener("click", function (e) {
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 items[items.length - 1].remove();
                 deleteButtonsClassRefs.forEach(function (button, index) {
                     if (index === items.length - 1) {
-                        button.style.display = "none";
+                        button.style.display = "inline";
                     }
                 });
             }
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const DeclRefs_items = document.getElementById("DeclRefs_items");
 
     deleteButtonsDeclRefs.forEach(function (button) {
-        button.style.display = "none";
+        button.style.display = "inline";
     });
 
     addButtonDeclRefs.addEventListener("click", function (e) {
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 items[items.length - 1].remove();
                 deleteButtonsDeclRefs.forEach(function (button, index) {
                     if (index === items.length - 1) {
-                        button.style.display = "none";
+                        button.style.display = "inline";
                     }
                 });
             }
