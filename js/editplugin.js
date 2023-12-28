@@ -1,4 +1,4 @@
-button.addEventListener('click', () => {
+edit.addEventListener('click', () => {
 
     keycloak.updateToken(180).then((bool) => {
         if (bool) {

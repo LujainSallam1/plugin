@@ -1,4 +1,6 @@
 var accessToken;
+const clientid = 'frontend';
+const postLogoutRedirect = 'http://localhost:3000/list.html';
 const keycloak = Keycloak({
   url: 'http://localhost:8080',
   realm: 'master',
@@ -9,13 +11,7 @@ const keycloak = Keycloak({
 });
 
 
-document.getElementById('login').addEventListener('click', () => {
-  keycloak.login();
-});
-
 document.getElementById('logout').addEventListener('click', () => {
-  const clientid = 'frontend';
-  const postLogoutRedirect = 'http://localhost:3000/list.html';
   window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
 });
 
@@ -65,7 +61,17 @@ keycloak
             console.log(flow.alias);
           });
 
+          if (pluginData.postBrokerLoginFlowAlias) {
+            console.log(postLoginFlow.value)
+            updateField('postLoginFlow', pluginData.postBrokerLoginFlowAlias);
 
+          }
+     
+          if (pluginData.firstBrokerLoginFlowAlias) {
+            console.log(postLoginFlow.value)
+            updateField('firstLoginFlow', pluginData.firstBrokerLoginFlowAlias);
+
+          }
 
 
           console.log("Alias values have been successfully added to the select element.");
@@ -113,8 +119,6 @@ keycloak
         document.body.style.display = 'block';
       } else {
         alert("User does not have admin role. Access denied.");
-        const clientid = 'frontend';
-        const postLogoutRedirect = 'http://localhost:3000/list.html';
         window.location.href = `http://localhost:8080/realms/master/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
 
       }

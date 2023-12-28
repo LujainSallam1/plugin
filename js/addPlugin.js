@@ -1,5 +1,5 @@
 
-buttonInput.addEventListener('click', () => {
+add.addEventListener('click', () => {
 
     var authnContextClassRefs = []
     const ClassRefs_inputs = ClassRefs_items.querySelectorAll("input");
@@ -18,7 +18,6 @@ buttonInput.addEventListener('click', () => {
     });
     console.log(authnContextDeclRefs);
     const redirectUri = redirectUriInput.value;
-    const button = buttonInput.value;
     var Display_Name = Display_Name_input.value;
     var Display_Order = Display_Order_input.value;
     var Service_Provider_Entity_ID = Service_Provider_Entity_ID_input.value;
@@ -107,7 +106,6 @@ buttonInput.addEventListener('click', () => {
     };
 
     if (!alias) {
-        alert("Alias is empty");
         alias_input.classList.remove('input_text');
         alias_input.classList.add('red-border');
         console.log(alias_input.value);

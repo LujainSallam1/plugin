@@ -296,8 +296,12 @@
 <div class="container">
     <h1>Saml-extended</h1>
     </h1>
-    <button class="btn" id="login">access token</button>
+    <button class="btn" id="List">List</button>
     <button class="btn" id="logout">Logout</button>
+    <script>document.getElementById('List').addEventListener('click', function() {
+        window.location.href = "http://localhost:3000/list.html";
+    });
+    </script>
     <div>
         <h5>enabled </h5>
         <label class="switch">

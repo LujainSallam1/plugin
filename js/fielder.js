@@ -1,7 +1,7 @@
 const redirectUriInput = document.getElementById("redirectUri");
 const alias_input = document.getElementById("alias");
-const buttonInput = document.getElementById("submit");
-const button = document.getElementById("edit");
+const add = document.getElementById("submit");
+const edit = document.getElementById("edit");
 const Display_Name_input = document.getElementById("displayName");
 const Display_Order_input = document.getElementById("displayOrder");
 const Service_Provider_Entity_ID_input = document.getElementById("spEntityId");
@@ -34,4 +34,3 @@ var resultsContainer = document.getElementById('resultsContainer');
 var errorMessage = document.getElementById("errorMessage");
 var errorMessage_URL = document.getElementById("errorMessage_URL");
 var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
-

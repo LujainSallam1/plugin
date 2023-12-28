@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleCheckbox1('enabled', enabled)
 
             
+            
             if (pluginData.config && pluginData.config.wantAuthnRequestsSigned) {
     
                 console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`);
@@ -198,9 +199,29 @@ document.addEventListener('DOMContentLoaded', function () {
             updateField('alias', pluginData.alias);
             
         }
-       
-
-
+        if (pluginData.config.allowedClockSkew) {
+            updateField('allowedClockSkew', pluginData.config.allowedClockSkew);
+        }
+    
+        if (pluginData.config.attributeConsumingServiceIndex) {
+            updateField('attributeConsumingServiceIndex', pluginData.config.attributeConsumingServiceIndex);
+        }
+        
+        if (pluginData.config.attributeConsumingServiceName) {
+            updateField('attributeConsumingServiceName', pluginData.config.attributeConsumingServiceName);
+        }
+        
+        if (pluginData.config.attributeConsumingServiceName) {
+            updateField('attributeConsumingServiceName', pluginData.config.attributeConsumingServiceName);
+        }
+        if (pluginData.config.authnContextComparisonType) {
+            updateField('comparison', pluginData.config.authnContextComparisonType);
+        }
+     
+        if (pluginData.config.syncMode) {
+            updateField('syncMode', pluginData.config.syncMode);
+        }
+  
     }
   
 }

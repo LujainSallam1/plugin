@@ -118,7 +118,7 @@ wantAssertionsEncrypted.addEventListener("change", function () {
 
     }
     else {
-        wantAssertionsEncrypted_value = false;
+        wantAssertionsEncrypted.value = false;
         console.log(`wantAssertionsEncrypted_value: ${wantAssertionsEncrypted.value}`)
 
             ;

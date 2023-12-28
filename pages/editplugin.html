@@ -294,8 +294,12 @@
         </table>
     </div>
     <h1>Saml-extended</h1>
-    <button id="login" class="btn">access token</button>
+    <button id="List" class="btn">List</button>
     <button id="logout" class="btn">Logout</button>
+    <script>document.getElementById('List').addEventListener('click', function () {
+            window.location.href = "http://localhost:3000/list.html";
+        });
+    </script>
     <div>
 
         <h5>enabled </h5>
@@ -853,7 +857,7 @@
 
 
 <script src="/js/fielder.js"></script>
-<script src="/js/stored.js"></script>
+<script src="/js/InfoUpdater.js"></script>
 <script src="/js/RadioButtonControllerEditPlugin.js"></script>
 <script src="/js/editplugin.js"></script>
 
