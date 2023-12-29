@@ -228,12 +228,11 @@ add.addEventListener('click', () => {
                         if (updatePluginResponse.ok) {
 
                             alert("Plugin added successfully.");
+                            window.location.href = 'http://localhost:3000/editplugin.html';
                             localStorage.setItem('pluginData', JSON.stringify(data));
                             localStorage.setItem('pluginalias', pluginData.alias);
 
                             getAllPlugins(newAccessToken);
-                            localStorage.setItem('reloadFlag', 'true');
-                            window.location.href = 'http://localhost:3000/editplugin.html';
 
                         } else {
                             console.error('Failed to add plugin:', updatePluginResponse.status, updatePluginResponse.statusText);

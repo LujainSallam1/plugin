@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const DeclRefs_items = document.getElementById("DeclRefs_items");
 
     deleteButtonsDeclRefs.forEach(function (button) {
-        button.style.display = "none";
+        button.style.display = "inline";
     });
 
     addButtonDeclRefs.addEventListener("click", function (e) {
@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 items[items.length - 1].remove();
                 deleteButtonsDeclRefs.forEach(function (button, index) {
                     if (index === items.length - 1) {
-                        button.style.display = "none";
+                        button.style.display = "inline";
                     }
                 });
             }
@@ -428,21 +428,6 @@ ArtifactResolution_via_HTTP_ARTIFACT.addEventListener("change", function () {
             ;
     }
 });
-// var Sign_Service_Provider_Metadata_value = "false";
-// const Sign_Service_Provider_Metadata = document.getElementById("Sign_Service_Provider_Metadata");
-// Sign_Service_Provider_Metadata.addEventListener("change", function () {
-//     if (Sign_Service_Provider_Metadata.checked) {
-//         Sign_Service_Provider_Metadata_value = "true";
-//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
-
-//     }
-//     else {
-//         Sign_Service_Provider_Metadata_value = Sign_Service_Provider_Metadata.value;
-//         console.log(`Sign_Service_Provider_Metadata_value: ${Sign_Service_Provider_Metadata_value}`)
-
-//             ;
-//     }
-// });
 
 
 

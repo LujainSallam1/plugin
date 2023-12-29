@@ -66,7 +66,7 @@ keycloak
             updateField('postLoginFlow', pluginData.postBrokerLoginFlowAlias);
 
           }
-     
+
           if (pluginData.firstBrokerLoginFlowAlias) {
             console.log(postLoginFlow.value)
             updateField('firstLoginFlow', pluginData.firstBrokerLoginFlowAlias);
@@ -79,37 +79,8 @@ keycloak
         .catch(error => {
           console.error(error);
         });
-
-      var accesstoken = localStorage.getItem('accessToken');
-      console.log(accesstoken)
-      if (accesstoken) {
-        console.log(accesstoken)
-        fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${pluginData.alias}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accesstoken}`,
-          },
-        })
-          .then(async checkPluginResponse => {
-            if (checkPluginResponse.status === 200) {
-              var pluginData = await checkPluginResponse.json();
-              console.log('Plugin Details:', pluginData);
-              localStorage.setItem('pluginData', JSON.stringify(pluginData));
-              console.log(pluginData);
-            } else {
-              console.error("Plugin not found.");
-              alert("Plugin not found.");
-            }
-          })
-          .catch(error => {
-            console.error('Error during the process:', error);
-          });
-      }
-      else {
-        console.error('No stored access token found.');
-      }
-
-
+        
+      getPluginDetails(pluginData.alias);
       const tokenParsed = keycloak.tokenParsed;
       const roles = tokenParsed.realm_access.roles;
 
