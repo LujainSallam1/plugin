@@ -80,7 +80,7 @@ keycloak
           console.error(error);
         });
         
-      getPluginDetails(pluginData.alias);
+       getPluginDetails(pluginData.alias);
       const tokenParsed = keycloak.tokenParsed;
       const roles = tokenParsed.realm_access.roles;
 
