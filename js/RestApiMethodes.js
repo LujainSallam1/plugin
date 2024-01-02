@@ -90,9 +90,10 @@ function updatePluginList(plugins, accessToken) {
                 button.classList.add('btn');
                 button.textContent = 'Delete';
                 button.addEventListener('click', function () {
-                    // Add the behavior associated with the button here
-                    handleDeleteButtonClick(plugin.alias, accessToken);
-
+                    if (confirm('Are you sure you want to delete this item?')) {
+                        // If confirmation is accepted, execute the deletion
+                        handleDeleteButtonClick(plugin.alias, accessToken);
+                    } 
                 });
                 buttonCell.appendChild(button);
                 row.appendChild(buttonCell);
@@ -133,6 +134,7 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
                     resultsContainer.innerHTML = '';
 
                     getAllPlugins(accessToken);
+                    alert(` ${plugin_alias} deleted successfully`)
                     // Optionally update the UI or perform additional actions on success
                 })
                 .catch(error => {
