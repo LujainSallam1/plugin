@@ -63,13 +63,11 @@ keycloak
 
                     if (pluginData.postBrokerLoginFlowAlias) {
                         console.log(postLoginFlow.value)
-                        updateField('postLoginFlow', pluginData.postBrokerLoginFlowAlias);
 
                     }
 
                     if (pluginData.firstBrokerLoginFlowAlias) {
                         console.log(postLoginFlow.value)
-                        updateField('firstLoginFlow', pluginData.firstBrokerLoginFlowAlias);
 
                     }
 
