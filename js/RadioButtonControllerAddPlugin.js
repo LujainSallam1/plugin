@@ -478,3 +478,14 @@ Mutual_TLS.addEventListener("change", function () {
             ;
     }
 });
+
+principalType_input.addEventListener('change', function () {
+    console.log(principalType_input.value )
+    if (principalType_input.value == "ATTRIBUTE" ||principalType_input.value == "FRIENDLY_ATTRIBUTE") {
+        principalAttribute_input.removeAttribute("disabled");
+        
+    } else {
+        principalAttribute_input.value = '';
+        principalAttribute_input.setAttribute("disabled", "true");
+     
+    }});

@@ -169,7 +169,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (pluginData.config.principalType) {
             updateField('principalType', pluginData.config.principalType);
-        }
+            if ( pluginData.config.principalType == "ATTRIBUTE" || pluginData.config.principalType == "FRIENDLY_ATTRIBUTE") {
+                principalAttribute_input.removeAttribute("disabled");
+            } else {
+                principalAttribute_input.setAttribute("disabled", "true");
+                principalAttribute_input.value = '';
+             
+            }};
+            
+        
         if (pluginData.config.signatureAlgorithm) {
             updateField('SignatureAlgorithm', pluginData.config.signatureAlgorithm);
         }
@@ -221,10 +229,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pluginData.config.syncMode) {
             updateField('syncMode', pluginData.config.syncMode);
         }
+        if (pluginData.config.principalAttribute) {
+            updateField('principalAttribute', pluginData.config.principalAttribute);
+          
+
+
   
     }
   
-}
+}}
 
 );
 

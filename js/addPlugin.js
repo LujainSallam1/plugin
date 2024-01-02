@@ -45,7 +45,7 @@ add.addEventListener('click', () => {
     var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
     var Linked_Providers = Linked_Providers_input.value;
     var alias = alias_input.value;
-
+    var principalAttribute = principalAttribute_input.value;
     var data = {
         "alias": alias,
         "displayName": Display_Name,
@@ -90,6 +90,7 @@ add.addEventListener('click', () => {
             "forceAuthn": forceAuthentication.value,
             "attributeConsumingServiceIndex": attributeConsumingServiceIndex,
             "principalType": principalType,
+            "principalAttribute": principalAttribute,
             "includeArtifactResolutionServiceMetadata": ArtifactResolutionService_in_metadata.value,
             "artifactResolution": Artifact_Resolution.value,
             "artifactResolutionEndpoint": Artifact_Resolution_Endpoint,
@@ -208,7 +209,7 @@ add.addEventListener('click', () => {
                         alias_input.classList.remove('input_text');
                         alias_input.classList.add('red-border');
                         alias_input.focus();
-                        errorMessage.textContent=("Choose a unique *alias* that does not exist");
+                        errorMessage.textContent = ("Choose a unique *alias* that does not exist");
                         alert(`Could not create the identity provider: Identity Provider "${alias}" already exists.`);
                         // Add your logic for updating the existing plugin if needed 
                     } else if (checkPluginResponse.status === 404) {

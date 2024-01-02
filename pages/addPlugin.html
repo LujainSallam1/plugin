@@ -12,6 +12,7 @@
             background-color: transparent;
             box-sizing: border-box;
         }
+
         .red-border {
             border: 1px solid red;
             width: 100%;
@@ -255,10 +256,11 @@
         .selector {
             margin-left: 10px;
         }
+
         .error-message {
             color: red;
             font-weight: bold;
-          }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
 </head>
@@ -298,9 +300,9 @@
     </h1>
     <button class="btn" id="List">List</button>
     <button class="btn" id="logout">Logout</button>
-    <script>document.getElementById('List').addEventListener('click', function() {
-        window.location.href = "http://localhost:3000/list.html";
-    });
+    <script>document.getElementById('List').addEventListener('click', function () {
+            window.location.href = "http://localhost:3000/list.html";
+        });
     </script>
     <div>
         <h5>enabled </h5>
@@ -419,6 +421,13 @@
             <option value="FRIENDLY_ATTRIBUTE">Attribute [Friendly Name]</option>
         </select>
 
+
+        <h5> Principal Attribute
+
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('Name or Friendely Name of the attribute used to identify external users.d to send logout requests.')">
+        </h5>
+        <input type="text" name="principalAttribute" id="principalAttribute" class="input_text" disabled>
 
         <h5>Allow Create
             <img src="/images/question.png" class="image" alt="question mark"

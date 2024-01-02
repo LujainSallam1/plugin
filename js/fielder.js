@@ -30,6 +30,7 @@ const metadataValidUntilPeriod_input = document.getElementById("metadataValidUnt
 const Linked_Providers_input = document.getElementById("Linked_Providers");
 const additionalField_endpoint=document.getElementById("Artifact_Resolution_Endpoint");
 const ClassRefs_items = document.getElementById("ClassRefs_items");
+const principalAttribute_input=document.getElementById('principalAttribute');
 var resultsContainer = document.getElementById('resultsContainer');
 var errorMessage = document.getElementById("errorMessage");
 var errorMessage_URL = document.getElementById("errorMessage_URL");

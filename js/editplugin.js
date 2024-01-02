@@ -49,6 +49,7 @@ edit.addEventListener('click', () => {
             var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
             var Linked_Providers = Linked_Providers_input.value;
             var alias = alias_input.value;
+            var principalAttribute=principalAttribute_input.value;
 
             var data = {
                 "alias": alias,
@@ -94,6 +95,7 @@ edit.addEventListener('click', () => {
                     "forceAuthn": forceAuthentication.value,
                     "attributeConsumingServiceIndex": attributeConsumingServiceIndex,
                     "principalType": principalType,
+                    "principalAttribute":principalAttribute,
                     "includeArtifactResolutionServiceMetadata": ArtifactResolutionService_in_metadata.value,
                     "artifactResolution": Artifact_Resolution.value,
                     "artifactResolutionEndpoint": Artifact_Resolution_Endpoint,
