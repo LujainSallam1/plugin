@@ -1,6 +1,6 @@
 var storedData = localStorage.getItem('pluginData');
 document.addEventListener('DOMContentLoaded', function () {
- 
+
     console.log(pluginData);
 
     if (storedData) {
@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var pluginData = JSON.parse(storedData);
             console.log(pluginData);
-            
+
 
             function toggleCheckbox(configKey, checkbox) {
 
                 if (pluginData.config && pluginData.config[configKey]) {
-                    if (pluginData.config[configKey] == "true" ) {
+                    if (pluginData.config[configKey] == "true") {
                         checkbox.checked = true;
                     } else {
                         checkbox.checked = false;
@@ -24,18 +24,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             function toggleCheckbox1(configKey1, checkbox1) {
 
-                if (pluginData&& pluginData[configKey1]) {
-                    if (pluginData[configKey1] == true || pluginData[configKey1]=="true") {
+                if (pluginData && pluginData[configKey1]) {
+                    if (pluginData[configKey1] == true || pluginData[configKey1] == "true") {
                         checkbox1.checked = true;
                     } else {
                         checkbox1.checked = false;
 
                     }
                 }
-              
+
             }
-            
-         
+
+
             toggleCheckbox('backchannelSupported', backchannel)
             toggleCheckbox('allowCreate', allowCreate)
             toggleCheckbox('postBindingResponse', httpPostBindingResponse)
@@ -60,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleCheckbox('mutualTls', Mutual_TLS)
             toggleCheckbox1('enabled', enabled)
 
-            
-            
+
+
             if (pluginData.config && pluginData.config.wantAuthnRequestsSigned) {
-    
+
                 console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`);
 
                 if (pluginData.config.wantAuthnRequestsSigned == "true") {
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }
             }
-            
-        
+
+
             if (pluginData.config && pluginData.config.validateSignature) {
                 validateSignatures_value = pluginData.config.validateSignature;
                 console.log(`validateSignatures_value: ${validateSignatures_value}`);
@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }
             }
-       
-        
-          
+
+
+
 
             if (pluginData.config && pluginData.config.artifactResolution) {
                 Artifact_Resolution_value = pluginData.config.artifactResolution;
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         }
-   
+
 
         function processAuthnContextArray(id, container) {
             var element = document.getElementById(id);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        
+
 
         processAuthnContextArray("authnContextClassRefs", ClassRefs_items);
         processAuthnContextArray("authnContextDeclRefs", DeclRefs_items);
@@ -169,15 +169,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (pluginData.config.principalType) {
             updateField('principalType', pluginData.config.principalType);
-            if ( pluginData.config.principalType == "ATTRIBUTE" || pluginData.config.principalType == "FRIENDLY_ATTRIBUTE") {
+            if (pluginData.config.principalType == "ATTRIBUTE" || pluginData.config.principalType == "FRIENDLY_ATTRIBUTE") {
+                if (pluginData.config.principalAttribute) {
+                    updateField('principalAttribute', pluginData.config.principalAttribute);
+
+                }
                 principalAttribute_input.removeAttribute("disabled");
             } else {
                 principalAttribute_input.setAttribute("disabled", "true");
                 principalAttribute_input.value = '';
-             
-            }};
-            
-        
+
+            }
+        };
+
+
         if (pluginData.config.signatureAlgorithm) {
             updateField('SignatureAlgorithm', pluginData.config.signatureAlgorithm);
         }
@@ -202,42 +207,37 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pluginData.config.charSet) {
             updateField('CharacterSet', pluginData.config.charSet);
         }
-       
+
         if (pluginData.alias) {
             updateField('alias', pluginData.alias);
-            
+
         }
         if (pluginData.config.allowedClockSkew) {
             updateField('allowedClockSkew', pluginData.config.allowedClockSkew);
         }
-    
+
         if (pluginData.config.attributeConsumingServiceIndex) {
             updateField('attributeConsumingServiceIndex', pluginData.config.attributeConsumingServiceIndex);
         }
-        
+
         if (pluginData.config.attributeConsumingServiceName) {
             updateField('attributeConsumingServiceName', pluginData.config.attributeConsumingServiceName);
         }
-        
+
         if (pluginData.config.attributeConsumingServiceName) {
             updateField('attributeConsumingServiceName', pluginData.config.attributeConsumingServiceName);
         }
         if (pluginData.config.authnContextComparisonType) {
             updateField('comparison', pluginData.config.authnContextComparisonType);
         }
-     
+
         if (pluginData.config.syncMode) {
             updateField('syncMode', pluginData.config.syncMode);
         }
-        if (pluginData.config.principalAttribute) {
-            updateField('principalAttribute', pluginData.config.principalAttribute);
-          
 
 
-  
     }
-  
-}}
+}
 
 );
 
