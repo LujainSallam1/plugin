@@ -61,17 +61,7 @@ keycloak
                         console.log(flow.alias);
                     });
 
-                    if (pluginData.postBrokerLoginFlowAlias) {
-                        console.log(postLoginFlow.value)
-
-                    }
-
-                    if (pluginData.firstBrokerLoginFlowAlias) {
-                        console.log(postLoginFlow.value)
-
-                    }
-
-
+                
                     console.log("Alias values have been successfully added to the select element.");
                 })
                 .catch(error => {
