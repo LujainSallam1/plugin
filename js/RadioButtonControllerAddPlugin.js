@@ -375,7 +375,7 @@ validateSignatures.addEventListener("change", function () {
         validateSignatures.value = false;
         console.log(`validateSignatures_value: ${validateSignatures.value}`)
         additionalField1.setAttribute("disabled", "true");
-        ;
+        additionalField1.value='';
     }
 });
 
@@ -393,6 +393,7 @@ Artifact_Resolution.addEventListener("change", function () {
         Artifact_Resolution.value = false;
         console.log(`Artifact_Resolution_value: ${Artifact_Resolution.value}`)
         additionalField_endpoint.setAttribute("disabled", "true");
+        additionalField_endpoint.value='';
         ;
     }
 }

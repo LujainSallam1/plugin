@@ -86,8 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (pluginData.config.validateSignature == "true") {
                     console.log(`validateSignatures_value: ${validateSignatures_value}`)
                     additionalField1.removeAttribute("disabled");
-
                     validateSignatures.checked = true;
+                    if (pluginData.config.signingCertificate) {
+                        updateField('ValidatingX509Certificates', pluginData.config.signingCertificate);
+                    }
                 } else {
                     validateSignatures.checked = false;
                     additionalField1.setAttribute("disabled", "true");
@@ -111,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     Artifact_Resolution.checked = false;
                     console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
                     additionalField_endpoint.setAttribute("disabled", "true");
+                    additionalField_endpoint.value='';
+
 
                 }
             }
@@ -189,9 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pluginData.config.xmlSigKeyInfoKeyNameTransformer) {
             updateField('SAMLSignatureKeyName', pluginData.config.xmlSigKeyInfoKeyNameTransformer);
         }
-        if (pluginData.config.signingCertificate) {
-            updateField('ValidatingX509Certificates', pluginData.config.signingCertificate);
-        }
+
         if (pluginData.config.metadataValidUntilUnit) {
             updateField('Metadata_expires_in', pluginData.config.metadataValidUntilUnit);
         }
