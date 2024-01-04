@@ -1,20 +1,16 @@
 var accessToken;
 var Plugins;
-const keycloakServer='http://localhost:8080/realms/master/protocol/openid-connect/'
-const clientid = 'frontend';
-const postLogoutRedirect = 'http://localhost:3000/list.html';
 const keycloak = Keycloak({
-    url: 'http://localhost:8080',
-    realm: 'master',
-    clientId: 'frontend',
-    redirectUri: 'http://localhost:3000/list.html',
+    url: `${ServerUrl}`,
+    realm: `${realm}`,
+    clientId: `${clientid}`,
+    redirectUri: `${redirectUri}`,
     enableDebug: true,
 
 });
 
-
 document.getElementById('logout').addEventListener('click', () => {
-    window.location.href = `${keycloakServer}logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
+    window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
 });
 
 keycloak
@@ -37,7 +33,7 @@ keycloak
                 document.body.style.display = 'block';
             } else {
                 alert("User does not have admin role. Access denied.");
-                window.location.href = `${keycloakServer}logout?post_logout_redirect_uri=${postLogoutRedirect}&client_id=${clientid}`;
+                window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
 
             }
             console.log("Access Token:", accessToken);

@@ -136,6 +136,9 @@ add.addEventListener('click', () => {
         Single_Logout_Service_URL_input.classList.remove('input_text');
         Single_Logout_Service_URL_input.classList.add('red-border');
         Single_Logout_Service_URL_input.focus();
+        errorMessage_URL.textContent = "";
+        Single_Sign_On_Service_URL_input.classList.remove('red-border');
+        Single_Sign_On_Service_URL_input.classList.add('input_text');
         errorMessage_URL_logout.textContent = "Enter a valid URL !";
         return
     }
