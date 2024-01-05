@@ -73,7 +73,7 @@ To install them, open a terminal, navigate to the project's directory, and run t
 
 1. Open a web browser and navigate to http://localhost:8080.
 
-2. Look for "SAML Plugin" or "SAML" in the menu and open it.
+2. Look for "saml plugin" or "saml" in the menu and open it.
 
 3. log in using an admin user account to access the configured SAML integration.
 
