@@ -42,9 +42,9 @@ This project relies on the following dependencies:
    - Configure other settings as needed:
      - **Client Authentication: Off**
      - **Authorization: Off** 
-     - **Valid Redirect URIs: http://localhost:3000/* ***
-     - **Valid Post Logout Redirect URIs: http://localhost:3000/list.htm ***
-     - **Web Origins: ***
+     - **Valid Redirect URIs: http://localhost:3000/***
+     - **Valid Post Logout Redirect URIs: http://localhost:3000/list.htm**
+     - **Web Origins:***
 
    - Click "Save".
 
