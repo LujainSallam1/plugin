@@ -31,9 +31,9 @@ This project relies on the following dependencies:
     
 To install them, open a terminal, navigate to the project's directory, and run the following command:
 
-    ```bash
+   ```bash
     npm install cors v2.8.5
-    ```
+   ```
 
 2. **Set Up Keycloak Client:**
    - Open your Keycloak admin console.
