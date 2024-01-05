@@ -85,11 +85,18 @@ edit.addEventListener('click', () => {
                     "linkedProviders": Linked_Providers_input.value
                 }
             };
-            if (!Single_Sign_On_Service_URL_input.value) {
+
+
+            // Check if Single_Sign_On_Service_URL is empty
+            if (!Single_Sign_On_Service_URL) {
                 Single_Sign_On_Service_URL_input.classList.remove('input_text');
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.focus();
                 errorMessage_URL.textContent = "Required field !";
+ 
+                Single_Logout_Service_URL_input.classList.remove('red-border');
+                Single_Logout_Service_URL_input.classList.add('input_text');
+                errorMessage_URL_logout.textContent = "";
                 return; // Exit the function if Single_Sign_On_Service_URL is empty
             }
 
@@ -98,19 +105,28 @@ edit.addEventListener('click', () => {
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.focus();
                 errorMessage_URL.textContent = "Enter a valid URL !";
-                return;
+
+                Single_Logout_Service_URL_input.classList.remove('red-border');
+                Single_Logout_Service_URL_input.classList.add('input_text');
+                errorMessage_URL_logout.textContent = "";
+
+                return
+
+
             }
             if (!Single_Logout_Service_URL_input.checkValidity()) {
                 Single_Logout_Service_URL_input.classList.remove('input_text');
                 Single_Logout_Service_URL_input.classList.add('red-border');
                 Single_Logout_Service_URL_input.focus();
-                errorMessage_URL.textContent = "";
+                errorMessage_URL_logout.textContent = "Enter a valid URL !";
+
+
+
                 Single_Sign_On_Service_URL_input.classList.remove('red-border');
                 Single_Sign_On_Service_URL_input.classList.add('input_text');
-                errorMessage_URL_logout.textContent = "Enter a valid URL !";
+                errorMessage_URL.textContent = "";
                 return
             }
-        
 
             removeEmptyStrings(data);
 

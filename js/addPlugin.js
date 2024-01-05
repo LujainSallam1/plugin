@@ -82,12 +82,24 @@ add.addEventListener('click', () => {
         }
     };
 
+
     if (!alias) {
         alias_input.classList.remove('input_text');
         alias_input.classList.add('red-border');
         console.log(alias_input.value);
         alias_input.focus();
         errorMessage.textContent = "Required field !";
+
+
+        Single_Logout_Service_URL_input.classList.remove('red-border');
+        Single_Logout_Service_URL_input.classList.add('input_text');
+        errorMessage_URL_logout.textContent = "";
+
+        Single_Sign_On_Service_URL_input.classList.remove('red-border');
+        Single_Sign_On_Service_URL_input.classList.add('input_text');
+        errorMessage_URL.textContent = "";
+
+
         return; // Exit the function if alias_input is empty
     }
 
@@ -98,6 +110,14 @@ add.addEventListener('click', () => {
         Single_Sign_On_Service_URL_input.focus();
         errorMessage_URL.textContent = "Required field !";
 
+        alias_input.classList.remove('red-border');
+        alias_input.classList.add('input_text');
+        errorMessage.textContent = "";
+
+        Single_Logout_Service_URL_input.classList.remove('red-border');
+        Single_Logout_Service_URL_input.classList.add('input_text');
+        errorMessage_URL_logout.textContent = "";
+        
         return; // Exit the function if Single_Sign_On_Service_URL is empty
     }
 
@@ -106,16 +126,33 @@ add.addEventListener('click', () => {
         Single_Sign_On_Service_URL_input.classList.add('red-border');
         Single_Sign_On_Service_URL_input.focus();
         errorMessage_URL.textContent = "Enter a valid URL !";
+
+        Single_Logout_Service_URL_input.classList.remove('red-border');
+        Single_Logout_Service_URL_input.classList.add('input_text');
+        errorMessage_URL_logout.textContent = "";
+
+        alias_input.classList.remove('red-border');
+        alias_input.classList.add('input_text');
+        errorMessage.textContent = "";
         return
+
+        
     }
     if (!Single_Logout_Service_URL_input.checkValidity()) {
         Single_Logout_Service_URL_input.classList.remove('input_text');
         Single_Logout_Service_URL_input.classList.add('red-border');
         Single_Logout_Service_URL_input.focus();
-        errorMessage_URL.textContent = "";
+        errorMessage_URL_logout.textContent = "Enter a valid URL !";
+
+
+
         Single_Sign_On_Service_URL_input.classList.remove('red-border');
         Single_Sign_On_Service_URL_input.classList.add('input_text');
-        errorMessage_URL_logout.textContent = "Enter a valid URL !";
+        errorMessage_URL.textContent = "";
+
+        alias_input.classList.remove('red-border');
+        alias_input.classList.add('input_text');
+        errorMessage.textContent = "";
         return
     }
 
