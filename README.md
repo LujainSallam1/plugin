@@ -73,7 +73,7 @@ To install them, open a terminal, navigate to the project's directory, and run t
 
 2. Look for "saml plugin" or "saml" in the menu and open it.
 
-3. log in using an admin user account to access the configured SAML integration.
+3. log in using an admin user account .
 
 
 
