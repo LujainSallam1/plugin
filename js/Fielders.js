@@ -35,3 +35,25 @@ var resultsContainer = document.getElementById('resultsContainer');
 var errorMessage = document.getElementById("errorMessage");
 var errorMessage_URL = document.getElementById("errorMessage_URL");
 var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
+var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
+
+function handleCheckboxValue(checkbox) {
+    if (checkbox.checked) {
+        checkbox.value = true;
+        console.log(`${checkbox.id}_value: ${checkbox.value}`);
+    } else {
+        checkbox.value = false;
+        console.log(`${checkbox.id}_value: ${checkbox.value}`);
+    }
+}
+
+function removeEmptyStrings(obj) {
+    for (const key in obj) {
+        if (typeof obj[key] === 'string' && obj[key].trim() === "") {
+            delete obj[key];
+        } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+            removeEmptyStrings(obj[key]);
+        }
+    }
+}
+window.removeEmptyStrings=removeEmptyStrings

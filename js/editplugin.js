@@ -20,50 +20,25 @@ edit.addEventListener('click', () => {
                     authnContextDeclRefs.push(input.value);
                 }
             });
-            console.log(authnContextDeclRefs);
-            const redirectUri = redirectUriInput.value;
-            var Display_Name = Display_Name_input.value;
-            var Display_Order = Display_Order_input.value;
-            var Service_Provider_Entity_ID = Service_Provider_Entity_ID_input.value;
-            var Identity_Provider_Entity_ID = Identity_Provider_Entity_ID_input.value;
+
             var Single_Sign_On_Service_URL = Single_Sign_On_Service_URL_input.value;
             var Single_Logout_Service_URL = Single_Logout_Service_URL_input.value;
-            var allowedClockSkew = allowedClockSkew_input.value;
-            var attributeConsumingServiceIndex = attributeConsumingServiceIndex_input.value;
-            var attributeConsumingServiceName = attributeConsumingServiceName_input.value;
-            var Artifact_Resolution_Endpoint = Artifact_Resolution_Endpoint_input.value;
-            var CharacterSet = CharacterSet_input.value;
-
-            var comparison = comparison_input.value;
-            var firstLoginFlow = firstLoginFlow_input.value;
-            var postLoginFlow = postLoginFlow_input.value;
-            var syncMode = syncMode_input.value;
-            var principalType = principalType_input.value;
             var nameIdPolicy = nameIdPolicy_input.value;
             var nameIdPolicy1 = `urn:oasis:names:tc:SAML:1.1:nameid-format:${nameIdPolicy}`;
-            var SignatureAlgorithm = SignatureAlgorithm_input.value;
-            var SAMLSignatureKeyName = SAMLSignatureKeyName_input.value;
-            var ValidatingX509Certificates = ValidatingX509Certificates_input.value;
-            var url = `http://localhost:8080/admin/realms/master/identity-provider/instances`;
-            var Metadata_expires_in = Metadata_expires_in_input.value;
-            var metadataValidUntilPeriod = metadataValidUntilPeriod_input.value;
-            var Linked_Providers = Linked_Providers_input.value;
             var alias = alias_input.value;
-            var principalAttribute=principalAttribute_input.value;
-
             var data = {
                 "alias": alias,
-                "displayName": Display_Name,
+                "displayName": Display_Name_input.value,
                 "providerId": "saml-extended",
-                "enabled": enabled.value,
+                "enabled": "true",
                 "updateProfileFirstLoginMode": "on",
                 "trustEmail": trustEmail.value,
                 "storeToken": storeToken.value,
                 "addReadTokenRoleOnCreate": storedTokensReadable.value,
                 "authenticateByDefault": "false",
                 "linkOnly": accountLinkingOnly.value,
-                "firstBrokerLoginFlowAlias": firstLoginFlow,
-                "postBrokerLoginFlowAlias": postLoginFlow,
+                "firstBrokerLoginFlowAlias": firstLoginFlow_input.value,
+                "postBrokerLoginFlowAlias": postLoginFlow_input.value,
                 config: {
                     "postBindingLogout": httpPostBindingLogout.value,
                     "authnContextClassRefs": authnContextClassRefs.length > 0 ? JSON.stringify(authnContextClassRefs) : undefined,
@@ -71,46 +46,46 @@ edit.addEventListener('click', () => {
                     "singleLogoutServiceUrl": Single_Logout_Service_URL,
                     "authnContextDeclRefs": authnContextDeclRefs.length > 0 ? JSON.stringify(authnContextDeclRefs) : undefined,
                     "backchannelSupported": backchannel.value,
-                    "xmlSigKeyInfoKeyNameTransformer": SAMLSignatureKeyName,
-                    "idpEntityId": Identity_Provider_Entity_ID,
+                    "xmlSigKeyInfoKeyNameTransformer": SAMLSignatureKeyName_input.value,
+                    "idpEntityId": Identity_Provider_Entity_ID_input.value,
                     "loginHint": passSubject.value,
                     "allowCreate": allowCreate.value,
-                    "authnContextComparisonType": comparison,
-                    "syncMode": syncMode,
+                    "authnContextComparisonType": comparison_input.value,
+                    "syncMode": syncMode_input.value,
                     "singleSignOnServiceUrl": Single_Sign_On_Service_URL,
                     "wantAuthnRequestsSigned": wantAuthnRequestsSigned.value,
-                    "allowedClockSkew": allowedClockSkew,
-                    "guiOrder": Display_Order,
+                    "allowedClockSkew": allowedClockSkew_input.value,
+                    "guiOrder": Display_Order_input.value,
                     "validateSignature": validateSignatures.value,
                     "hideOnLoginPage": hideLoginPage.value,
-                    "signingCertificate": ValidatingX509Certificates,
+                    "signingCertificate": ValidatingX509Certificates_input.value,
                     "nameIDPolicyFormat": nameIdPolicy1,
-                    "entityId": Service_Provider_Entity_ID,
-                    "attributeConsumingServiceName": attributeConsumingServiceName,
+                    "entityId": Service_Provider_Entity_ID_input.value,
+                    "attributeConsumingServiceName": attributeConsumingServiceName_input.value,
                     "signSpMetadata": signMetadata.value,
                     "wantAssertionsEncrypted": wantAssertionsEncrypted.value,
-                    "signatureAlgorithm": SignatureAlgorithm,
+                    "signatureAlgorithm": SignatureAlgorithm_input.value,
                     "wantAssertionsSigned": wantAssertionsSigned.value,
                     "postBindingAuthnRequest": httpPostBindingAuthnRequest.value,
                     "forceAuthn": forceAuthentication.value,
-                    "attributeConsumingServiceIndex": attributeConsumingServiceIndex,
-                    "principalType": principalType,
-                    "principalAttribute":principalAttribute,
+                    "attributeConsumingServiceIndex": attributeConsumingServiceIndex_input.value,
+                    "principalType": principalType_input.value,
+                    "principalAttribute": principalAttribute_input.value,
                     "includeArtifactResolutionServiceMetadata": ArtifactResolutionService_in_metadata.value,
                     "artifactResolution": Artifact_Resolution.value,
-                    "artifactResolutionEndpoint": Artifact_Resolution_Endpoint,
+                    "artifactResolutionEndpoint": Artifact_Resolution_Endpoint_input.value,
                     "signArtifactResolutionRequest": Sign_Artifact_Resolution_Request.value,
                     "artifactResolutionSOAP": Artifact_Resolution_with_SOAP.value,
                     "artifactResolutionWithXmlHeader": Artifact_Resolution_with_XML_header.value,
                     "artifactResolutionHTTPArtifact": ArtifactResolution_via_HTTP_ARTIFACT.value,
                     "mutualTls": Mutual_TLS.value,
-                    "charSet": CharacterSet,
-                    "metadataValidUntilUnit": Metadata_expires_in,
-                    "metadataValidUntilPeriod": metadataValidUntilPeriod,
-                    "linkedProviders": Linked_Providers
+                    "charSet": CharacterSet_input.value,
+                    "metadataValidUntilUnit": Metadata_expires_in_input.value,
+                    "metadataValidUntilPeriod": metadataValidUntilPeriod_input.value,
+                    "linkedProviders": Linked_Providers_input.value
                 }
             };
-            if (!Single_Sign_On_Service_URL) {
+            if (!Single_Sign_On_Service_URL_input.value) {
                 Single_Sign_On_Service_URL_input.classList.remove('input_text');
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.focus();
@@ -135,15 +110,7 @@ edit.addEventListener('click', () => {
                 errorMessage_URL_logout.textContent = "Enter a valid URL !";
                 return
             }
-            function removeEmptyStrings(obj) {
-                for (const key in obj) {
-                    if (typeof obj[key] === 'string' && obj[key].trim() === "") {
-                        delete obj[key];
-                    } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-                        removeEmptyStrings(obj[key]);
-                    }
-                }
-            }
+        
 
             removeEmptyStrings(data);
 
@@ -167,7 +134,7 @@ edit.addEventListener('click', () => {
 
 
             // Sending a GET request to check if the plugin exists
-            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
+            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias_input.value}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${newAccessToken}`,
@@ -222,7 +189,7 @@ edit.addEventListener('click', () => {
                                     alert("Plugin added successfully.");
 
                                     localStorage.setItem('pluginData', JSON.stringify(data));
-                                        
+
                                 } else {
                                     console.error('Failed to add plugin:', response.status, response.statusText);
                                     alert("Failed to add plugin");
@@ -232,7 +199,7 @@ edit.addEventListener('click', () => {
 
                                 console.error('Network error or failed to send request:', error);
                             });
-                 
+
 
                     } else {
                         // If there is another status, an error occurred
