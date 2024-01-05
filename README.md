@@ -1,6 +1,4 @@
-# Frontend-Keycloak-API-Connector
-
-Welcome to Frontend-Keycloak-API-Connector !
+# Frontend-Keycloak-Saml-Extended-Plugin
 
 ## Prerequisites
 
@@ -67,7 +65,7 @@ To install them, open a terminal, navigate to the project's directory, and run t
     ```bash
     .\kc.bat --spi-theme-welcome-theme=saml-theme start-dev
     ```
- 7.  ## Accessing Keycloak and Configuring the SAML Section
+ 7.  ## Accessing The Frontend
 
  follow these steps:
 
