@@ -22,8 +22,8 @@ keycloak
             console.log(`Access Token: ${accessToken}`);
 
 
-            getAllPlugins(accessToken);
-
+            // getAllPlugins(accessToken);
+            getAllRealms(accessToken)
             const tokenParsed = keycloak.tokenParsed;
             const roles = tokenParsed.realm_access.roles;
 

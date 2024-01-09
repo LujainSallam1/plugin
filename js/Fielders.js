@@ -36,7 +36,7 @@ var errorMessage = document.getElementById("errorMessage");
 var errorMessage_URL = document.getElementById("errorMessage_URL");
 var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
 var errorMessage_URL_logout = document.getElementById("errorMessage_URL_logout");
-
+var Realms=document.getElementById("Realms");
 function handleCheckboxValue(checkbox) {
     if (checkbox.checked) {
         checkbox.value = true;

@@ -1,6 +1,6 @@
-
-function getAllPlugins(accessToken) {
-    fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
+// export let selectedRealm;
+function getAllPlugins(accessToken, selectedRealm) {
+    fetch(`http://localhost:8080/admin/realms/${selectedRealm}/identity-provider/instances`, {
         method: 'GET',
         headers: {
             'Authorization': ` Bearer ${accessToken}`
@@ -20,6 +20,75 @@ function getAllPlugins(accessToken) {
         });
 }
 window.getAllPlugins = getAllPlugins;
+
+function clearPluginList() {
+    const pluginListContainer = document.getElementById('resultsContainer');
+    while (pluginListContainer.firstChild) {
+        pluginListContainer.removeChild(pluginListContainer.firstChild);
+    }
+}
+window.clearPluginList = clearPluginList;
+
+// Function to get the selected realm from sessionStorage
+
+
+
+function getAllRealms(accessToken) {
+    keycloak.updateToken(180).then((bool) => {
+        fetch('http://localhost:8080/admin/realms', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+        })
+            .then(response => response.json())
+            .then(async responseJSON => {
+                try {
+                    const realms = responseJSON;
+                    console.log('realms:', realms);
+                    const select_realms = document.getElementById('Realms');
+                    while (select_realms.firstChild) {
+                        select_realms.removeChild(select_realms.firstChild);
+                    }
+                    const emptyOption = document.createElement('option');
+                    emptyOption.value = '';  // Set the value to an empty string
+                    emptyOption.text = '';   // Set the text to an empty string
+                    select_realms.add(emptyOption);
+
+                    realms.forEach((realm, index) => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = realm.realm;
+                        optionElement.text = realm.realm;
+                        select_realms.add(optionElement);
+                    });
+                    select_realms.addEventListener('change', function () {
+                        var selectedRealm = select_realms.value;
+                        clearPluginList()
+                        localStorage.setItem('selectedRealm', selectedRealm);
+                        console.log(selectedRealm);
+
+                        getAllPlugins(accessToken, selectedRealm);
+
+
+                });
+    } catch (error) {
+        console.error('Error during the process:', error);
+    }
+})
+            .catch (error => {
+    console.error('Error during the process:', error);
+});
+    });
+}
+window.getAllRealms = getAllRealms;
+var selectedrealm = localStorage.getItem('selectedRealm');
+if (selectedrealm) {
+    console.log(Realms);
+    var select_realms = document.getElementById('Realms');
+    select_realms.value = selectedrealm;
+    select_realms.dispatchEvent(new Event('change'));
+
+} else { console.log("selectedrealm undefiend")}
 
 
 function updatePluginList(plugins, accessToken) {
@@ -93,7 +162,7 @@ function updatePluginList(plugins, accessToken) {
                     if (confirm('Are you sure you want to delete this item?')) {
                         // If confirmation is accepted, execute the deletion
                         handleDeleteButtonClick(plugin.alias, accessToken);
-                    } 
+                    }
                 });
                 buttonCell.appendChild(button);
                 row.appendChild(buttonCell);
@@ -113,8 +182,9 @@ window.updatePluginList = updatePluginList;
 function handleDeleteButtonClick(plugin_alias, accessToken) {
     keycloak.updateToken(180).then((bool) => {
         if (bool) {
+            var selectedrealm = localStorage.getItem('selectedRealm');
             // Assuming you have an API endpoint for deleting plugins
-            var deleteEndpoint = `http://localhost:8080/admin/realms/master/identity-provider/instances/${plugin_alias}`;
+            var deleteEndpoint = `http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${plugin_alias}`;
             var accessToken = keycloak.token;
             // Send a DELETE request using Fetch API
             fetch(deleteEndpoint, {
@@ -133,7 +203,7 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
                     var resultsContainer = document.getElementById('resultsContainer');
                     resultsContainer.innerHTML = '';
 
-                    getAllPlugins(accessToken);
+                    getAllPlugins(accessToken, selectedrealm);
                     alert(` ${plugin_alias} deleted successfully`)
                     // Optionally update the UI or perform additional actions on success
                 })
@@ -156,8 +226,8 @@ function getPluginDetails(alias, accessToken) {
             if (bool) {
                 console.log("Token is updated");
                 var accessToken = keycloak.token;
-
-                fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
+                var selectedrealm = localStorage.getItem('selectedRealm');
+                fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
@@ -168,7 +238,7 @@ function getPluginDetails(alias, accessToken) {
                             var pluginData = await response.json();
                             localStorage.setItem('pluginData', JSON.stringify(pluginData));
                             console.log('Plugin Details:', pluginData);
-                            resolve(); 
+                            resolve();
                         } else {
                             console.error('Failed to fetch plugin details:', response.status, response.statusText);
                         }

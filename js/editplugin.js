@@ -93,14 +93,14 @@ edit.addEventListener('click', () => {
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.focus();
                 errorMessage_URL.textContent = "Required field !";
- 
+
                 Single_Logout_Service_URL_input.classList.remove('red-border');
                 Single_Logout_Service_URL_input.classList.add('input_text');
                 errorMessage_URL_logout.textContent = "";
                 return; // Exit the function if Single_Sign_On_Service_URL is empty
             }
 
-            if (!Single_Sign_On_Service_URL_input.checkValidity()||!Single_Sign_On_Service_URL_input.value.startsWith("https://")) {
+            if (!Single_Sign_On_Service_URL_input.checkValidity() || !Single_Sign_On_Service_URL_input.value.startsWith("https://")) {
                 Single_Sign_On_Service_URL_input.classList.remove('input_text');
                 Single_Sign_On_Service_URL_input.classList.add('red-border');
                 Single_Sign_On_Service_URL_input.focus();
@@ -114,7 +114,7 @@ edit.addEventListener('click', () => {
 
 
             }
-            if (!Single_Logout_Service_URL_input.checkValidity()||(Single_Logout_Service_URL_input.value &&!Single_Logout_Service_URL_input.value.startsWith("https://"))) {
+            if (!Single_Logout_Service_URL_input.checkValidity() || (Single_Logout_Service_URL_input.value && !Single_Logout_Service_URL_input.value.startsWith("https://"))) {
                 Single_Logout_Service_URL_input.classList.remove('input_text');
                 Single_Logout_Service_URL_input.classList.add('red-border');
                 Single_Logout_Service_URL_input.focus();
@@ -147,10 +147,10 @@ edit.addEventListener('click', () => {
 
 
             console.log(data);
-
+            var selectedrealm = localStorage.getItem('selectedRealm');
 
             // Sending a GET request to check if the plugin exists
-            fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias_input.value}`, {
+            fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias_input.value}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${newAccessToken}`,
@@ -161,7 +161,7 @@ edit.addEventListener('click', () => {
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
                         var pluginData = await checkPluginResponse.json();
-                        const updatePluginResponse = await fetch(`http://localhost:8080/admin/realms/master/identity-provider/instances/${alias}`, {
+                        const updatePluginResponse = await fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
                             method: 'PUT',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,
@@ -181,7 +181,7 @@ edit.addEventListener('click', () => {
                         if (updatePluginResponse.status === 204 || updatePluginResponse.status === 201) {
                             console.log("Plugin updated successfully.");
                             alert("Plugin updated successfully.");
-                            getAllPlugins(newAccessToken);
+                            getAllPlugins(newAccessToken,selectedrealm);
                             localStorage.setItem('pluginData', JSON.stringify(data));
 
 
@@ -192,7 +192,7 @@ edit.addEventListener('click', () => {
                         }
                     } else if (checkPluginResponse.status === 404) {
                         // If the status is 404, the plugin does not exist, so send a POST request
-                        return fetch('http://localhost:8080/admin/realms/master/identity-provider/instances', {
+                        return fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances`, {
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,

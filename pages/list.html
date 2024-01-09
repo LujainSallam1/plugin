@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAML List and Edit</title>
   <style>
+    .input_text,
+    select {
+        width: 30%;
+        padding: 10px;
+        border: 1px solid#f0f0f0;
+        border-radius: 0px;
+        border-bottom-color: #8a8d90;
+    }
+
     #samlDetails {
       margin-top: 20px;
     }
@@ -134,22 +143,25 @@
       <div class="btn_href"><a href=http://localhost:3000/addPlugin.html class="btn_href">Add Provider</a></div>
       <button id="logout" class="btn">Logout</button>
     </button>
+    <h5>Realms</h5>
+      <select name="Realms" id="Realms">
+      </select>
+      <div id="resultsContainer"></div>
+      <script src="/js/InfoUpdaterList.js"></script>
+      <script src="/js/RestApiMethodes.js"></script>
+      <script src="/js/Config.js"></script>
+      <script src="/js/keycloakList.js"></script>
 
-    <div id="resultsContainer"></div>
-    <script src="/js/RestApiMethodes.js"></script>
-    <script src="/js/Config.js"></script>
-    <script src="/js/keycloakList.js"></script>
-    <script>
-
+<script>
       // Ensure execution when coming back from cache
       window.addEventListener('pageshow', function (event) {
-        // If this is the first load (not from cache)
-        if (event.persisted) {
-          // Reload the page invisibly
-          document.location.reload(true);
-        }
+      // If this is the first load (not from cache)
+      if (event.persisted) {
+      // Reload the page invisibly
+      document.location.reload(true);
+      }
       });
-    </script>
+      </script>
   </div>
 
 
