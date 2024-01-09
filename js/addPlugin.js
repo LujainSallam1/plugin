@@ -138,7 +138,7 @@ add.addEventListener('click', () => {
 
         
     }
-    if (!Single_Logout_Service_URL_input.checkValidity()||!Single_Logout_Service_URL_input.value.startsWith("https://")) {
+    if (!Single_Logout_Service_URL_input.checkValidity()||(Single_Logout_Service_URL_input.value &&!Single_Logout_Service_URL_input.value.startsWith("https://"))) {
         Single_Logout_Service_URL_input.classList.remove('input_text');
         Single_Logout_Service_URL_input.classList.add('red-border');
         Single_Logout_Service_URL_input.focus();
