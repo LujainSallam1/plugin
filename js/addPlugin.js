@@ -121,7 +121,7 @@ add.addEventListener('click', () => {
         return; // Exit the function if Single_Sign_On_Service_URL is empty
     }
 
-    if (!Single_Sign_On_Service_URL_input.checkValidity()) {
+    if (!Single_Sign_On_Service_URL_input.checkValidity()||!Single_Sign_On_Service_URL_input.value.startsWith("https://")) {
         Single_Sign_On_Service_URL_input.classList.remove('input_text');
         Single_Sign_On_Service_URL_input.classList.add('red-border');
         Single_Sign_On_Service_URL_input.focus();
@@ -138,7 +138,7 @@ add.addEventListener('click', () => {
 
         
     }
-    if (!Single_Logout_Service_URL_input.checkValidity()) {
+    if (!Single_Logout_Service_URL_input.checkValidity()||!Single_Logout_Service_URL_input.value.startsWith("https://")) {
         Single_Logout_Service_URL_input.classList.remove('input_text');
         Single_Logout_Service_URL_input.classList.add('red-border');
         Single_Logout_Service_URL_input.focus();
