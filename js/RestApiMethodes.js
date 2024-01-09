@@ -61,36 +61,40 @@ function getAllRealms(accessToken) {
                         optionElement.text = realm.realm;
                         select_realms.add(optionElement);
                     });
+
                     select_realms.addEventListener('change', function () {
                         var selectedRealm = select_realms.value;
                         clearPluginList()
                         localStorage.setItem('selectedRealm', selectedRealm);
                         console.log(selectedRealm);
-
                         getAllPlugins(accessToken, selectedRealm);
 
 
-                });
-    } catch (error) {
-        console.error('Error during the process:', error);
-    }
-})
-            .catch (error => {
-    console.error('Error during the process:', error);
-});
+                    });
+                    updateSelectedRealm();
+                } catch (error) {
+                    console.error('Error during the process:', error);
+                }
+            })
+            .catch(error => {
+                console.error('Error during the process:', error);
+            });
     });
 }
 window.getAllRealms = getAllRealms;
-var selectedrealm = localStorage.getItem('selectedRealm');
-if (selectedrealm) {
-    console.log(Realms);
+function updateSelectedRealm() {
+    var selectedrealm = localStorage.getItem('selectedRealm');
     var select_realms = document.getElementById('Realms');
-    select_realms.value = selectedrealm;
-    select_realms.dispatchEvent(new Event('change'));
 
-} else { console.log("selectedrealm undefiend")}
+    if (select_realms && selectedrealm) {
+        select_realms.value = selectedrealm;
+        select_realms.dispatchEvent(new Event('change'));
+    } else {
+        console.log("selectedrealm undefined");
+    }
+}
 
-
+updateSelectedRealm()
 function updatePluginList(plugins, accessToken) {
     // Get the container where the results will be displayed
     var resultsContainer = document.getElementById('resultsContainer');
