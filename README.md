@@ -1,6 +1,4 @@
-# Frontend-Keycloak-API-Connector
-
-Welcome to Frontend-Keycloak-API-Connector !
+# Frontend-Keycloak-Saml-Extended-Plugin
 
 ## Prerequisites
 
@@ -31,9 +29,9 @@ This project relies on the following dependencies:
     
 To install them, open a terminal, navigate to the project's directory, and run the following command:
 
-    ```bash
+   ```bash
     npm install cors v2.8.5
-    ```
+   ```
 
 2. **Set Up Keycloak Client:**
    - Open your Keycloak admin console.
@@ -67,15 +65,15 @@ To install them, open a terminal, navigate to the project's directory, and run t
     ```bash
     .\kc.bat --spi-theme-welcome-theme=saml-theme start-dev
     ```
- 7.  ## Accessing Keycloak and Configuring the SAML Section
+ 7.  ## Accessing The Frontend
 
  follow these steps:
 
 1. Open a web browser and navigate to http://localhost:8080.
 
-2. Look for "SAML Plugin" or "SAML" in the menu and open it.
+2. Look for "saml plugin" or "saml" in the menu and open it.
 
-3. log in using an admin user account to access the configured SAML integration.
+3. log in using an admin user account .
 
 
 
