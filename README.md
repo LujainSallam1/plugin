@@ -42,7 +42,7 @@ To install them, open a terminal, navigate to the project's directory, and run t
      - **Client Authentication: Off**
      - **Authorization: Off** 
      - **Valid Redirect URIs: http://localhost:3000/***
-     - **Valid Post Logout Redirect URIs: http://localhost:3000/list.htm**
+     - **Valid Post Logout Redirect URIs: http://localhost:3000/list.html**
      - **Web Origins:***
 
    - Click "Save".
