@@ -1,5 +1,6 @@
 // export let selectedRealm;
 function getAllPlugins(accessToken, selectedRealm) {
+    if(selectedRealm){
     fetch(`http://localhost:8080/admin/realms/${selectedRealm}/identity-provider/instances`, {
         method: 'GET',
         headers: {
@@ -18,7 +19,7 @@ function getAllPlugins(accessToken, selectedRealm) {
         .catch(error => {
             console.error('Error during the process:', error);
         });
-}
+}}
 window.getAllPlugins = getAllPlugins;
 
 function clearPluginList() {
