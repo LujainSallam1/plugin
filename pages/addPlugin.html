@@ -12,6 +12,7 @@
             background-color: transparent;
             box-sizing: border-box;
         }
+
         @media (max-width: 1000px) {
             #nav {
                 display: none;
@@ -128,7 +129,7 @@
         #nav {
             position: fixed;
             right: 0;
-            top: 30%;
+            top: 58%;
             transform: translateY(-50%);
             background-color: transparent;
             color: #151515;
@@ -167,9 +168,24 @@
             height: 48px;
         }
 
+        .logout {
+            margin-right: 20px;
+            display: flex;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
         .logo img {
             width: 150px;
             height: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            /* Allow the logo to take up available space */
         }
 
         .radio {
@@ -273,6 +289,9 @@
     <div class="logo">
         <img src="/images/KEY_logo.png" alt="Logo">
     </div>
+    <img src="/images/list.png" id="List" class="logout">
+    <img src="/images/logout.png" id="logout" class="logout">
+
 </header>
 
 
@@ -303,8 +322,6 @@
 <div class="container">
     <h1>Saml-extended</h1>
     </h1>
-    <button class="btn" id="List">List</button>
-    <button class="btn" id="logout">Logout</button>
     <script>document.getElementById('List').addEventListener('click', function () {
             window.location.href = "http://localhost:3000/list.html";
         });
@@ -330,7 +347,10 @@
         <input type="url" name="redirectUri" class="readonly"
             value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" readonly>
 
-
+        <script>
+            var selectedrealm = localStorage.getItem('selectedRealm');
+            document.getElementById('redirectUri').value = `http://localhost:8080/realms/${selectedrealm}/broker/saml-extended/endpoint`
+        </script>
         <h5>Alias *
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
@@ -874,6 +894,7 @@
         </div>
     </form>
 </div>
+
 <script src="/js/Fielders.js"></script>
 <script src="/js/CheckBoxControllerAddPlugin.js"></script>
 <script src="/js/AddPlugin.js"></script>
