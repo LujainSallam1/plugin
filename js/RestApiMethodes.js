@@ -1,25 +1,26 @@
 // export let selectedRealm;
 function getAllPlugins(accessToken, selectedRealm) {
-    if(selectedRealm){
-    fetch(`http://localhost:8080/admin/realms/${selectedRealm}/identity-provider/instances`, {
-        method: 'GET',
-        headers: {
-            'Authorization': ` Bearer ${accessToken}`
-        },
-    })
-        .then(async response => {
-            if (response.ok) {
-                var plugins = await response.json();
-                console.log('All Plugins:', plugins);
-                updatePluginList(plugins, accessToken);
-            } else {
-                console.error('Failed to fetch plugins:', response.status, response.statusText);
-            }
+    if (selectedRealm) {
+        fetch(`http://localhost:8080/admin/realms/${selectedRealm}/identity-provider/instances`, {
+            method: 'GET',
+            headers: {
+                'Authorization': ` Bearer ${accessToken}`
+            },
         })
-        .catch(error => {
-            console.error('Error during the process:', error);
-        });
-}}
+            .then(async response => {
+                if (response.ok) {
+                    var plugins = await response.json();
+                    console.log('All Plugins:', plugins);
+                    updatePluginList(plugins, accessToken);
+                } else {
+                    console.error('Failed to fetch plugins:', response.status, response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error during the process:', error);
+            });
+    }
+}
 window.getAllPlugins = getAllPlugins;
 
 function clearPluginList() {

@@ -50,6 +50,7 @@ edit.addEventListener('click', () => {
                     "idpEntityId": Identity_Provider_Entity_ID_input.value,
                     "loginHint": passSubject.value,
                     "allowCreate": allowCreate.value,
+                    "encryptionAlgorithm":encryption_algorithm.value,
                     "authnContextComparisonType": comparison_input.value,
                     "syncMode": syncMode_input.value,
                     "singleSignOnServiceUrl": Single_Sign_On_Service_URL,

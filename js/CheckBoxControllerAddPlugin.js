@@ -130,6 +130,7 @@ wantAuthnRequestsSigned.addEventListener("change", function () {
         wantAuthnRequestsSigned.value = true;
         SignatureAlgorithm.removeAttribute("disabled");
         SAMLSignatureKeyName.removeAttribute("disabled");
+        encryption_algorithm.removeAttribute("disabled");
         console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
 
     }
@@ -138,6 +139,8 @@ wantAuthnRequestsSigned.addEventListener("change", function () {
         console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
         SignatureAlgorithm.setAttribute("disabled", "true");
         SAMLSignatureKeyName.setAttribute("disabled", "true");
+        encryption_algorithm.setAttribute("disabled", "true");
+
 
         ;
     }

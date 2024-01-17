@@ -23,8 +23,9 @@ keycloak
       //get flow from KEY
       const selectElement_postLoginFlow = document.getElementById('postLoginFlow');
       const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
+      var selectedrealm = localStorage.getItem('selectedRealm');
 
-      fetch('http://localhost:8080/admin/realms/master/ui-ext/authentication-management/flows', {
+      fetch(`http://localhost:8080/admin/realms/${selectedrealm}/ui-ext/authentication-management/flows`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -76,24 +77,24 @@ keycloak
         .catch(error => {
           console.error(error);
         });
-        
-       getPluginDetails(pluginData.alias);
+
+      getPluginDetails(pluginData.alias);
       const tokenParsed = keycloak.tokenParsed;
-      const roles = tokenParsed.realm_access.roles;
+      const realmroles = tokenParsed.realm_access.roles;
+      const clientroles = tokenParsed.resource_access;
+      console.log(clientroles);
 
-
-      if (roles.includes("admin")) {
-        console.log("User has 'admin' role");
+      if ((clientroles && clientroles['realm-management'] && clientroles['realm-management'].roles.includes("realm-admin")) || realmroles.includes("admin")) {
         document.body.style.display = 'block';
       } else {
+
         alert("User does not have admin role. Access denied.");
         window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
 
-      }
-      localStorage.setItem('accessToken', keycloak.token);
-      console.log("Access Token:", accessToken);
 
+      }
     }
+
     else {
 
       alert("User authentication failed!");

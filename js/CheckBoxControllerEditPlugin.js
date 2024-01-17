@@ -132,12 +132,13 @@ var SignatureAlgorithm = document.getElementById("SignatureAlgorithm");
 var SAMLSignatureKeyName = document.getElementById("SAMLSignatureKeyName");
 
 const wantAuthnRequestsSigned = document.getElementById("wantAuthnRequestsSigned");
-wantAuthnRequestsSigned.value = pluginData.config.wantAuthnRequestsSigned ? pluginData.config.wantAuthnRequestsSigned : false;
+wantAuthnRequestsSigned.value = pluginData.config.wantAssertionsSigned ? pluginData.config.wantAssertionsSigned : false;
 wantAuthnRequestsSigned.addEventListener("change", function () {
     if (wantAuthnRequestsSigned.checked) {
         wantAuthnRequestsSigned.value = true;
         SignatureAlgorithm.removeAttribute("disabled");
         SAMLSignatureKeyName.removeAttribute("disabled");
+        encryption_algorithm.removeAttribute("disabled");
         console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
 
     }
@@ -146,6 +147,8 @@ wantAuthnRequestsSigned.addEventListener("change", function () {
         console.log(`wantAuthnRequestsSigned_value: ${wantAuthnRequestsSigned.value}`)
         SignatureAlgorithm.setAttribute("disabled", "true");
         SAMLSignatureKeyName.setAttribute("disabled", "true");
+        encryption_algorithm.setAttribute("disabled", "true");
+
 
         ;
     }
@@ -247,7 +250,7 @@ validateSignatures.addEventListener("change", function () {
         validateSignatures.value = false;
         console.log(`validateSignatures_value: ${validateSignatures.value}`)
         additionalField1.setAttribute("disabled", "true");
-        additionalField1.value='';
+        additionalField1.value = '';
         ;
     }
 });
@@ -266,7 +269,7 @@ Artifact_Resolution.addEventListener("change", function () {
         Artifact_Resolution.value = false;
         console.log(`Artifact_Resolution_value: ${Artifact_Resolution.value}`)
         additionalField_endpoint.setAttribute("disabled", "true");
-        additionalField_endpoint.value='';
+        additionalField_endpoint.value = '';
 
         ;
     }
@@ -322,12 +325,13 @@ enabled.addEventListener("change", function () {
 });
 
 principalType_input.addEventListener('change', function () {
-console.log(principalType_input.value )
-if (principalType_input.value == "ATTRIBUTE" ||principalType_input.value == "FRIENDLY_ATTRIBUTE") {
-    principalAttribute_input.removeAttribute("disabled");
-    
-} else {
-    principalAttribute_input.value = '';
-    principalAttribute_input.setAttribute("disabled", "true");
- 
-}});
+    console.log(principalType_input.value)
+    if (principalType_input.value == "ATTRIBUTE" || principalType_input.value == "FRIENDLY_ATTRIBUTE") {
+        principalAttribute_input.removeAttribute("disabled");
+
+    } else {
+        principalAttribute_input.value = '';
+        principalAttribute_input.setAttribute("disabled", "true");
+
+    }
+});

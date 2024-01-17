@@ -69,10 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (pluginData.config.wantAuthnRequestsSigned == "true") {
                     SignatureAlgorithm.removeAttribute("disabled");
                     SAMLSignatureKeyName.removeAttribute("disabled");
+                    encryption_algorithm.removeAttribute("disabled")
                     wantAuthnRequestsSigned.checked = true;
                 } else {
                     SignatureAlgorithm.setAttribute("disabled", "true");
                     SAMLSignatureKeyName.setAttribute("disabled", "true");
+                    encryption_algorithm.setAttribute("disabled", "true");
                     wantAuthnRequestsSigned.checked = false;
 
                 }
@@ -187,6 +189,10 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
 
+        if (pluginData.config.encryptionAlgorithm) {
+            updateField('encryption_algorithm', pluginData.config.encryptionAlgorithm);
+        }
+        
         if (pluginData.config.signatureAlgorithm) {
             updateField('SignatureAlgorithm', pluginData.config.signatureAlgorithm);
         }

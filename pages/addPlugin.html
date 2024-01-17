@@ -528,12 +528,19 @@
             <img src="/images/question.png" class="image" alt="question mark"
                 onclick="alert('Encryption algorithm, which is used by SAML IDP for encryption of SAML documents, assertions or IDs. The corresponding decryption key for decrypt SAML document parts will be chosen based on this configured algorithm and should be available in realm keys for the encryption (ENC) usage. If algorithm is not configured, then any supported algorithm is allowed and decryption key will be chosen based on the algorithm configured in SAML document itself')">
         </h5>
+        <select name="Encryption Algorithm" id="encryption_algorithm" disabled>
+            <option value="RSA-OAEP">RSA-OAEP</option>
+            <option value="RSA1_5">RSA1_5</option>
+        </select>
+        <h5>SAML signature key name
+            <img src="/images/question.png" class="image" alt="question mark"
+                onclick="alert('Signed SAML documents contain identification of signing key in KeyName element. For Keycloak / RH-SSO counter-party, use KEY_ID, for MS AD FS use CERT_SUBJECT, for others check and use NONE if no other option works.')">
+        </h5>
         <select name="SAML signature key name " id="SAMLSignatureKeyName" disabled>
             <option value="KEY-ID">KEY-ID</option>
             <option value="NONE">NONE</option>
             <option value="CERT_SUBJECT">CERT_SUBJECT</option>
         </select>
-
 
         <h5>Want Assertions Signed
             <img src="/images/question.png" class="image" alt="question mark"

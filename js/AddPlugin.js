@@ -45,6 +45,7 @@ add.addEventListener('click', () => {
             "xmlSigKeyInfoKeyNameTransformer": SAMLSignatureKeyName_input.value,
             "idpEntityId": Identity_Provider_Entity_ID_input.value,
             "loginHint": passSubject.value,
+            "encryptionAlgorithm":encryption_algorithm.value,
             "allowCreate": allowCreate.value,
             "authnContextComparisonType": comparison_input.value,
             "syncMode": syncMode_input.value,
