@@ -132,7 +132,7 @@ var SignatureAlgorithm = document.getElementById("SignatureAlgorithm");
 var SAMLSignatureKeyName = document.getElementById("SAMLSignatureKeyName");
 
 const wantAuthnRequestsSigned = document.getElementById("wantAuthnRequestsSigned");
-wantAuthnRequestsSigned.value = pluginData.config.wantAssertionsSigned ? pluginData.config.wantAssertionsSigned : false;
+wantAuthnRequestsSigned.value = pluginData.config.wantAuthnRequestsSigned ? pluginData.config.wantAuthnRequestsSigned : false;
 wantAuthnRequestsSigned.addEventListener("change", function () {
     if (wantAuthnRequestsSigned.checked) {
         wantAuthnRequestsSigned.value = true;
