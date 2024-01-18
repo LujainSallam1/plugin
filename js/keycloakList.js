@@ -10,7 +10,7 @@ const keycloak = Keycloak({
 });
 
 document.getElementById('logout').addEventListener('click', () => {
-    window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
+    window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=http://localhost:3000/realm.html&client_id=${clientid}`;
 });
 
 keycloak

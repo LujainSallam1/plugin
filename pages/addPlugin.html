@@ -321,9 +321,10 @@
 </div>
 <div class="container">
     <h1>Saml-extended</h1>
+    <script src="/js/Config.js"></script>
     </h1>
     <script>document.getElementById('List').addEventListener('click', function () {
-            window.location.href = "http://localhost:3000/list.html";
+            window.location.href = `${list}`;
         });
     </script>
     <div>
@@ -334,7 +335,6 @@
         </label>
     </div>
     <script src="/js/RestApiMethodes.js"></script>
-    <script src="/js/Config.js"></script>
     <script src="/js/keycloakAdd.js"></script>
 
     <h2 id="GeneralSettings">General Settings </h2>

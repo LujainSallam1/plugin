@@ -125,7 +125,7 @@ function updatePluginList(plugins, accessToken) {
 
                 // Create a link
                 var link = document.createElement('a');
-                link.href = 'http://localhost:3000/editplugin.html';
+                link.href = `${editplugin}`;
                 if (plugin.displayName) {
                     link.textContent = plugin.displayName;
                 }
@@ -141,7 +141,7 @@ function updatePluginList(plugins, accessToken) {
                         await getPluginDetails(plugin.alias);
                         await new Promise(resolve => setTimeout(resolve, 0));
 
-                        window.location.href = 'http://localhost:3000/editplugin.html';
+                        window.location.href = `${editplugin}`;
                         localStorage.setItem('pluginalias', plugin.alias);
                     } catch (error) {
                         console.error('Error:', error);

@@ -226,7 +226,7 @@ add.addEventListener('click', () => {
                         if (updatePluginResponse.ok) {
 
                             alert("Plugin added successfully.");
-                            window.location.href = 'http://localhost:3000/editplugin.html';
+                            window.location.href =`${editplugin}`;
                             localStorage.setItem('pluginData', JSON.stringify(data));
                             localStorage.setItem('pluginalias', pluginData.alias);
 
