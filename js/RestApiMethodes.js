@@ -36,7 +36,7 @@ window.clearPluginList = clearPluginList;
 
 
 function getAllRealms(accessToken) {
-    keycloak.updateToken(180).then((bool) => {
+    keycloak.updateToken(300).then((bool) => {
         fetch('http://localhost:8080/admin/realms', {
             method: 'GET',
             headers: {
@@ -186,7 +186,7 @@ function updatePluginList(plugins, accessToken) {
 }
 window.updatePluginList = updatePluginList;
 function handleDeleteButtonClick(plugin_alias, accessToken) {
-    keycloak.updateToken(180).then((bool) => {
+    keycloak.updateToken(300).then((bool) => {
         if (bool) {
             var selectedrealm = localStorage.getItem('selectedRealm');
             // Assuming you have an API endpoint for deleting plugins
@@ -228,7 +228,7 @@ window.updatePluginList = updatePluginList;
 function getPluginDetails(alias, accessToken) {
     return new Promise((resolve, reject) => {
 
-        keycloak.updateToken(180).then((bool) => {
+        keycloak.updateToken(300).then((bool) => {
             if (bool) {
                 console.log("Token is updated");
                 var accessToken = keycloak.token;

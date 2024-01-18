@@ -175,7 +175,7 @@ add.addEventListener('click', () => {
     console.log(data);
 
     // Update token and execute the following code when the token is successfully updated 
-    keycloak.updateToken(180).then((bool) => {
+    keycloak.updateToken(300).then((bool) => {
         if (bool) {
 
             // Code to be executed after token update 

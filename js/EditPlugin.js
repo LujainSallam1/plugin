@@ -1,6 +1,6 @@
 edit.addEventListener('click', () => {
 
-    keycloak.updateToken(180).then((bool) => {
+    keycloak.updateToken(300).then((bool) => {
         if (bool) {
             console.log("Token is updated");
             newAccessToken = keycloak.token;
