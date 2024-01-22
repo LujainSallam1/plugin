@@ -116,7 +116,7 @@ ${adminUserCreationMessage}.
 
         <div class="col-xs-12 col-sm-4">
          <div class="card-pf h-m">
-          <h3><a href="http://localhost:3000/list.html" target="_blank">saml<i class="fa fa-angle-right link" aria-hidden="true"></i></a></h3>
+          <h3><a href="http://localhost:3000/realm.html" target="_blank">saml<i class="fa fa-angle-right link" aria-hidden="true"></i></a></h3>
           <div class="description">
              Saml Plugin
          </div>
