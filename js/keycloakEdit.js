@@ -9,7 +9,7 @@ const keycloak = Keycloak({
 });
 
 document.getElementById('logout').addEventListener('click', () => {
-  window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
+  window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${post_logout_redirect_uri}&client_id=${clientid}`;
 });
 
 keycloak
@@ -89,7 +89,7 @@ keycloak
       } else {
 
         alert("User does not have admin role. Access denied.");
-        window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectUri}&client_id=${clientid}`;
+        window.location.href = `${ServerUrl}/realms/${realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${post_logout_redirect_uri}&client_id=${clientid}`;
 
 
       }
