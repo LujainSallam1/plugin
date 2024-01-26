@@ -44,6 +44,10 @@ To install them, open a terminal, navigate to the project's directory, and run t
      - **Valid Redirect URIs: http://localhost:3000/***
      - **Valid Post Logout Redirect URIs: http://localhost:3000/realm.html**
      - **Web Origins:***
+     - **Front channel logout: on**
+     - **Front-channel logout URL: http://localhost:3000/realm.html**
+     - **Backchannel logout session required: on**
+   
 
    - Click "Save".
 
