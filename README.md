@@ -42,8 +42,12 @@ To install them, open a terminal, navigate to the project's directory, and run t
      - **Client Authentication: Off**
      - **Authorization: Off** 
      - **Valid Redirect URIs: http://localhost:3000/***
-     - **Valid Post Logout Redirect URIs: http://localhost:3000/list.html**
+     - **Valid Post Logout Redirect URIs: http://localhost:3000/realm.html**
      - **Web Origins:***
+     - **Front channel logout: on**
+     - **Front-channel logout URL: http://localhost:3000/realm.html**
+     - **Backchannel logout session required: on**
+   
 
    - Click "Save".
 
@@ -75,5 +79,6 @@ To install them, open a terminal, navigate to the project's directory, and run t
 
 3. log in using an admin user account .
 
+**If you want to log in through a non-master realm, you must assign the "realm-management realm-admin" to the user we want to log in with**.
 
 
