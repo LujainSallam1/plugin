@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+   keycloak:
+      image: quay.io/keycloak/keycloak:23.0.3
+      ports:
+         - "8080:8080"
+      environment:
+         - KEYCLOAK_ADMIN=luj
+         - KEYCLOAK_ADMIN_PASSWORD=12
+         - DB_VENDOR=postgres
+         - DB_ADDR=postgres
+         - DB_DATABASE=keycloak
+         - DB_USER=keycloak
+         - DB_PASSWORD=password
+         - KEYCLOAK_USER=luj
+         - KEYCLOAK_PASSWORD=12
+         - KEYCLOAK_LOGLEVEL=DEBUG
+      command:
+         - start-dev 
+      restart: unless-stopped
+      networks:
+         - pg
+
+   node_app:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      ports:
+         - "3000:3000"
+      depends_on:
+         - keycloak
+      networks:
+         - pg
+
+volumes:
+   postgres-data:
+
+networks:
+   pg:
