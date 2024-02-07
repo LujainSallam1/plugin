@@ -25,7 +25,7 @@ keycloak
       const selectElement_firstLoginFlow = document.getElementById('firstLoginFlow');
       var selectedrealm = localStorage.getItem('selectedRealm');
 
-      fetch(`http://localhost:8080/admin/realms/${selectedrealm}/ui-ext/authentication-management/flows`, {
+      fetch(`${ServerUrl}/admin/realms/${selectedrealm}/ui-ext/authentication-management/flows`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,

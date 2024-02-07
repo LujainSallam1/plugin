@@ -151,7 +151,7 @@ edit.addEventListener('click', () => {
             var selectedrealm = localStorage.getItem('selectedRealm');
 
             // Sending a GET request to check if the plugin exists
-            fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias_input.value}`, {
+            fetch(`${ServerUrl}/admin/realms/${selectedrealm}/identity-provider/instances/${alias_input.value}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${newAccessToken}`,
@@ -162,7 +162,7 @@ edit.addEventListener('click', () => {
                 .then(async checkPluginResponse => {
                     if (checkPluginResponse.ok) {
                         var pluginData = await checkPluginResponse.json();
-                        const updatePluginResponse = await fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
+                        const updatePluginResponse = await fetch(`${ServerUrl}/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
                             method: 'PUT',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,
@@ -193,7 +193,7 @@ edit.addEventListener('click', () => {
                         }
                     } else if (checkPluginResponse.status === 404) {
                         // If the status is 404, the plugin does not exist, so send a POST request
-                        return fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances`, {
+                        return fetch(`${ServerUrl}/admin/realms/${selectedrealm}/identity-provider/instances`, {
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`,

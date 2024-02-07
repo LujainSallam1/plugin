@@ -54,7 +54,7 @@
     </style>
 </head>
 
-
+<script src="../../samlconfig/js/Config.js"></script>
 <body>
     <h1>Enter Realm Name</h1>
     <input type="text" class="input_text" id="realmNameInput" placeholder="Enter Realm Name">
@@ -64,13 +64,13 @@
             var realmName = document.getElementById("realmNameInput").value;
             if (realmName) {
                 localStorage.setItem('realm_input', realmName)
+                var redirectUri=localStorage.getItem('redirectUri')
                 window.location.href = `${redirectUri}`;
             } else {
                 alert("Enter realm")
             }
         }
     </script>
-    <script src="/js/Config.js"></script>
 </body>
 
 </html>
