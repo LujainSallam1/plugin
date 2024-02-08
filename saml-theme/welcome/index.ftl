@@ -114,14 +114,16 @@ ${adminUserCreationMessage}.
         </div>
         
 
-        <div class="col-xs-12 col-sm-4">
-         <div class="card-pf h-m">
-          <h3><a href="http://localhost:3000/realm.html" target="_blank">saml<i class="fa fa-angle-right link" aria-hidden="true"></i></a></h3>
-          <div class="description">
-             Saml Plugin
-         </div>
-       </div>
-</div>
+          <div class="col-xs-12 col-sm-4">
+              <div class="card-pf h-m">
+                  <h3><a href="https://kcsignicat.first8.nl/samlconfig/pages/realm.html" target="_blank">
+                          <img src="welcome-content/saml.png">Saml extended plugin configuration<i class="fa fa-angle-right link" aria-hidden="true">
+                          </i></a></h3>
+                  <div class="description">
+                      Saml Plugin
+                  </div>
+              </div>
+          </div>
         <div class="col-xs-12 col-sm-4">
         <#if properties.displayCommunityLinks = "true">
           <div class="card-pf h-m">
