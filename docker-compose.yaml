@@ -42,7 +42,7 @@ services:
 
          # Keycloak config
          - KEYCLOAK_ADMIN=admin
-         - KEYCLOAK_ADMIN_PASSWORD=Lullaby,Overlying,Yippee,Backboard,Supply,Naturist,Carpenter,Maritime
+         - KEYCLOAK_ADMIN_PASSWORD=<password here>
          - KEYCLOAK_LOGLEVEL=${KC_LOGLEVEL:-DEBUG}
          - KC_METRICS_ENABLED=true
          - KC_HEALTH_ENABLED=true
