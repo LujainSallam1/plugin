@@ -324,8 +324,8 @@
     <script src="../../samlconfig/js/Config.js"></script>
     </h1>
     <script>document.getElementById('List').addEventListener('click', function () {
-        var redirectUri=localStorage.getItem('redirectUri')
-        window.location.href = `${redirectUri}`;
+            var redirectUri = localStorage.getItem('redirectUri')
+            window.location.href = `${redirectUri}`;
         });
     </script>
     <div>
@@ -358,8 +358,18 @@
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
         </h5>
         <span class="error-message" id="errorMessage"></span>
-        <input type="text" name="alias" id="alias" class="input_text">
+        <input type="text" name="alias" id="alias" class="input_text" oninput="copyValue(event)">
+        <script>
+            function copyValue(event) {
+                var alias = event.target.value;
+                var selectedrealm = localStorage.getItem('selectedRealm');
+                localStorage.setItem('alias_for_endpoint',alias)
+                var ServerUrl1 = localStorage.getItem('ServerUrl')
+                document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/${alias}/endpoint`
+                document.getElementById('metadataLink').href = `${serverUrl}/realms/${selectedRealm}/broker/${alias}/endpoint/descriptor`;
 
+            }
+        </script>
         <h5>Display Name
             <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
                 onclick="alert('Friendly name for Identity Providers')">
@@ -378,10 +388,18 @@
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
 
         </h5>
-        <a href="http://localhost:8080/realms/master/broker/saml-extended/endpoint/descriptor">
+
+        <a href="http://localhost:8080/realms/master/broker/saml-extended/endpoint/descriptor" id="metadataLink">
             SAML 2.0 Service Provider Metadata </a>
         </section>
+        <script>
+            var selectedRealm = localStorage.getItem('selectedRealm');
+            var serverUrl = localStorage.getItem('ServerUrl');
+            var alias_for_endpoint = localStorage.getItem('alias_for_endpoint');
+            document.getElementById('metadataLink').href = `${serverUrl}/realms/${selectedRealm}/broker/${alias_for_endpoint}/endpoint/descriptor`;
+        </script>
         <h2 id="SAMLSettings">SAML settings</h2>
+
 
         <h5>Service Provider Entity ID
             <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
@@ -655,8 +673,8 @@
         <form class="form-horizontal">
             <!-- Text input-->
             <div id="ClassRefs_items" class="form-group">
-                <h5> AuthnContext ClassRefs <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
-                        onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
+                <h5> AuthnContext ClassRefs <img src="../../samlconfig/images/question.png" class="image"
+                        alt="question mark" onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
                     <input id="authnContextClassRefs" name="authnContextClassRefs" class="input_text" type="text"
                         class="form-control input-md">
@@ -671,8 +689,8 @@
         <form class="form-horizontal">
             <!-- Text input-->
             <div id="DeclRefs_items" class="form-group">
-                <h5> AuthnContext DeclRefs <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
-                        onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
+                <h5> AuthnContext DeclRefs <img src="../../samlconfig/images/question.png" class="image"
+                        alt="question mark" onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
                     <input id="authnContextDeclRefs" name="authnContextDeclRefs" type="text" class="input_text">
 

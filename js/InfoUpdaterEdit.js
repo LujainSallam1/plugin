@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Artifact_Resolution.checked = false;
                     console.log(`Artifact_Resolution_value: ${Artifact_Resolution_value}`)
                     additionalField_endpoint.setAttribute("disabled", "true");
-                    additionalField_endpoint.value='';
+                    additionalField_endpoint.value = '';
 
 
                 }
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pluginData.config.encryptionAlgorithm) {
             updateField('encryption_algorithm', pluginData.config.encryptionAlgorithm);
         }
-        
+
         if (pluginData.config.signatureAlgorithm) {
             updateField('SignatureAlgorithm', pluginData.config.signatureAlgorithm);
         }
@@ -220,6 +220,10 @@ document.addEventListener('DOMContentLoaded', function () {
             updateField('alias', pluginData.alias);
 
         }
+        var selectedrealm = localStorage.getItem('selectedRealm');
+        var ServerUrl1 = localStorage.getItem('ServerUrl')
+        document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/${pluginData.alias}/endpoint`
+
         if (pluginData.config.allowedClockSkew) {
             updateField('allowedClockSkew', pluginData.config.allowedClockSkew);
         }

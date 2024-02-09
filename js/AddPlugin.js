@@ -83,7 +83,6 @@ add.addEventListener('click', () => {
         }
     };
 
-
     if (!alias) {
         alias_input.classList.remove('input_text');
         alias_input.classList.add('red-border');

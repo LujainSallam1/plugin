@@ -320,8 +320,8 @@
     </div>
     <h1>Saml-extended</h1>
     <script>document.getElementById('List').addEventListener('click', function () {
-        var redirectUri=localStorage.getItem('redirectUri')
-        window.location.href = `${redirectUri}`;
+            var redirectUri = localStorage.getItem('redirectUri')
+            window.location.href = `${redirectUri}`;
         });
     </script>
     <div>
@@ -345,12 +345,7 @@
         </h5>
         <input type="url" name="redirectUri" class="readonly"
             value="http://localhost:8080/realms/master/broker/saml-extended/endpoint" id="redirectUri" readonly>
-        <script>
-            var selectedrealm = localStorage.getItem('selectedRealm');
-            var ServerUrl=localStorage.getItem('ServerUrl')
 
-            document.getElementById('redirectUri').value = `${ServerUrl}/realms/${selectedrealm}/broker/saml-extended/endpoint`
-        </script>
 
         <h5>Alias *
             <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
@@ -358,6 +353,7 @@
         </h5>
 
         <input type="text" class="readonly" name="alias" id="alias" readonly>
+
         <h5>Display Name
             <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
                 onclick="alert('Friendly name for Identity Providers')">
@@ -376,8 +372,19 @@
                 onclick="alert('The alias uniquely identifies an identity provider and it is also used to build the redirect uri.')">
 
         </h5>
-        <a href="http://localhost:8080/realms/master/broker/saml-extended/endpoint/descriptor">
-            SAML 2.0 Service Provider Metadata </a>
+
+        <a href="http://localhost:8080/realms/master/broker/saml-extended/endpoint/descriptor" id="metadataLink">
+            SAML 2.0 Service Provider Metadata
+        </a>
+
+        <script>
+            var selectedRealm = localStorage.getItem('selectedRealm');
+            var serverUrl = localStorage.getItem('ServerUrl');
+            var pluginAlias = localStorage.getItem('pluginalias');
+            var link = document.getElementById('metadataLink');
+
+            document.getElementById('metadataLink').href = `${serverUrl}/realms/${selectedRealm}/broker/${pluginAlias}/endpoint/descriptor`;
+        </script>
         </section>
         <h2 id="SAMLSettings">SAML settings</h2>
 
@@ -648,8 +655,8 @@
         <form class="form-horizontal">
             <!-- Text input-->
             <div id="ClassRefs_items" class="form-group">
-                <h5> AuthnContext ClassRefs <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
-                        onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
+                <h5> AuthnContext ClassRefs <img src="../../samlconfig/images/question.png" class="image"
+                        alt="question mark" onclick="alert('Ordered list of requested AuthnContext ClassRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
                     <input id="authnContextClassRefs" class="input_text" name="authnContextClassRefs" type="text"
                         class="form-control input-md">
@@ -664,8 +671,8 @@
         <form class="form-horizontal">
             <!-- Text input-->
             <div id="DeclRefs_items" class="form-group">
-                <h5> AuthnContext DeclRefs <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
-                        onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
+                <h5> AuthnContext DeclRefs <img src="../../samlconfig/images/question.png" class="image"
+                        alt="question mark" onclick="alert('Ordered list of requested AuthnContext DeclRefs.')"> </h5>
                 <div class="col-md-4 margin-bottom">
                     <input id="authnContextDeclRefs" class="input_text" name="authnContextDeclRefs" type="text"
                         class="form-control input-md">
