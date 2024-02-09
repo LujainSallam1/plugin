@@ -1,8 +1,13 @@
 const clientid = 'frontend';
-const postLogoutRedirect = 'http://localhost:3000/list.html';
-const ServerUrl = 'http://localhost:8080';
-const redirectUri = 'http://localhost:3000/list.html';
-const post_logout_redirect_uri = 'http://localhost:3000/realm.html';
+const postLogoutRedirect = 'https://kcsignicat.first8.nl/samlconfig/pages/list.html';
+const ServerUrl = 'https://kcsignicat.first8.nl';
+const redirectUri = 'https://kcsignicat.first8.nl/samlconfig/pages/list.html';
+const post_logout_redirect_uri = 'https://kcsignicat.first8.nl/samlconfig/pages/realm.html';
 const realm = localStorage.getItem('realm_input');
 console.log(realm)
-const editplugin='http://localhost:3000/editplugin.html';
+const editplugin='https://kcsignicat.first8.nl/samlconfig/pages/editplugin.html';
+const addplugin='https://kcsignicat.first8.nl/samlconfig/pages/addplugin.html';
+localStorage.setItem('ServerUrl', ServerUrl);
+localStorage.setItem('postLogoutRedirect', postLogoutRedirect);
+localStorage.setItem('redirectUri', redirectUri);
+localStorage.setItem('addplugin', addplugin);

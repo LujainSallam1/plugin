@@ -143,13 +143,14 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/keycloak-js@16.1.0/dist/keycloak.js"></script>
+
   <meta http-equiv="Cache-Control" content="no-store">
 </head>
 <header>
   <div class="logo">
-    <img src="/images/KEY_logo.png" alt="Logo">
+    <img src="../../samlconfig/images/KEY_logo.png" alt="Logo">
   </div>
-    <img src="/images/logout.png" id="logout" class="logout">
+    <img src="../../samlconfig/images/logout.png" id="logout" class="logout">
 
 </header>
 
@@ -160,6 +161,7 @@
       </select>
     </div>
     <button id="add_plugin" class="btn">Add Plugin</button>
+    <script src="../../samlconfig/js/Config.js"></script>
     <script> document.getElementById("add_plugin").addEventListener("click", function(event) {
   
       var selectedrealm= localStorage.getItem('selectedRealm');
@@ -168,16 +170,16 @@
         event.preventDefault();
         alert("You must choose a realm before proceeding.");
       } else {
-        window.location.href = "http://localhost:3000/addPlugin.html";
+        var addplugin=localStorage.getItem('addplugin')
+        window.location.href = `${addplugin}`;
    
       }
     });</script>
 
     <div id="resultsContainer"></div>
-    <script src="/js/InfoUpdaterList.js"></script>
-    <script src="/js/RestApiMethodes.js"></script>
-    <script src="/js/Config.js"></script>
-    <script src="/js/keycloakList.js"></script>
+    <script src="../../samlconfig/js/InfoUpdaterList.js"></script>
+    <script src="../../samlconfig/js/RestApiMethodes.js"></script>
+    <script src="../../samlconfig/js/keycloakList.js"></script>
 
     <script>
       // Ensure execution when coming back from cache

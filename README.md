@@ -41,11 +41,11 @@ To install them, open a terminal, navigate to the project's directory, and run t
    - Configure other settings as needed:
      - **Client Authentication: Off**
      - **Authorization: Off** 
-     - **Valid Redirect URIs: http://localhost:3000/***
-     - **Valid Post Logout Redirect URIs: http://localhost:3000/realm.html**
+     - **Valid Redirect URIs: https://kcsignicat.first8.nl/***
+     - **Valid Post Logout Redirect URIs:https://kcsignicat.first8.nl/samlconfig/pages/realm.html**
      - **Web Origins:***
      - **Front channel logout: on**
-     - **Front-channel logout URL: http://localhost:3000/realm.html**
+     - **Front-channel logout URL: https://kcsignicat.first8.nl/samlconfig/pages/realm.html**
      - **Backchannel logout session required: on**
    
 
@@ -73,7 +73,7 @@ To install them, open a terminal, navigate to the project's directory, and run t
 
  follow these steps:
 
-1. Open a web browser and navigate to http://localhost:8080.
+1. Open a web browser and navigate to (https://kcsignicat.first8.nl/samlconfig/pages/realm.html).
 
 2. Look for "saml plugin" or "saml" in the menu and open it.
 

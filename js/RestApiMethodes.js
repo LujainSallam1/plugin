@@ -1,7 +1,7 @@
 // export let selectedRealm;
 function getAllPlugins(accessToken, selectedRealm) {
     if (selectedRealm) {
-        fetch(`http://localhost:8080/admin/realms/${selectedRealm}/identity-provider/instances`, {
+        fetch(`${ServerUrl}/admin/realms/${selectedRealm}/identity-provider/instances`, {
             method: 'GET',
             headers: {
                 'Authorization': ` Bearer ${accessToken}`
@@ -37,7 +37,7 @@ window.clearPluginList = clearPluginList;
 
 function getAllRealms(accessToken) {
     keycloak.updateToken(300).then((bool) => {
-        fetch('http://localhost:8080/admin/realms', {
+        fetch(`${ServerUrl}/admin/realms`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -190,7 +190,7 @@ function handleDeleteButtonClick(plugin_alias, accessToken) {
         if (bool) {
             var selectedrealm = localStorage.getItem('selectedRealm');
             // Assuming you have an API endpoint for deleting plugins
-            var deleteEndpoint = `http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${plugin_alias}`;
+            var deleteEndpoint = `${ServerUrl}/admin/realms/${selectedrealm}/identity-provider/instances/${plugin_alias}`;
             var accessToken = keycloak.token;
             // Send a DELETE request using Fetch API
             fetch(deleteEndpoint, {
@@ -233,7 +233,7 @@ function getPluginDetails(alias, accessToken) {
                 console.log("Token is updated");
                 var accessToken = keycloak.token;
                 var selectedrealm = localStorage.getItem('selectedRealm');
-                fetch(`http://localhost:8080/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
+                fetch(`${ServerUrl}/admin/realms/${selectedrealm}/identity-provider/instances/${alias}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
