@@ -167,8 +167,9 @@
       var selectedrealm= localStorage.getItem('selectedRealm');
 
       if (selectedrealm.trim() === "") {
-        event.preventDefault();
         alert("You must choose a realm before proceeding.");
+        event.preventDefault();
+       
       } else {
         var addplugin=localStorage.getItem('addplugin')
         window.location.href = `${addplugin}`;

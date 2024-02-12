@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         var selectedrealm = localStorage.getItem('selectedRealm');
         var ServerUrl1 = localStorage.getItem('ServerUrl')
+        var pluginalias=localStorage.setItem('pluginalias',`${pluginData.alias}`)
         document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/${pluginData.alias}/endpoint`
 
         if (pluginData.config.allowedClockSkew) {
