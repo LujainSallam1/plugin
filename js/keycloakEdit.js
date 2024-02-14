@@ -41,6 +41,10 @@ keycloak
             selectElement_firstLoginFlow.removeChild(selectElement_firstLoginFlow.firstChild);
           }
 
+          const noneOption_postLogin = document.createElement('option');
+          noneOption_postLogin.value = '';
+          noneOption_postLogin.text = 'None';
+          selectElement_postLoginFlow.add(noneOption_postLogin, 0);
 
           responseJSON.forEach((flow, index) => {
             const optionElement = document.createElement('option');

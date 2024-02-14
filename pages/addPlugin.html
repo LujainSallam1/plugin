@@ -350,8 +350,8 @@
 
         <script>
             var selectedrealm = localStorage.getItem('selectedRealm');
-            var ServerUrl = localStorage.getItem('ServerUrl');
-            document.getElementById('redirectUri').value = `${ServerUrl}/realms/${selectedrealm}/broker/saml-extended/endpoint`
+            var ServerUrl1 = localStorage.getItem('ServerUrl');
+            document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/saml-extended/endpoint`
         </script>
         <h5>Alias *
             <img src="../../samlconfig/images/question.png" class="image" alt="question mark"
@@ -360,13 +360,16 @@
         <span class="error-message" id="errorMessage"></span>
         <input type="text" name="alias" id="alias" class="input_text" oninput="copyValue(event)">
         <script>
+            var selectedrealm = localStorage.getItem('selectedRealm');
+            var ServerUrl1 = localStorage.getItem('ServerUrl')
+            document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/saml-extended/endpoint`
             function copyValue(event) {
                 var alias = event.target.value;
                 var selectedrealm = localStorage.getItem('selectedRealm');
                 localStorage.setItem('alias_for_endpoint',alias)
                 var ServerUrl1 = localStorage.getItem('ServerUrl')
                 document.getElementById('redirectUri').value = `${ServerUrl1}/realms/${selectedrealm}/broker/${alias}/endpoint`
-                document.getElementById('metadataLink').href = `${serverUrl}/realms/${selectedRealm}/broker/${alias}/endpoint/descriptor`;
+                document.getElementById('metadataLink').href = `${ServerUrl1}/realms/${selectedRealm}/broker/${alias}/endpoint/descriptor`;
 
             }
         </script>
