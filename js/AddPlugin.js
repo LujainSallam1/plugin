@@ -20,7 +20,7 @@ add.addEventListener('click', () => {
     var Single_Sign_On_Service_URL = Single_Sign_On_Service_URL_input.value;
     var Single_Logout_Service_URL = Single_Logout_Service_URL_input.value;
     var nameIdPolicy = nameIdPolicy_input.value;
-    var nameIdPolicy1 = `urn:oasis:names:tc:SAML:1.1:nameid-format:${nameIdPolicy}`;
+    var nameIdPolicy1 = `urn:oasis:names:tc:SAML:2.0:nameid-format:${nameIdPolicy}`;
     var alias = alias_input.value;
     var data = {
         "alias": alias,
